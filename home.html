@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <title>home page</title>
+            <style>
+
+                *{
+                    margin: 0;
+                    padding: 0;
+                    box-sizing: border-box; 
+                }
+                .logo{
+                    font-weight: bold;
+                    font-size: 20px;
+                }
+
+                .nav_bar{
+                    display: flex;
+                    justify-content:space-between;
+                    align-items: center;
+                    backdrop-filter: blur(10px);
+                    padding: 15px 40px;
+                    font-family: Arial;
+                    font-weight: bold;
+                }
+                .nav_links{
+                    list-style: none;
+                    display: flex;
+                }
+                .nav_links li{
+                    margin-left: 25px;
+                }
+                .nav_links a{
+                    text-decoration: none;
+                    color: black;
+                    font-size: 16px;
+                    position: relative;
+                }
+                .nav_links a::after{
+                    content: "";
+                    position: absolute;
+                    width: 0%;
+                    height: 2px;
+                    background: black;
+                    left: 0;
+                    bottom: -5px;
+                    transition: 0.3s;
+                }
+                .nav_links a:hover::after{
+                    width:100%;
+                }
+                .nav_links a.active{
+                    color:white;
+                }
+                .nav_links a.active img{
+                    filter: brightness(0) invert(1) 
+                }
+
+                .nav_links a.log_btn{
+                    display: inline-block;
+                    padding: 15px 20px;
+                    margin-left: 30px;
+                    background-color: black;
+                    color: aliceblue;
+                    border-radius: 70px;
+                    font-size:15px;
+                    text-decoration: none;
+                    font-weight: bold;
+
+                }
+                body{
+                    background-color: #F5FBFF;
+                }
+
+                .hero{
+                    width: 90%;
+                    margin: auto;
+                    min-height: 90vh;
+
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+
+                }
+
+                .hero-text{
+                    width: 50%;
+                }
+                .hero-text h1{
+                    font-size: 70px;
+                    line-height: 80px;
+                    color: #1E293B;
+                    margin-bottom: 25px;
+                }
+                .hero-text span{
+                    color: #2563EB;
+                }
+                .hero-text p{
+                    font-size: 18px;
+                    color: #555;
+                    line-height: 30px;
+                    margin-bottom: 40px;
+                    max-width: 600px;
+                }
+            
+                .reg_btn{
+                display: inline-block;
+                padding: 16px 38px;
+                background: #2563eb;
+                color: white;
+                border-radius: 50px;
+                font-size:18px;
+                text-decoration: none;
+                font-weight: 600;
+                transition: 0.3s ease;
+                box-shadow: 0 10px 25px rgba(37,99,235,0.35);
+                text-align: center;
+                }
+                .reg_btn:hover{
+                    background: #1d4ed8;
+                    transform: translateY(-5px);
+                    box-shadow:0 15px 35px rgba(37,99,235,0.45);
+                }
+                .hero-image{
+                    width: 100%;
+                    position: relative;
+
+                }
+
+                .hero-image img{
+                    width: 100%;
+                    animation: float 4s ease-in-out infinite;
+                }
+
+                .card{
+                    position: absolute;
+                    background: white;
+                    padding: 15px 20px;
+                    border-radius: 15px;
+                    box-shadow: 0 10px 25px rgba(0,0,0,.15);
+                    font-weight: bold;
+                
+                }
+            .card1{
+                top: 40px;
+                left: -40px;
+            }
+            .card2{
+                top: 180px;
+                left: -50px;
+            }
+            .card3{
+                bottom: 40px;
+                left: -7px;
+            }
+            @keyframes float{
+                0%{
+                    transform: translateY(0);
+                }
+                50%{
+                    transform: translateY(-20px);
+                }
+                100%{
+                    transform: translateY(0);
+                }
+
+            }
+            @media(max-width:900px){
+                .hero{
+                    flex-direction: column;
+                    text-align: center;
+                }
+                .hero-text{
+                    width: 100%;
+                }
+                .hero-image{
+                    width: 80%;
+                    margin-top: 50px;
+                }
+                .reg_btn{
+                    justify-content: center;
+                }
+                .hero-text h1{
+                    font-size: 50px;
+                    line-height: 60px;
+                }
+            }
+
+            .stats{
+                width: 90%;
+                margin: 80px auto;
+                text-align: center;
+            }
+            .stats h2{
+                font-size: 42px;
+                color: #1e293b;
+                margin-bottom: 50px;
+            }
+            .stats-container{
+                display: grid;
+                grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+                gap: 25px;
+            }
+            .stats-card:hover{
+                transform: translateY(-10px);
+                box-shadow: 0 20px 40px rgba(37,99,235,.15);
+            }
+            .icon{
+                font-size: 45px;
+                margin-bottom: 15px;
+            }
+            .stat-card h3{
+                font-size: 42px;
+                color: #2563eb;
+                margin-bottom: 10px;
+            }
+            .stat-card p{
+                color: #555;
+                font-size: 18px;
+            }
+
+        h2{
+                font-size: 42px;
+                color: #1e293b;
+                margin-bottom: 50px;
+                text-align: center;
+            }
+
+        .services{
+            width: 90%;
+            display:grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin: 40px auto;
+
+        }
+        .service_box_1{
+            background-color: black;
+            padding: 35px;
+            border-radius: 20px;
+            text-align: center;
+            transition: 0.3s;
+        }
+        .service_box_1:hover{
+            transform: translate(-5px);
+            box-shadow: 0 8px 20px rgb(0,0,0,0.15);
+
+        }
+        .service_box_1 h3{
+            margin-bottom: 15px;
+            color: white;
+            font-size: 30px;
+        }
+        .service_box_1 p{
+            line-height: 1.7;
+            color: white;
+            font-size: 15px;
+        }
+
+        .service_box_2{
+            background-color: #2563EB;
+            padding: 35px;
+            border-radius: 20px;
+            text-align: center;
+            transition: 0.3s;
+        }
+        .service_box_2:hover{
+            transform: translate(-5px);
+            box-shadow: 0 8px 20px rgb(0,0,0,0.15);
+
+        }
+        .service_box_2 h3{
+            margin-bottom: 15px;
+            color: white;
+            font-size: 30px;
+        }
+        .service_box_2 p{
+            line-height: 1.7;
+            color: white;
+            font-size: 15px;
+        }
+
+        .service_box_3{
+            background-color:#2563EB;
+            padding: 35px;
+            border-radius: 20px;
+            text-align: center;
+            transition: 0.3s;
+        }
+        .service_box_3:hover{
+            transform: translate(-5px);
+            box-shadow: 0 8px 20px rgb(0,0,0,0.15);
+
+        }
+        .service_box_3 h3{
+            margin-bottom: 15px;
+            color: white;
+            font-size: 30px;
+        }
+        .service_box_3 p{
+            line-height: 1.7;
+            color: white;
+            font-size: 15px;
+        }
+
+        .service_box_4{
+            background-color: black;
+            padding: 35px;
+            border-radius: 20px;
+            text-align: center;
+            transition: 0.3s;
+        }
+        .service_box_4:hover{
+            transform: translate(-5px);
+            box-shadow: 0 8px 20px rgb(0,0,0,0.15);
+
+        }
+        .service_box_4 h3{
+            margin-bottom: 15px;
+            color: white;
+            font-size: 30px;
+        }
+        .service_box_4 p{
+            line-height: 1.7;
+            color: white;
+            font-size: 15px;
+        }
+        @media(max-width: 768px){
+            .services{
+                grid-template-columns: 1fr;
+            }
+            .nav_bar{
+                flex-direction: column;
+            }
+            .nav_links{
+                margin-top: 15px;
+            }
+        }
+
+        .service_btn{
+            background-color: transparent;
+            border-color: transparent;
+            padding-left: 450px;
+            transition: 0.3s;
+        }
+        
+        .why-us{
+            width: 90%;
+            margin: 120px auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 60px;
+        } 
+        .why-img{
+            width: 70%;
+        } 
+        .why-img img{
+            width: 100%;
+            border-radius: 25px;
+        } 
+        .why-content{
+            width: 60%;
+        } 
+        .why-content h2{
+            font-size: 48px;
+            color: #1e293b;
+            margin-bottom: 20px;
+        }
+        .why-content p{
+            font-size: 18px;
+            line-height: 30px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        .feature{
+            background: white;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 15px;
+            font-size: 18px;
+            font-weight: 600;
+            box-shadow: 0 8px 20px rgba(0,0,0,.08);
+            transition: .3s;
+        }
+        .feature:hover{
+            transform: translateX(10px);
+            box-shadow: 0 12px 25px rgba(37,99,235,.15);
+        }
+        .learn-btn{
+            display: inline-block;
+            margin-top: 30px;
+            padding: 15px 35px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: .3s;
+        }
+        .learn-btn:hover{
+            background: #1d4ed8;
+            transform: translateY(-5px);
+        }
+
+                .cta{
+                    width: 90%;
+                    margin: 100px auto;
+                    padding: 70px 50px;
+                    border-radius: 30px;
+
+                    background: linear-gradient(135deg,#2563EB,#3B82F6);
+                    text-align: center;
+                    color: white;
+                    box-shadow: 0 20px 40px rgba(37,99,235,.3);
+                }
+                .cta h2{
+                    font-size: 45px;
+                    margin-bottom: 20px;
+                    color: white;
+                }
+                .cta p{
+                    font-size: 18px;
+                    line-height: 30px;
+                    max-width: 700px;
+                    margin: 0 auto 40px;
+                    color: #e5e7eb;
+                }
+                .cta-buttons{
+                    display: flex;
+                    justify-content: center;
+                    gap: 20px;
+                    flex-wrap: wrap;
+                }
+                .cta-btn{
+                    background: white;
+                    color: #2563EB;
+                    padding: 16px 40px;
+                    text-decoration: none;
+                    font-weight: 600;
+                    transition: .3s;
+                }
+                .cta-btn:hover{
+                    transform: translateY(-5px);
+                    background: #f8fafc;
+                }
+                .contact-btn{
+                    border: 2px solid white;
+                    color: white;
+                    padding: 16px 40px;
+                    border-radius: 50px;
+                    text-decoration: none;
+                    font-weight: 600;
+                    transition: .3s;
+                }
+                .contact-btn:hover{
+                    background: white;
+                    color: #2563EB;
+                }
+
+        </style>
+
+        </head>
+
+        <body>
+
+            
+            <nav class="nav_bar">
+                <div class="logo">
+                    <img src="C:/Users/CHAMA COMPUTERS/OneDrive/Desktop/PET Web/pictures/petopia.png"
+                         width="70" style="vertical-align: middle;">
+                </div>
+
+                <ul class="nav_links">
+                    <li><a href="home.html">Home
+                        <img src="C:/Users/CHAMA COMPUTERS/OneDrive/Desktop/PET Web/pictures/home.png"
+                         width="17" style="vertical-align: middle;">
+                    </a></li>
+                    <li><a href="Registration.html">Registration
+                        <img src="C:/Users/CHAMA COMPUTERS/OneDrive/Desktop/PET Web/pictures/clipboard-list.png"
+                         width="17" style="vertical-align: middle;">
+                    </a></li>
+                    <li><a href="services.html">Services
+                        <img src="C:/Users/CHAMA COMPUTERS/OneDrive/Desktop/PET Web/pictures/customer-care (1).png"
+                         width="17" style="vertical-align: middle;">
+                    </a></li>
+                    <li><a href="contact.html">Contact
+                        <img src="C:/Users/CHAMA COMPUTERS/OneDrive/Desktop/PET Web/pictures/phone-plus (1).png"
+                         width="17" style="vertical-align: middle;">
+                    </a></li>
+                    <li><a href="about.html">About
+                        <img src="C:/Users/CHAMA COMPUTERS/OneDrive/Desktop/PET Web/pictures/info (1).png"
+                         width="17" style="vertical-align: middle;">
+                    </a></li>
+
+                    <div class="loginn_btn">
+                        <a href="login.html" class="log_btn" id="log">LOGIN</a>
+                    </div>
+
+
+                </ul>
+            </nav>
+            
+            <section class="hero">
+                <div class="hero-text">
+                    <h1>
+                        Everything Your <span>Pet</span><br>
+                        Needs in One Place
+                    </h1>
+
+                    <p>
+                    At Petopia, we are dedicated to providing a safe, loving, and professional environment for your pets. Our comprehensive services include comfortable boarding, expert grooming, trusted
+                     veterinary care, and effective training programs tailored to meet the unique needs of every pet. We understand that your pets are part of your family, 
+                    which is why our experienced team ensures they receive the highest level of care, attention, and affection. Whether you need a temporary home for your pet, 
+                    routine grooming, medical support, or behavioral training, Petopia is your reliable partner in keeping your pets happy, healthy, and well cared for.
+                    </p>
+
+                    <div class="join_btn">
+                    <a href="Registration.html" class="reg_btn" id="join">Book Appointment</a>
+                    </div>
+
+                </div>
+                <div class="hero-image">
+
+                     <img src="C:/Users/CHAMA COMPUTERS/OneDrive/Desktop/PET Web/pictures/ChatGPT Image Jul 11, 2026, 01_00_30 AM.png" alt="Dog">
+
+                        <div class="card card1">
+                            ❤️ 5000+ Happy Pets
+                        </div>
+
+                    <div class="card card2">
+                            🏥 Veterinary Care
+                    </div>
+
+                    <div class="card card3">
+                            ✂ Grooming
+                    </div>
+
+            </div>
+
+
+            </section>
+
+        <section class="stats">
+        <h2>Trusted by Pet Owners Across Sri Lanka</h2>
+
+        <div class="stats-container">
+
+            <div class="stat-card">
+                <div class="icon">🐾</div>
+                <h3>5000+</h3>
+                <p>Happy Pets</p>
+            </div>
+            <div class="stat-card">
+                <div class="icon">👨‍⚕️</div>
+                <h3>25+</h3>
+                <p>Expert Staff</p>
+            </div>
+            <div class="stat-card">
+                <div class="icon">⭐</div>
+                <h3>98%</h3>
+                <p>Customer Satisfaction</p>
+            </div>
+            <div class="stat-card">
+                <div class="icon">❤️</div>
+                <h3>24/7</h3>
+                <p>Pet Care Support</p>
+            </div>
+        </div>
+    </section>
+            
+
+      <h2>Our Premium Services</h2>  
+<div class="services">
+
+    <div class="service_box_1">
+        <h3>Pet Boarding <img src="C:/Users/CHAMA COMPUTERS/OneDrive/Desktop/PET Web/pictures/Gemini_Generated_Image_gwffz0gwffz0gwff.png" width="43" style="vertical-align: middle;"></h3>
+
+        <p>Your pet deserves a safe, loving, and comfortable stay while you’re away.
+            Our pet boarding service provides cozy spaces, proper care, and plenty of attention.
+            Relax with peace of mind knowing your furry friend is happy and well cared for.
+        </p>
+
+        <a href="services.html" type="submit"  form="boarding" class="service_btn"><img src="C:/Users/CHAMA COMPUTERS/OneDrive/Desktop/PET Web/pictures/pngwing.com (1).png"
+            width="45"></a>
+
+    </div>
+
+   <div class="service_box_2">
+        <h3>Pet Grooming <img src="C:/Users/CHAMA COMPUTERS/OneDrive/Desktop/PET Web/pictures/Gemini_Generated_Image_vqbiyjvqbiyjvqbi.png" width="43" style="vertical-align: middle;"></h3>
+
+        <p>Keep your pets clean, healthy, and looking their best with our professional grooming services.
+            From bathing and brushing to styling and nail care, we treat every pet with gentle care.
+            A fresh and happy pet starts with the perfect grooming experience.
+        </p>
+        <a href="services.html" type="submit"  form="grooming" class="service_btn"><img src="C:/Users/CHAMA COMPUTERS/OneDrive/Desktop/PET Web/pictures/Gemini_Generated_Image_hswwwnhswwwnhsww.png"
+            width="33"></a>
+
+    </div>
+
+    <div class="service_box_3">
+        <h3>Training <img src="C:/Users/CHAMA COMPUTERS/OneDrive/Desktop/PET Web/pictures/Gemini_Generated_Image_nljy53nljy53nljy.png" width="43" style="vertical-align:middle;"></h3>
+
+        <p>Build better behavior and stronger bonds with our expert pet training programs.
+            We provide friendly, effective training for obedience, social skills, and daily habits.
+            Helping your pet become confident, disciplined, and well-mannered every day.
+        </p>
+
+        <a href="services.html" type="submit"  form="training" class="service_btn"><img src="C:/Users/CHAMA COMPUTERS/OneDrive/Desktop/PET Web/pictures/Gemini_Generated_Image_hswwwnhswwwnhsww.png"
+            width="33"></a>
+
+    </div>
+
+    <div class="service_box_4">
+        <h3>Veterinary Care <img src="C:/Users/CHAMA COMPUTERS/OneDrive/Desktop/PET Web/pictures/Gemini_Generated_Image_ihmcmqihmcmqihmc.png" width="43" style="vertical-align: middle;"></h3>
+
+        <p>Your pet’s health and wellness are our top priority at every stage of life.
+        Our veterinary care includes regular checkups, treatments, vaccinations, and expert guidance.
+        Providing trusted medical care to keep your furry companions healthy and happy.
+        </p>
+
+        <a href="services.html" type="submit"  form="vet" class="service_btn"><img src="C:/Users/CHAMA COMPUTERS/OneDrive/Desktop/PET Web/pictures/pngwing.com (1).png"
+            width="45"></a>
+
+    </div>
+
+</div>
+
+
+
+</div>
+
+<section class="why-us">
+    <div class="why-img">
+        <img src="C:/Users/CHAMA COMPUTERS/OneDrive/Desktop/PET Web/pictures/ChatGPT Image Jul 12, 2026, 01_32_05 AM.png" alt="Happy Pet">
+    </div>
+    <div class="why-content">
+
+        <h2>Why Choose PetSphere?</h2>
+        <p> At PetSphere, we believe every pet deserves the highest quality care.
+            Our experienced team provides a safe, friendly, and loving
+            environment where your pets can feel happy and comfortable.</p>
+
+            <div class="feature">
+                ✔ Experienced Veterinarians
+            </div>
+
+            <div class="feature">
+                ✔ Loving & Caring Staff
+            </div>
+
+            <div class="feature">
+                ✔ Safe & Clean Environment
+            </div>
+
+            <div class="feature">
+                ✔ Modern Equipment
+            </div>
+
+            <div class="feature">
+                ✔ 24/7 Emergency Support
+            </div>
+
+            <a href="about.html" class="learn-btn">Learn More</a>
+
+    </div>
+
+</section>
+
+<section class="cta">
+    <div class="cta-content">
+        <h2>Ready to Give Your Pet the Best Care?</h2>
+
+        <p>Your furry friend deserves professional care, love, and attention.
+            Book an appointment today and let Petopia provide the best experience for your pet.</p>
+
+            <div class="cta-buttons">
+                <a href="Registration.html" class="cta-btn">Book Appointment</a>
+
+                <a href="contact.html" class="contact-btn">Contact Us</a>
+            </div>
+    </div>
+</section>
+
+            <script>
+                const btn = document.getElementById("join");
+
+                btn.addEventListener("mouseover", function(){
+                    btn.style.transform = "translateY(-10px)";
+                    
+                    setTimeout(() => {
+                        btn.style.transform = "translateY(0)";
+                    },150);
+
+                    setTimeout(() => {
+                        btn.style.transform = "translateY(-5px)";
+                    },300);
+
+                    setTimeout(() => {
+                        btn.style.transform = "translateY(0)";
+                    },450);
+                });
+            window.addEventListener("scroll",function(){
+                const navbar = document.querySelector(".nav_bar");
+
+                if(window.scrollY>50){
+                    navbar.style.backgroundColor = "rgba(0,0,0,0.8)";
+                    navbar.style.color = "white";
+
+                }else{
+                    navbar.style.backgroundColor = "transparent";
+                    
+                }
+            });
+            const links = document.querySelectorAll(".nav_links a");
+
+            links.forEach(link =>{
+                if(link.href === window.location.href){
+                    link.classList.add("active");
+                }
+            });
+
+            </script>
+        </body>
+</html>
