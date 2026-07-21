@@ -5,187 +5,810 @@
 
     <style>
 
-        *{
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+         *{
+                    margin: 0;
+                    padding: 0;
+                    box-sizing: border-box; 
+                }
+                html{
 
-        body{
-            font-family: Arial;
-            background-color: #f4fbff;
-        }
+                         scroll-behavior:smooth;
+                }
+                .logo{
+                    font-weight: bold;
+                    font-size: 20px;
+                }
 
-        /* NAVBAR */
+                .nav_bar{
+                    display: flex;
+                    justify-content:space-between;
+                    align-items: center;
+                    backdrop-filter: blur(10px);
+                    padding: 15px 40px;
+                    font-family: 'Poppins', sans-serif;
+                    font-weight: bold;
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    z-index: 1000;
+                    transition: .4s;
+                }
+                .nav_links{
+                    list-style: none;
+                    display: flex;
+                }
+                .nav_links li{
+                    margin-left: 25px;
+                }
+                .nav_links a{
+                    position: relative;
+                    text-decoration: none;
+                    color: #1E293B;
+                    font-weight: 500;
+                    transition: 0.3s ease;
+                    font-size: 16px;
+                    position: relative;
+                }
+                .nav_links a::after{
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    bottom: -6px;
+                    width: 0;
+                    height: 3px;
+                    background:  #000;;
+                    border-radius: 10px;
+                    transition: width 0.3s ease;
+                }
 
-        .nav_bar{
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 40px;
-            font-weight: bold;
-        }
+                .nav_links a:hover{
+                    color: #000;
+                }
+                .nav_links a:hover::after{
+                    width:100%;
+                }
+                .nav_links a.active{
+                    color:#000;
+                }
+                .nav_links a.active img{
+                    filter: brightness(0) invert(1) 
+                }
 
-        .nav_links{
-            list-style: none;
-            display: flex;
-        }
+                .nav_bar.scrolled .nav_links a::after{
+                    background:white;
+                }
 
-        .nav_links li{
-            margin-left: 25px;
-        }
+                .nav_links a.log_btn{
+                    display: inline-block;
+                    padding: 15px 20px;
+                    margin-left: 30px;
+                    background-color: #000;
+                    color: aliceblue;
+                    border-radius: 70px;
+                    font-size:15px;
+                    text-decoration: none;
+                    font-weight: bold;
 
-        .nav_links a{
-            text-decoration: none;
-            color: black;
-            position: relative;
-        }
+                }
 
-        .nav_links a::after{
-            content: "";
-            position: absolute;
-            width: 0%;
-            height: 2px;
-            background: black;
-            left: 0;
-            bottom: -5px;
-            transition: 0.3s;
-        }
+                /*================ ABOUT HERO ================*/
 
-        .nav_links a:hover::after{
-            width: 100%;
-        }
+.about-hero{
 
-        /* SERVICES SECTION */
+    width:90%;
+    margin:auto;
+    min-height:100vh;
 
-        .services{
-            width: 90%;
-            margin: 40px auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 
-            display: grid;
+    padding-top:120px;
+}
 
-            /* TWO COLUMNS */
-            grid-template-columns: repeat(2, 1fr);
+.about-text{
 
-            gap: 25px;
-        }
+    width:50%;
+}
 
-        .service_box{
-            background: lightblue;
-            padding: 35px;
-            border-radius: 20px;
-            text-align: center;
+.about-text h1{
 
-            transition: 0.3s;
-        }
+    font-size:65px;
+    color:#1E293B;
+    margin-bottom:25px;
+    line-height:80px;
+}
 
-        .service_box:hover{
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-        }
+.about-text span{
 
-        .service_box h2{
-            margin-bottom: 15px;
-            color: #003049;
-        }
+    color:#2563EB;
+}
 
-        .service_box p{
-            line-height: 1.7;
-            color: #333;
-        }
+.about-text p{
 
-        /* MOBILE VIEW */
+    font-size:18px;
+    line-height:32px;
+    color:#64748B;
+    margin-bottom:40px;
+}
 
-        @media(max-width: 768px){
+.hero-buttons{
 
-            .services{
-                grid-template-columns: 1fr;
-            }
+    display:flex;
+    gap:20px;
+}
 
-            .nav_bar{
-                flex-direction: column;
-            }
+.primary-btn{
 
-            .nav_links{
-                margin-top: 15px;
-            }
-        }
+    background:black;
+    color:white;
+    text-decoration:none;
+    padding:16px 35px;
+    border-radius:50px;
+    font-weight:600;
+    transition:.3s;
+}
 
+.primary-btn:hover{
+
+    transform:translateY(-5px);
+    box-shadow:0 15px 30px rgba(0,0,0,.2);
+}
+
+.secondary-btn{
+
+    border:2px solid black;
+    color:black;
+    text-decoration:none;
+    padding:16px 35px;
+    border-radius:50px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.secondary-btn:hover{
+
+    background:black;
+    color:white;
+}
+
+.about-image{
+
+    width:45%;
+}
+
+.about-image img{
+
+    width:100%;
+    animation:float 4s ease-in-out infinite;
+}
+
+/*================ OUR STORY ================*/
+
+.our-story{
+    width:90%;
+    margin:120px auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:70px;
+}
+
+.story-image{
+    width:45%;
+}
+
+.story-image img{
+    width:100%;
+    border-radius:25px;
+    box-shadow:0 20px 40px rgba(0,0,0,.12);
+    transition:.4s;
+}
+
+.story-image img:hover{
+    transform:scale(1.03);
+}
+
+.story-content{
+    width:55%;
+}
+
+.story-content h2{
+    font-size:48px;
+    color:#1E293B;
+    margin-bottom:25px;
+    text-align:left;
+}
+
+.story-content p{
+    font-size:18px;
+    color:#64748B;
+    line-height:32px;
+    margin-bottom:25px;
+}
+
+.story-feature{
+    background:white;
+    padding:18px 25px;
+    margin-bottom:18px;
+    border-left:5px solid black;
+    border-radius:15px;
+    font-size:17px;
+    font-weight:600;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.story-feature:hover{
+    transform:translateX(10px);
+    box-shadow:0 15px 35px rgba(0,0,0,.12);
+}
+
+/*================ MISSION & VISION ================*/
+
+.mission-section{
+
+    width:90%;
+    margin:120px auto;
+}
+
+.section-title{
+
+    text-align:center;
+    margin-bottom:60px;
+}
+
+.section-title h2{
+
+    font-size:46px;
+    color:#1E293B;
+    margin-bottom:18px;
+}
+
+.section-title p{
+
+    width:70%;
+    margin:auto;
+    color:#64748B;
+    font-size:18px;
+    line-height:30px;
+}
+
+.mission-container{
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+    gap:35px;
+}
+
+.mission-card{
+
+    background:white;
+    padding:45px 35px;
+    border-radius:25px;
+    text-align:center;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.08);
+
+    transition:.35s;
+}
+
+.mission-card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:0 20px 40px rgba(0,0,0,.15);
+}
+
+.mission-icon{
+
+    width:90px;
+    height:90px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    background:black;
+
+    color:white;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:40px;
+
+    margin-bottom:25px;
+}
+
+.mission-card h3{
+
+    font-size:28px;
+    color:#1E293B;
+    margin-bottom:20px;
+}
+
+.mission-card p{
+
+    color:#64748B;
+    line-height:30px;
+    font-size:17px;
+}
+
+/*================ WHY CHOOSE US ================*/
+
+.why-choose{
+
+    width:90%;
+    margin:120px auto;
+}
+
+.choose-container{
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+}
+
+.choose-card{
+
+    background:white;
+    padding:35px 25px;
+
+    border-radius:22px;
+
+    text-align:center;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+    transition:.35s ease;
+}
+
+.choose-card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:0 20px 40px rgba(0,0,0,.15);
+}
+
+.choose-icon{
+
+    width:80px;
+    height:80px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    background:black;
+
+    color:white;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:35px;
+
+    margin-bottom:20px;
+
+    transition:.35s;
+}
+
+.choose-card:hover .choose-icon{
+
+    transform:rotate(10deg) scale(1.1);
+}
+
+.choose-card h3{
+
+    color:#1E293B;
+
+    font-size:24px;
+
+    margin-bottom:15px;
+}
+
+.choose-card p{
+
+    color:#64748B;
+
+    font-size:16px;
+
+    line-height:28px;
+}
+
+/*================ TEAM ================*/
+
+.team{
+
+    width:90%;
+    margin:120px auto;
+}
+
+.team-container{
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+}
+
+.team-card{
+
+    background:white;
+    border-radius:22px;
+    padding:30px 25px;
+    text-align:center;
+
+    box-shadow:0 12px 25px rgba(0,0,0,.08);
+
+    transition:.35s;
+}
+
+.team-card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:0 20px 40px rgba(0,0,0,.15);
+}
+
+.team-card img{
+
+    width:140px;
+    height:140px;
+
+    object-fit:cover;
+
+    border-radius:50%;
+
+    border:5px solid black;
+
+    margin-bottom:20px;
+
+    transition:.35s;
+}
+
+.team-card:hover img{
+
+    transform:scale(1.05);
+}
+
+.team-card h3{
+
+    font-size:24px;
+    color:#1E293B;
+    margin-bottom:8px;
+}
+
+.team-card span{
+
+    display:block;
+    color:black;
+    font-weight:600;
+    margin-bottom:18px;
+}
+
+.team-card p{
+
+    color:#64748B;
+    line-height:28px;
+    font-size:16px;
+}
+               
     </style>
 </head>
 
 <body>
 
     <nav class="nav_bar">
+                <div class="logo">
+                    <img src="pictures/petopia.png"
+                         width="70" style="vertical-align: middle;">
+                </div>
 
-        <div class="logo">
-            <img src="pictures/petopia.png" width="70">
+                <ul class="nav_links">
+                    <li><a href="home.html">Home
+                        <img src="pictures/home.png"
+                         width="17" style="vertical-align: middle;">
+                    </a></li>
+                    <li><a href="Registration.html">Registration
+                        <img src="pictures/clipboard-list.png"
+                         width="17" style="vertical-align: middle;">
+                    </a></li>
+                    <li><a href="services.html">Services
+                        <img src="pictures/customer-care (1).png"
+                         width="17" style="vertical-align: middle;">
+                    </a></li>
+                    <li><a href="contact.html">Contact
+                        <img src="pictures/phone-plus (1).png"
+                         width="17" style="vertical-align: middle;">
+                    </a></li>
+                    <li><a href="about.html">About
+                        <img src="pictures/info (1).png"
+                         width="17" style="vertical-align: middle;">
+                    </a></li>
+
+                    <div class="loginn_btn">
+                        <a href="login.html" class="log_btn" id="log">LOGIN</a>
+                    </div>
+
+
+                </ul>
+            </nav>
+
+
+    
+<section class="about-hero">
+
+    <div class="about-text">
+
+        <h1>
+            About <span>PetSphere</span>
+        </h1>
+
+        <p>
+            At PetSphere, we believe every pet deserves exceptional care,
+            love, and attention. Our experienced team is dedicated to
+            providing professional boarding, grooming, veterinary care,
+            and training in a safe and welcoming environment.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="services.html" class="primary-btn">
+                Explore Services
+            </a>
+
+            <a href="contact.html" class="secondary-btn">
+                Contact Us
+            </a>
+
         </div>
 
-        <ul class="nav_links">
+    </div>
 
-            <li><a href="home.html">Home</a></li>
+    <div class="about-image">
 
-            <li><a href="Registration.html">Registration</a></li>
+        <img src="pictures/about-hero.png" alt="Happy Pets">
 
-            <li><a href="services.html">Services</a></li>
+    </div>
 
-            <li><a href="contact.html">Contact</a></li>
+</section>
 
-            <li><a href="about.html">About</a></li>
+<!--================ OUR STORY ================-->
 
-        </ul>
+<section class="our-story">
 
-    </nav>
+    <div class="story-image">
 
-    <div class="services">
+        <img src="pictures/our-story.jpg" alt="Our Story">
 
-        <div class="service_box">
+    </div>
 
-            <h2>Pet Boarding</h2>
+    <div class="story-content">
+
+        <h2>Our Story</h2>
+
+        <p>
+            PetSphere was founded with one simple dream—to create a place
+            where pets receive the same love, care, and attention as they do
+            at home. We understand that every pet is a cherished member of
+            the family, which is why we treat them with compassion,
+            patience, and professionalism.
+        </p>
+
+        <p>
+            Over the years, we have grown into a trusted pet care center,
+            providing boarding, grooming, veterinary services, and training
+            for hundreds of happy pets across Sri Lanka.
+        </p>
+
+        <div class="story-feature">
+            🐾 Passionate Pet Lovers
+        </div>
+
+        <div class="story-feature">
+            🏥 Professional Veterinary Care
+        </div>
+
+        <div class="story-feature">
+            ❤️ Trusted by Hundreds of Pet Owners
+        </div>
+
+    </div>
+
+</section>
+
+<!--================ MISSION & VISION ================-->
+
+<section class="mission-section">
+
+    <div class="section-title">
+
+        <h2>Our Purpose</h2>
+
+        <p>
+            Every decision we make is guided by our commitment to improving
+            the lives of pets and building lasting relationships with their owners.
+        </p>
+
+    </div>
+
+    <div class="mission-container">
+
+        <div class="mission-card">
+
+            <div class="mission-icon">🎯</div>
+
+            <h3>Our Mission</h3>
 
             <p>
-                Your pet deserves a safe, loving, and comfortable stay while you’re away.
-                Our pet boarding service provides cozy spaces, proper care, and plenty of attention.
-                Relax with peace of mind knowing your furry friend is happy and well cared for.
+                To provide compassionate, reliable, and professional pet care
+                services that ensure every pet enjoys a healthy, safe, and
+                happy life while giving owners complete peace of mind.
             </p>
 
         </div>
 
-        <div class="service_box">
+        <div class="mission-card">
 
-            <h2>Pet Grooming</h2>
+            <div class="mission-icon">👁️</div>
 
-            <p>
-                Keep your pets clean, healthy, and looking their best with our professional grooming services.
-                We provide bathing, brushing, nail trimming, and styling with gentle care.
-            </p>
-
-        </div>
-
-        <div class="service_box">
-
-            <h2>Pet Training</h2>
+            <h3>Our Vision</h3>
 
             <p>
-                Our training programs help pets develop good behavior and social skills.
-                From basic obedience to advanced training, we make learning fun and effective.
-            </p>
-
-        </div>
-
-        <div class="service_box">
-
-            <h2>Veterinary Care</h2>
-
-            <p>
-                We provide trusted veterinary services to keep your pets healthy and active.
-                Regular checkups, vaccinations, and medical support are available for your furry companions.
+                To become Sri Lanka's most trusted pet care center by
+                delivering innovative, high-quality services with love,
+                dedication, and excellence.
             </p>
 
         </div>
 
     </div>
+
+</section>
+
+
+<!--================ WHY CHOOSE US ================-->
+
+<section class="why-choose">
+
+    <div class="section-title">
+
+        <h2>Why Choose PetSphere?</h2>
+
+        <p>
+            We combine professional expertise, modern facilities, and genuine
+            love for animals to provide the highest quality care for your pets.
+        </p>
+
+    </div>
+
+    <div class="choose-container">
+
+        <div class="choose-card">
+            <div class="choose-icon">👨‍⚕️</div>
+            <h3>Expert Team</h3>
+            <p>Experienced veterinarians and trained professionals dedicated to your pet's wellbeing.</p>
+        </div>
+
+        <div class="choose-card">
+            <div class="choose-icon">🏥</div>
+            <h3>Modern Facilities</h3>
+            <p>Clean, comfortable, and fully equipped facilities designed for every pet's comfort.</p>
+        </div>
+
+        <div class="choose-card">
+            <div class="choose-icon">❤️</div>
+            <h3>Loving Care</h3>
+            <p>Every pet is treated with kindness, patience, and genuine affection like family.</p>
+        </div>
+
+        <div class="choose-card">
+            <div class="choose-icon">🛡️</div>
+            <h3>Safe Environment</h3>
+            <p>Secure boarding areas and strict hygiene standards ensure complete safety.</p>
+        </div>
+
+        <div class="choose-card">
+            <div class="choose-icon">⏰</div>
+            <h3>24/7 Support</h3>
+            <p>Emergency assistance and dedicated support whenever you need us.</p>
+        </div>
+
+        <div class="choose-card">
+            <div class="choose-icon">⭐</div>
+            <h3>Quality Service</h3>
+            <p>Trusted by hundreds of pet owners for delivering reliable, professional care.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!--================ MEET OUR TEAM ================-->
+
+<section class="team">
+
+    <div class="section-title">
+
+        <h2>Meet Our Team</h2>
+
+        <p>
+            Our dedicated professionals work together to provide exceptional
+            care, ensuring every pet receives the attention, comfort,
+            and love they deserve.
+        </p>
+
+    </div>
+
+    <div class="team-container">
+
+        <div class="team-card">
+
+            <img src="pictures/veterinarian.png" alt="Veterinarian">
+
+            <h3>Dr. Emily Carter</h3>
+
+            <span>Veterinarian</span>
+
+            <p>
+                Expert in preventive care, surgery, and pet wellness with over
+                10 years of experience.
+            </p>
+
+        </div>
+
+        <div class="team-card">
+
+            <img src="pictures/groomer.png" alt="Groomer">
+
+            <h3>Sarah Johnson</h3>
+
+            <span>Professional Groomer</span>
+
+            <p>
+                Passionate about keeping pets clean, healthy, and looking
+                their absolute best.
+            </p>
+
+        </div>
+
+        <div class="team-card">
+
+            <img src="pictures/trainer.png" alt="Trainer">
+
+            <h3>David Brown</h3>
+
+            <span>Pet Trainer</span>
+
+            <p>
+                Helping pets develop confidence, obedience, and positive
+                behavior through professional training.
+            </p>
+
+        </div>
+
+        <div class="team-card">
+
+            <img src="pictures/manager.png" alt="Manager">
+
+            <h3>Anna Williams</h3>
+
+            <span>Boarding Manager</span>
+
+            <p>
+                Ensuring every pet enjoys a safe, comfortable, and stress-free
+                stay while away from home.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
 
 </body>
 </html>
