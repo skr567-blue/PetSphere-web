@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>About Page</title>
+    <title>Services Page</title>
 
     <style>
 
@@ -91,42 +91,42 @@
                     font-weight: bold;
 
                 }
-
                 /*================ SERVICES HERO ================*/
 
 .service-hero{
 
     width:90%;
+    min-height:90vh;
+
     margin:auto;
-    min-height:100vh;
 
     display:flex;
-    justify-content:space-between;
-    align-items:center;
 
-    gap:60px;
+    justify-content:space-between;
+
+    align-items:center;
 
     padding-top:120px;
 }
 
 .service-text{
 
-    flex:1;
+    width:50%;
 }
 
-.service-tag{
+.hero-tag{
 
     display:inline-block;
 
     padding:10px 22px;
 
-    background:#F3F4F6;
+    background:#DBEAFE;
+
+    color:#2563EB;
 
     border-radius:40px;
 
     font-weight:600;
-
-    color:#111827;
 
     margin-bottom:25px;
 }
@@ -142,9 +142,9 @@
     margin-bottom:25px;
 }
 
-.service-text h1 span{
+.service-text span{
 
-    color:black;
+    color:#2563EB;
 }
 
 .service-text p{
@@ -155,53 +155,55 @@
 
     line-height:32px;
 
-    margin-bottom:40px;
+    max-width:620px;
 
-    max-width:600px;
+    margin-bottom:40px;
 }
 
-.service-buttons{
+.hero-buttons{
 
     display:flex;
 
     gap:20px;
-
-    margin-bottom:40px;
 
     flex-wrap:wrap;
 }
 
 .primary-btn{
 
-    background:black;
+    padding:16px 40px;
+
+    background:#2563EB;
 
     color:white;
 
-    padding:16px 38px;
+    text-decoration:none;
 
     border-radius:50px;
 
-    text-decoration:none;
-
     font-weight:600;
 
-    transition:.3s;
+    transition:.35s;
+
+    box-shadow:0 12px 25px rgba(37,99,235,.30);
 }
 
 .primary-btn:hover{
 
+    background:#1D4ED8;
+
     transform:translateY(-5px);
 
-    background:#222;
+    box-shadow:0 20px 35px rgba(37,99,235,.35);
 }
 
 .secondary-btn{
 
-    border:2px solid black;
+    padding:16px 40px;
 
-    color:black;
+    border:2px solid #2563EB;
 
-    padding:16px 38px;
+    color:#2563EB;
 
     border-radius:50px;
 
@@ -209,43 +211,529 @@
 
     font-weight:600;
 
-    transition:.3s;
+    transition:.35s;
 }
 
 .secondary-btn:hover{
 
-    background:black;
+    background:#2563EB;
 
     color:white;
 }
 
-.hero-features{
+.service-image{
+
+    width:45%;
+
+    position:relative;
+}
+
+.service-image img{
+
+    width:100%;
+
+    max-width:600px;
+
+    animation:float 4s ease-in-out infinite;
+
+    filter:drop-shadow(0 25px 40px rgba(37,99,235,.22));
+}
+
+.floating-card{
+
+    position:absolute;
+
+    background:rgba(255,255,255,.95);
+
+    backdrop-filter:blur(12px);
+
+    border-radius:18px;
+
+    padding:14px 22px;
+
+    box-shadow:0 12px 25px rgba(37,99,235,.18);
+
+    font-weight:600;
+
+    transition:.3s;
+}
+
+.floating-card:hover{
+
+    transform:translateY(-6px);
+}
+
+.card1{
+
+    top:40px;
+
+    left:-40px;
+}
+
+.card2{
+
+    top:220px;
+
+    right:-35px;
+}
+
+.card3{
+
+    bottom:40px;
+
+    left:20px;
+}
+
+/*================ SERVICES SECTION ================*/
+
+.services-section{
+
+    width:90%;
+    margin:120px auto;
+
+}
+
+.section-heading{
+
+    text-align:center;
+    margin-bottom:60px;
+
+}
+
+.section-heading span{
+
+    display:inline-block;
+
+    padding:10px 24px;
+
+    background:#DBEAFE;
+
+    color:#2563EB;
+
+    border-radius:40px;
+
+    font-weight:600;
+
+    margin-bottom:20px;
+
+}
+
+.section-heading h2{
+
+    font-size:48px;
+
+    color:#1E293B;
+
+    margin-bottom:20px;
+
+}
+
+.section-heading p{
+
+    max-width:720px;
+
+    margin:auto;
+
+    color:#64748B;
+
+    font-size:18px;
+
+    line-height:32px;
+
+}
+
+.services-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+    gap:30px;
+
+}
+
+.service-card{
+
+    background:white;
+
+    border-radius:25px;
+
+    padding:40px 30px;
+
+    text-align:center;
+
+    box-shadow:0 12px 30px rgba(37,99,235,.08);
+
+    transition:.35s;
+
+}
+
+.service-card:hover{
+
+    transform:translateY(-12px);
+
+    box-shadow:0 20px 40px rgba(37,99,235,.18);
+
+}
+
+.service-card img{
+
+    width:95px;
+
+    margin-bottom:25px;
+
+    transition:.35s;
+
+}
+
+.service-card:hover img{
+
+    transform:scale(1.12) rotate(-5deg);
+
+}
+
+.service-card h3{
+
+    font-size:26px;
+
+    color:#1E293B;
+
+    margin-bottom:18px;
+
+}
+
+.service-card p{
+
+    color:#64748B;
+
+    line-height:28px;
+
+    margin-bottom:25px;
+
+}
+
+.service-card a{
+
+    text-decoration:none;
+
+    color:#2563EB;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.service-card a:hover{
+
+    letter-spacing:1px;
+
+}
+/*================ BOARDING SECTION ================*/
+
+.boarding-section{
+
+    width:90%;
+    margin:140px auto;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    gap:80px;
+}
+
+.boarding-image{
+
+    flex:1;
+    position:relative;
+}
+
+.boarding-image img{
+
+    width:100%;
+    max-width:580px;
+
+    animation:float 4s ease-in-out infinite;
+
+    filter:drop-shadow(0 25px 45px rgba(37,99,235,.20));
+
+}
+
+.boarding-content{
+
+    flex:1;
+}
+
+.boarding-tag{
+
+    display:inline-block;
+
+    padding:10px 22px;
+
+    background:#DBEAFE;
+
+    color:#2563EB;
+
+    border-radius:50px;
+
+    font-weight:600;
+
+    margin-bottom:25px;
+}
+
+.boarding-content h2{
+
+    font-size:50px;
+
+    color:#1E293B;
+
+    margin-bottom:25px;
+
+    line-height:60px;
+}
+
+.boarding-content h2 span{
+
+    color:#2563EB;
+}
+
+.boarding-content p{
+
+    color:#64748B;
+
+    font-size:18px;
+
+    line-height:32px;
+
+    margin-bottom:35px;
+}
+
+.boarding-features{
 
     display:grid;
 
     grid-template-columns:repeat(2,1fr);
 
-    gap:15px;
+    gap:18px;
 
-    max-width:400px;
-
-    color:#374151;
-
-    font-weight:600;
+    margin-bottom:40px;
 }
 
-.service-image{
+.feature-card{
+
+    background:white;
+
+    padding:18px;
+
+    border-radius:18px;
+
+    box-shadow:0 12px 25px rgba(37,99,235,.08);
+
+    font-weight:600;
+
+    color:#1E293B;
+
+    transition:.35s;
+}
+
+.feature-card:hover{
+
+    transform:translateY(-8px);
+
+    border-left:5px solid #2563EB;
+
+    box-shadow:0 18px 35px rgba(37,99,235,.18);
+
+}
+
+.boarding-btn{
+
+    display:inline-block;
+
+    padding:16px 38px;
+
+    background:#2563EB;
+
+    color:white;
+
+    text-decoration:none;
+
+    border-radius:50px;
+
+    font-weight:600;
+
+    transition:.35s;
+
+    box-shadow:0 15px 30px rgba(37,99,235,.30);
+}
+
+.boarding-btn:hover{
+
+    background:#1D4ED8;
+
+    transform:translateY(-5px);
+
+    box-shadow:0 20px 40px rgba(37,99,235,.35);
+
+}
+
+/* Responsive */
+
+@media(max-width:900px){
+
+.boarding-section{
+
+    flex-direction:column;
+
+    text-align:center;
+}
+
+.boarding-features{
+
+    grid-template-columns:1fr;
+}
+
+}
+/*================ GROOMING ================*/
+
+.grooming-section{
+
+    width:90%;
+    margin:150px auto;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    gap:80px;
+}
+
+.grooming-content{
+
+    flex:1;
+}
+
+.grooming-tag{
+
+    display:inline-block;
+
+    padding:10px 22px;
+
+    background:#DBEAFE;
+
+    color:#2563EB;
+
+    border-radius:50px;
+
+    font-weight:600;
+
+    margin-bottom:25px;
+}
+
+.grooming-content h2{
+
+    font-size:50px;
+
+    line-height:60px;
+
+    color:#1E293B;
+
+    margin-bottom:25px;
+}
+
+.grooming-content h2 span{
+
+    color:#2563EB;
+}
+
+.grooming-content p{
+
+    font-size:18px;
+
+    color:#64748B;
+
+    line-height:32px;
+
+    margin-bottom:35px;
+}
+
+.grooming-features{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:18px;
+
+    margin-bottom:40px;
+}
+
+.groom-card{
+
+    background:white;
+
+    padding:18px;
+
+    border-radius:18px;
+
+    box-shadow:0 12px 25px rgba(37,99,235,.08);
+
+    font-weight:600;
+
+    color:#1E293B;
+
+    transition:.35s;
+}
+
+.groom-card:hover{
+
+    transform:translateY(-8px);
+
+    border-left:5px solid #2563EB;
+
+    box-shadow:0 18px 35px rgba(37,99,235,.18);
+
+}
+
+.groom-btn{
+
+    display:inline-block;
+
+    padding:16px 38px;
+
+    background:#2563EB;
+
+    color:white;
+
+    text-decoration:none;
+
+    border-radius:50px;
+
+    font-weight:600;
+
+    transition:.35s;
+
+    box-shadow:0 15px 30px rgba(37,99,235,.30);
+
+}
+
+.groom-btn:hover{
+
+    background:#1D4ED8;
+
+    transform:translateY(-5px);
+
+}
+
+.grooming-image{
 
     flex:1;
 
     position:relative;
-
-    display:flex;
-
-    justify-content:center;
 }
 
-.service-image img{
+.grooming-image img{
 
     width:100%;
 
@@ -253,86 +741,689 @@
 
     animation:float 4s ease-in-out infinite;
 
-    filter:drop-shadow(0 20px 40px rgba(0,0,0,.15));
+    filter:drop-shadow(0 25px 45px rgba(37,99,235,.20));
+
 }
 
-.floating-card{
+.groom-floating{
 
     position:absolute;
 
-    background:white;
+    background:rgba(255,255,255,.95);
 
-    padding:14px 22px;
+    padding:15px 22px;
 
-    border-radius:16px;
+    border-radius:18px;
 
-    box-shadow:0 12px 25px rgba(0,0,0,.12);
+    backdrop-filter:blur(10px);
+
+    box-shadow:0 15px 30px rgba(37,99,235,.18);
 
     font-weight:600;
+
+    transition:.3s;
 }
 
-.card-one{
+.groom-floating:hover{
 
-    top:60px;
+    transform:translateY(-6px);
 
-    left:-20px;
 }
 
-.card-two{
+.groom1{
 
-    top:230px;
+    top:50px;
 
-    right:-30px;
+    left:-30px;
 }
 
-.card-three{
+.groom2{
 
-    bottom:40px;
+    bottom:60px;
 
-    left:30px;
+    right:-20px;
 }
 
 /* Responsive */
 
 @media(max-width:900px){
 
-.service-hero{
+.grooming-section{
+
+    flex-direction:column-reverse;
+
+    text-align:center;
+}
+
+.grooming-features{
+
+    grid-template-columns:1fr;
+}
+
+.groom1,
+.groom2{
+
+    display:none;
+}
+
+}
+
+/*================ VETERINARY ================*/
+
+.vet-section{
+
+    width:90%;
+    margin:150px auto;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    gap:80px;
+}
+
+.vet-image{
+
+    flex:1;
+    position:relative;
+}
+
+.vet-image img{
+
+    width:100%;
+    max-width:560px;
+
+    animation:float 4s ease-in-out infinite;
+
+    filter:drop-shadow(0 25px 45px rgba(37,99,235,.20));
+
+}
+
+.vet-content{
+
+    flex:1;
+}
+
+.vet-tag{
+
+    display:inline-block;
+
+    padding:10px 22px;
+
+    background:#DBEAFE;
+
+    color:#2563EB;
+
+    border-radius:50px;
+
+    font-weight:600;
+
+    margin-bottom:25px;
+}
+
+.vet-content h2{
+
+    font-size:50px;
+
+    line-height:60px;
+
+    color:#1E293B;
+
+    margin-bottom:25px;
+}
+
+.vet-content h2 span{
+
+    color:#2563EB;
+}
+
+.vet-content p{
+
+    font-size:18px;
+
+    color:#64748B;
+
+    line-height:32px;
+
+    margin-bottom:35px;
+}
+
+.vet-features{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:18px;
+
+    margin-bottom:40px;
+}
+
+.vet-card{
+
+    background:white;
+
+    padding:18px;
+
+    border-radius:18px;
+
+    font-weight:600;
+
+    color:#1E293B;
+
+    box-shadow:0 12px 25px rgba(37,99,235,.08);
+
+    transition:.35s;
+}
+
+.vet-card:hover{
+
+    transform:translateY(-8px);
+
+    border-left:5px solid #2563EB;
+
+    box-shadow:0 18px 35px rgba(37,99,235,.18);
+
+}
+
+.vet-btn{
+
+    display:inline-block;
+
+    padding:16px 38px;
+
+    background:#2563EB;
+
+    color:white;
+
+    text-decoration:none;
+
+    border-radius:50px;
+
+    font-weight:600;
+
+    transition:.35s;
+
+    box-shadow:0 15px 30px rgba(37,99,235,.30);
+
+}
+
+.vet-btn:hover{
+
+    background:#1D4ED8;
+
+    transform:translateY(-5px);
+
+}
+
+.vet-floating{
+
+    position:absolute;
+
+    background:rgba(255,255,255,.95);
+
+    backdrop-filter:blur(10px);
+
+    padding:15px 22px;
+
+    border-radius:18px;
+
+    font-weight:600;
+
+    box-shadow:0 15px 30px rgba(37,99,235,.18);
+
+    transition:.3s;
+}
+
+.vet-floating:hover{
+
+    transform:translateY(-6px);
+
+}
+
+.vet1{
+
+    top:50px;
+
+    left:-25px;
+}
+
+.vet2{
+
+    bottom:60px;
+
+    right:-20px;
+}
+
+/* Responsive */
+
+@media(max-width:900px){
+
+.vet-section{
 
     flex-direction:column;
 
     text-align:center;
 }
 
-.service-text h1{
+.vet-features{
 
-    font-size:48px;
-
-    line-height:60px;
+    grid-template-columns:1fr;
 }
 
-.service-buttons{
-
-    justify-content:center;
-}
-
-.hero-features{
-
-    margin:auto;
-}
-
-.service-image{
-
-    margin-top:40px;
-}
-
-.card-one,
-.card-two,
-.card-three{
+.vet1,
+.vet2{
 
     display:none;
 }
 
 }
+/*================ TRAINING ================*/
+
+.training-section{
+
+    width:90%;
+    margin:150px auto;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    gap:80px;
+}
+
+.training-content{
+
+    flex:1;
+}
+
+.training-tag{
+
+    display:inline-block;
+
+    padding:10px 22px;
+
+    background:#DBEAFE;
+
+    color:#2563EB;
+
+    border-radius:50px;
+
+    font-weight:600;
+
+    margin-bottom:25px;
+}
+
+.training-content h2{
+
+    font-size:50px;
+
+    line-height:60px;
+
+    color:#1E293B;
+
+    margin-bottom:25px;
+}
+
+.training-content h2 span{
+
+    color:#2563EB;
+}
+
+.training-content p{
+
+    font-size:18px;
+
+    color:#64748B;
+
+    line-height:32px;
+
+    margin-bottom:35px;
+}
+
+.training-features{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:18px;
+
+    margin-bottom:40px;
+}
+
+.training-card{
+
+    background:white;
+
+    padding:18px;
+
+    border-radius:18px;
+
+    font-weight:600;
+
+    color:#1E293B;
+
+    box-shadow:0 12px 25px rgba(37,99,235,.08);
+
+    transition:.35s;
+}
+
+.training-card:hover{
+
+    transform:translateY(-8px);
+
+    border-left:5px solid #2563EB;
+
+    box-shadow:0 18px 35px rgba(37,99,235,.18);
+
+}
+
+.training-btn{
+
+    display:inline-block;
+
+    padding:16px 38px;
+
+    background:#2563EB;
+
+    color:white;
+
+    text-decoration:none;
+
+    border-radius:50px;
+
+    font-weight:600;
+
+    transition:.35s;
+
+    box-shadow:0 15px 30px rgba(37,99,235,.30);
+}
+
+.training-btn:hover{
+
+    background:#1D4ED8;
+
+    transform:translateY(-5px);
+
+}
+
+.training-image{
+
+    flex:1;
+
+    position:relative;
+}
+
+.training-image img{
+
+    width:100%;
+
+    max-width:560px;
+
+    animation:float 4s ease-in-out infinite;
+
+    filter:drop-shadow(0 25px 45px rgba(37,99,235,.20));
+
+}
+
+.training-floating{
+
+    position:absolute;
+
+    background:rgba(255,255,255,.95);
+
+    backdrop-filter:blur(12px);
+
+    padding:15px 22px;
+
+    border-radius:18px;
+
+    box-shadow:0 15px 30px rgba(37,99,235,.18);
+
+    font-weight:600;
+
+    transition:.3s;
+}
+
+.training-floating:hover{
+
+    transform:translateY(-6px);
+}
+
+.train1{
+
+    top:60px;
+
+    right:-25px;
+}
+
+.train2{
+
+    bottom:60px;
+
+    left:-20px;
+}
+
+/* Responsive */
+
+@media(max-width:900px){
+
+.training-section{
+
+    flex-direction:column-reverse;
+
+    text-align:center;
+}
+
+.training-features{
+
+    grid-template-columns:1fr;
+}
+
+.train1,
+.train2{
+
+    display:none;
+}
+
+}
+/*================ PRICING ================*/
+
+.pricing{
+
+    width:90%;
+    margin:140px auto;
+}
+
+.pricing-title{
+
+    text-align:center;
+    margin-bottom:60px;
+}
+
+.pricing-title span{
+
+    display:inline-block;
+
+    padding:10px 22px;
+
+    background:#DBEAFE;
+
+    color:#2563EB;
+
+    border-radius:50px;
+
+    font-weight:600;
+
+    margin-bottom:20px;
+}
+
+.pricing-title h2{
+
+    font-size:48px;
+
+    color:#1E293B;
+
+    margin-bottom:20px;
+}
+
+.pricing-title p{
+
+    color:#64748B;
+
+    font-size:18px;
+
+    max-width:650px;
+
+    margin:auto;
+
+    line-height:30px;
+}
+
+.pricing-container{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:35px;
+
+    align-items:center;
+}
+
+.price-card{
+
+    background:white;
+
+    border-radius:30px;
+
+    padding:45px 35px;
+
+    text-align:center;
+
+    box-shadow:0 15px 35px rgba(37,99,235,.08);
+
+    transition:.35s;
+
+    position:relative;
+}
+
+.price-card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:0 20px 45px rgba(37,99,235,.18);
+}
+
+.featured{
+
+    transform:scale(1.08);
+
+    border:3px solid #2563EB;
+}
+
+.featured:hover{
+
+    transform:scale(1.08) translateY(-10px);
+}
+
+.popular{
+
+    position:absolute;
+
+    top:-15px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    background:#2563EB;
+
+    color:white;
+
+    padding:8px 22px;
+
+    border-radius:30px;
+
+    font-size:14px;
+
+    font-weight:600;
+}
+
+.price{
+
+    font-size:24px;
+
+    margin:25px 0;
+}
+
+.price span{
+
+    font-size:50px;
+
+    color:#2563EB;
+
+    font-weight:700;
+}
+
+.price-card ul{
+
+    list-style:none;
+
+    margin:30px 0;
+}
+
+.price-card li{
+
+    padding:10px 0;
+
+    color:#64748B;
+}
+
+.price-card a{
+
+    display:inline-block;
+
+    padding:15px 38px;
+
+    background:#2563EB;
+
+    color:white;
+
+    text-decoration:none;
+
+    border-radius:50px;
+
+    font-weight:600;
+
+    transition:.3s;
+}
+
+.price-card a:hover{
+
+    background:#1D4ED8;
+}
+
+@media(max-width:900px){
+
+.pricing-container{
+
+    grid-template-columns:1fr;
+}
+
+.featured{
+
+    transform:none;
+}
+
+.featured:hover{
+
+    transform:translateY(-10px);
+}
+
+}
+ 
 </style>
 </head>
 <body>
@@ -372,49 +1463,37 @@
                 </ul>
             </nav>
 
-    <!--================ SERVICES HERO ================-->
+    
+            <!--================ SERVICES HERO ================-->
 
 <section class="service-hero">
 
     <div class="service-text">
 
-        <span class="service-tag">
-            🐾 Professional Pet Care Services
-        </span>
+        <div class="hero-tag">
+            🐾 Trusted Pet Care Services
+        </div>
 
         <h1>
-            Everything Your
-            <span>Pet Needs</span>
-            Under One Roof
+            Professional <span>Pet Services</span><br>
+            Tailored for Every Companion
         </h1>
 
         <p>
-            At PetSphere, we provide trusted boarding, professional grooming,
-            expert veterinary care, and personalized training to keep your
-            furry companions healthy, happy, and well cared for.
+            From luxurious boarding and expert grooming to veterinary care
+            and professional training, PetSphere provides everything your
+            furry friend needs in one trusted place.
         </p>
 
-        <div class="service-buttons">
+        <div class="hero-buttons">
 
             <a href="Registration.html" class="primary-btn">
                 Book Appointment
             </a>
 
-            <a href="#services-overview" class="secondary-btn">
+            <a href="#services" class="secondary-btn">
                 Explore Services
             </a>
-
-        </div>
-
-        <div class="hero-features">
-
-            <div>✔ Boarding</div>
-
-            <div>✔ Grooming</div>
-
-            <div>✔ Veterinary</div>
-
-            <div>✔ Training</div>
 
         </div>
 
@@ -424,16 +1503,515 @@
 
         <img src="pictures/services-hero.png" alt="Pet Services">
 
-        <div class="floating-card card-one">
-            🏥 Expert Care
+        <div class="floating-card card1">
+            ❤️ 5000+ Happy Pets
         </div>
 
-        <div class="floating-card card-two">
-            ✂ Professional Grooming
+        <div class="floating-card card2">
+            🏥 Professional Care
         </div>
 
-        <div class="floating-card card-three">
-            🐾 Happy Pets
+        <div class="floating-card card3">
+            ✂ Premium Grooming
+        </div>
+
+    </div>
+
+</section>
+
+<!--================ PREMIUM SERVICES ================-->
+
+<section class="services-section" id="services">
+
+    <div class="section-heading">
+
+        <span>Our Services</span>
+
+        <h2>Everything Your Pet Needs</h2>
+
+        <p>
+            We provide complete pet care solutions under one roof, ensuring
+            your furry friends receive the love, attention, and professional
+            care they deserve.
+        </p>
+
+    </div>
+
+    <div class="services-grid">
+
+        <!-- Boarding -->
+
+        <div class="service-card">
+
+            <img src="pictures/cabin.png" alt="Boarding">
+
+            <h3>Pet Boarding</h3>
+
+            <p>
+                Comfortable accommodation with 24/7 supervision, nutritious
+                meals, and daily activities.
+            </p>
+
+            <a href="#boarding">Learn More →</a>
+
+        </div>
+
+        <!-- Grooming -->
+
+        <div class="service-card">
+
+            <img src="pictures/nail-clipper.png" alt="Grooming">
+
+            <h3>Pet Grooming</h3>
+
+            <p>
+                Professional bathing, brushing, nail trimming, styling, and
+                hygiene services for every pet.
+            </p>
+
+            <a href="#grooming">Learn More →</a>
+
+        </div>
+
+        <!-- Veterinary -->
+
+        <div class="service-card">
+
+            <img src="pictures/stethoscope.png" alt="Veterinary">
+
+            <h3>Veterinary Care</h3>
+
+            <p>
+                Complete health checkups, vaccinations, diagnostics, surgery,
+                and emergency treatment.
+            </p>
+
+            <a href="#veterinary">Learn More →</a>
+
+        </div>
+
+        <!-- Training -->
+
+        <div class="service-card">
+
+            <img src="pictures/dog-leashed.png" alt="Training">
+
+            <h3>Pet Training</h3>
+
+            <p>
+                Positive reinforcement programs that build confidence,
+                obedience, and better behaviour.
+            </p>
+
+            <a href="#training">Learn More →</a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!--================ PET BOARDING ================-->
+
+<section class="boarding-section" id="boarding">
+
+    <div class="boarding-image">
+
+        <img src="pictures/pet-boarding.jpg" alt="Pet Boarding">
+
+    </div>
+
+    <div class="boarding-content">
+
+        <span class="boarding-tag">
+            🏡 Premium Boarding
+        </span>
+
+        <h2>
+            Comfortable <span>Pet Boarding</span>
+        </h2>
+
+        <p>
+
+            Whether you're away for a day or a week, your pet will enjoy a
+            comfortable and loving stay at PetSphere. Our boarding facility
+            provides spacious accommodations, nutritious meals, supervised
+            playtime, and personalized care to ensure every pet feels safe,
+            happy, and at home.
+
+        </p>
+
+        <div class="boarding-features">
+
+            <div class="feature-card">
+                ✔ 24/7 Professional Supervision
+            </div>
+
+            <div class="feature-card">
+                ✔ Spacious Air-Conditioned Rooms
+            </div>
+
+            <div class="feature-card">
+                ✔ Daily Exercise & Playtime
+            </div>
+
+            <div class="feature-card">
+                ✔ Healthy Meals & Fresh Water
+            </div>
+
+            <div class="feature-card">
+                ✔ CCTV Security Monitoring
+            </div>
+
+            <div class="feature-card">
+                ✔ Individual Pet Care
+            </div>
+
+        </div>
+
+        <a href="Registration.html" class="boarding-btn">
+
+            Book Boarding
+
+        </a>
+
+    </div>
+
+</section>
+
+<!--================ PET GROOMING ================-->
+
+<section class="grooming-section" id="grooming">
+
+    <div class="grooming-content">
+
+        <span class="grooming-tag">
+            ✂️ Professional Grooming
+        </span>
+
+        <h2>
+            Keep Your <span>Pet Looking Great</span>
+        </h2>
+
+        <p>
+            Our experienced groomers provide gentle and professional grooming
+            services tailored to every breed. From refreshing baths and stylish
+            haircuts to nail trimming and ear cleaning, we ensure your pet
+            leaves looking healthy, clean, and happy.
+        </p>
+
+        <div class="grooming-features">
+
+            <div class="groom-card">
+                🛁 Luxury Bath & Dry
+            </div>
+
+            <div class="groom-card">
+                ✂️ Professional Hair Styling
+            </div>
+
+            <div class="groom-card">
+                🐾 Nail Trimming
+            </div>
+
+            <div class="groom-card">
+                👂 Ear Cleaning
+            </div>
+
+            <div class="groom-card">
+                🪮 Coat Brushing
+            </div>
+
+            <div class="groom-card">
+                ❤️ Skin Care
+            </div>
+
+        </div>
+
+        <a href="Registration.html" class="groom-btn">
+
+            Book Grooming
+
+        </a>
+
+    </div>
+
+    <div class="grooming-image">
+
+        <img src="pictures/pet-grooming.jpg" alt="Pet Grooming">
+
+        <div class="groom-floating groom1">
+            ✂ Professional Styling
+        </div>
+
+        <div class="groom-floating groom2">
+            🛁 Fresh & Clean
+        </div>
+
+    </div>
+
+</section>
+
+<!--================ VETERINARY CARE ================-->
+
+<section class="vet-section" id="veterinary">
+
+    <div class="vet-image">
+
+        <img src="pictures/veterinary.jpg" alt="Veterinary Care">
+
+        <div class="vet-floating vet1">
+            🩺 Health Checkups
+        </div>
+
+        <div class="vet-floating vet2">
+            ❤️ Emergency Care
+        </div>
+
+    </div>
+
+    <div class="vet-content">
+
+        <span class="vet-tag">
+            🏥 Veterinary Care
+        </span>
+
+        <h2>
+            Expert <span>Medical Care</span> For Every Pet
+        </h2>
+
+        <p>
+            Your pet's health is our highest priority. Our experienced veterinarians
+            provide comprehensive medical services using modern equipment and
+            compassionate care. From routine checkups to emergency treatments,
+            we're here to keep your furry companions healthy and happy.
+        </p>
+
+        <div class="vet-features">
+
+            <div class="vet-card">
+                💉 Vaccinations
+            </div>
+
+            <div class="vet-card">
+                🔬 Laboratory Testing
+            </div>
+
+            <div class="vet-card">
+                🩺 Routine Checkups
+            </div>
+
+            <div class="vet-card">
+                ❤️ Emergency Treatment
+            </div>
+
+            <div class="vet-card">
+                🦴 Surgical Procedures
+            </div>
+
+            <div class="vet-card">
+                📋 Health Consultation
+            </div>
+
+        </div>
+
+        <a href="Registration.html" class="vet-btn">
+
+            Book Consultation
+
+        </a>
+
+    </div>
+
+</section>
+
+<!--================ PET TRAINING ================-->
+
+<section class="training-section" id="training">
+
+    <div class="training-content">
+
+        <span class="training-tag">
+            🐕 Professional Training
+        </span>
+
+        <h2>
+            Build Better <span>Behavior & Confidence</span>
+        </h2>
+
+        <p>
+            Our certified trainers use positive reinforcement techniques to
+            help pets become confident, obedient, and well-mannered. Whether
+            your companion is a playful puppy or an adult pet, our customized
+            training programs strengthen the bond between you and your furry
+            friend while encouraging good behaviour in everyday life.
+        </p>
+
+        <div class="training-features">
+
+            <div class="training-card">
+                🎯 Basic Obedience Training
+            </div>
+
+            <div class="training-card">
+                🐾 Socialization Programs
+            </div>
+
+            <div class="training-card">
+                🦮 Leash Walking Skills
+            </div>
+
+            <div class="training-card">
+                🏆 Advanced Commands
+            </div>
+
+            <div class="training-card">
+                ❤️ Positive Reinforcement
+            </div>
+
+            <div class="training-card">
+                👨‍🏫 One-to-One Sessions
+            </div>
+
+        </div>
+
+        <a href="Registration.html" class="training-btn">
+
+            Start Training
+
+        </a>
+
+    </div>
+
+    <div class="training-image">
+
+        <img src="pictures/pet-training.jpg" alt="Pet Training">
+
+        <div class="training-floating train1">
+            🏆 Well Trained Pets
+        </div>
+
+        <div class="training-floating train2">
+            ❤️ Positive Learning
+        </div>
+
+    </div>
+
+</section>
+
+<!--================ PRICING ================-->
+
+<section class="pricing">
+
+    <div class="pricing-title">
+
+        <span>Pricing Plans</span>
+
+        <h2>Affordable Care for Every Pet</h2>
+
+        <p>
+            Transparent pricing with professional care. Choose the service
+            that best fits your pet's needs.
+        </p>
+
+    </div>
+
+    <div class="pricing-container">
+
+        <!-- Boarding -->
+
+        <div class="price-card">
+
+            <h3>Pet Boarding</h3>
+
+            <div class="price">
+
+                LKR <span>3,500</span>
+
+            </div>
+
+            <p>Per Day</p>
+
+            <ul>
+
+                <li>✔ Comfortable Stay</li>
+
+                <li>✔ Healthy Meals</li>
+
+                <li>✔ Daily Exercise</li>
+
+                <li>✔ 24/7 Supervision</li>
+
+            </ul>
+
+            <a href="Registration.html">Book Now</a>
+
+        </div>
+
+        <!-- Premium -->
+
+        <div class="price-card featured">
+
+            <div class="popular">
+                Most Popular
+            </div>
+
+            <h3>Premium Package</h3>
+
+            <div class="price">
+
+                LKR <span>7,500</span>
+
+            </div>
+
+            <p>Complete Care</p>
+
+            <ul>
+
+                <li>✔ Boarding</li>
+
+                <li>✔ Grooming</li>
+
+                <li>✔ Vet Checkup</li>
+
+                <li>✔ Training Session</li>
+
+                <li>✔ Priority Support</li>
+
+            </ul>
+
+            <a href="Registration.html">Book Now</a>
+
+        </div>
+
+        <!-- Training -->
+
+        <div class="price-card">
+
+            <h3>Pet Training</h3>
+
+            <div class="price">
+
+                LKR <span>2,500</span>
+
+            </div>
+
+            <p>Per Session</p>
+
+            <ul>
+
+                <li>✔ Basic Commands</li>
+
+                <li>✔ Behaviour Training</li>
+
+                <li>✔ Social Skills</li>
+
+                <li>✔ Expert Guidance</li>
+
+            </ul>
+
+            <a href="Registration.html">Book Now</a>
+
         </div>
 
     </div>
