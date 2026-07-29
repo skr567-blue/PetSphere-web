@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Booking Page</title>
+    <title>Services Page</title>
 
     <style>
-                
-                *{
+
+         *{
                     margin: 0;
                     padding: 0;
                     box-sizing: border-box; 
+                }
+                html{
+
+                         scroll-behavior:smooth;
                 }
                 .logo{
                     font-weight: bold;
@@ -19,10 +23,16 @@
                     display: flex;
                     justify-content:space-between;
                     align-items: center;
-                    background-color: transparent;
+                    backdrop-filter: blur(10px);
                     padding: 15px 40px;
-                    font-family: Arial;
+                    font-family: 'Poppins', sans-serif;
                     font-weight: bold;
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    z-index: 1000;
+                    transition: .4s;
                 }
                 .nav_links{
                     list-style: none;
@@ -32,251 +42,887 @@
                     margin-left: 25px;
                 }
                 .nav_links a{
+                    position: relative;
                     text-decoration: none;
-                    color: black;
+                    color: #1E293B;
+                    font-weight: 500;
+                    transition: 0.3s ease;
                     font-size: 16px;
                     position: relative;
                 }
                 .nav_links a::after{
                     content: "";
                     position: absolute;
-                    width: 0%;
-                    height: 2px;
-                    background: black;
                     left: 0;
-                    bottom: -5px;
-                    transition: 0.3s;
+                    bottom: -6px;
+                    width: 0;
+                    height: 3px;
+                    background:  #000;;
+                    border-radius: 10px;
+                    transition: width 0.3s ease;
+                }
+
+                .nav_links a:hover{
+                    color: #000;
                 }
                 .nav_links a:hover::after{
                     width:100%;
                 }
                 .nav_links a.active{
-                    color:white;
+                    color:#000;
                 }
                 .nav_links a.active img{
                     filter: brightness(0) invert(1) 
                 }
 
+                .nav_bar.scrolled .nav_links a::after{
+                    background:white;
+                }
 
-        body {
-            font-family: Arial;
-            text-align: center;
-            background-image: url("C:/Users/CHAMA COMPUTERS/OneDrive/Desktop/PET Web/pictures/Animal_99D_B099_1004264240.jpg"); 
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-            margin: 0;
-            padding: 0;
-        }
+                .nav_links a.log_btn{
+                    display: inline-block;
+                    padding: 15px 20px;
+                    margin-left: 30px;
+                    background-color: #000;
+                    color: aliceblue;
+                    border-radius: 70px;
+                    font-size:15px;
+                    text-decoration: none;
+                    font-weight: bold;
 
-        h1 {
-            font-size: 35px;
-            color:black;
-            font-family:arial;
-            
-        }
+                }
+                .nav_links a.log_btn:hover{
+                    background-color: #2563EB;
+                    color: white;
+                }
 
-        .form-box {
-            width: 380px;
-            margin:  auto;
-            border-radius: 15px;
-            padding: 25px;
-            background-color:transparent ;
-            text-align: left;
-        }
+                /*================ REGISTER HERO ================*/
 
-        label {
-            font-size: 16px;
-            font-weight: bold;
-        }
+.register-hero{
 
-        input {
-            width: 100%;
-            padding: 8px;
-            margin-top: 5px;
-            margin-bottom: 12px;
-            font-size: 14px;
-            border-radius: 5px;
-            border: none;
-        }
+    width:100%;
+    height:100vh;
 
-        .radio-group {
-            margin-bottom: 10px;
-        }
+    background:
+    linear-gradient(rgba(0,0,0,.55),
+    rgba(0,0,0,.55)),
+    url("pictures/cover.jpg");
 
-        .radio-group input {
-            width: auto;
-        }
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
 
-        .btn-group {
-            display: flex;
-            justify-content: space-between;
-            gap: 10px;
-        }
+    display:flex;
+    justify-content:center;
+    align-items:center;
 
-        button {
-            width: 48%;
-            padding: 10px;
-            border: none;
-            border-radius: 7px;
-            color: white;
-            font-size: 15px;
-            cursor: pointer;
-        }
+    margin-top:90px;
+}
 
-        .submit_btn {
-            background-color: green;
-        }
-        .submit_btn:hover{
-            background-color: rgb(4, 184, 4);
-        }
+.hero-overlay{
 
-        .reset_btn {
-            background-color: rgb(214, 5, 5);
-        }
-        .reset_btn:hover{
-            background-color: rgb(239, 11, 46);
-        }
+    width:100%;
+    height:100%;
 
-        .back_btn {
-            display: block;
-            text-align: center;
-            margin-top: 15px;
-        }
+    display:flex;
+    justify-content:center;
+    align-items:center;
 
-        .back_btn a {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: rgb(14, 31, 126);
-            color: white;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: bold;
-        }
+    text-align:center;
+}
 
-        .back_btn a:hover {
-            background-color: rgb(10, 45, 204);
-        }
-    </style>
+.hero-content{
+
+    max-width:850px;
+    padding-top:120px;
+    text-align:center;
+}
+
+.hero-tag{
+
+    display:inline-block;
+
+    padding:12px 28px;
+
+    background:#2563EB;
+
+    color:white;
+
+    border-radius:50px;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    margin-bottom:30px;
+
+    letter-spacing:.5px;
+}
+
+.hero-content h1{
+
+    font-size:72px;
+
+    color:white;
+
+    line-height:82px;
+
+    margin-bottom:25px;
+
+    font-weight:700;
+}
+
+.hero-content h1 span{
+
+    color:#60A5FA;
+}
+
+.hero-content p{
+
+    font-size:20px;
+
+    color:#E2E8F0;
+
+    line-height:34px;
+
+    max-width:700px;
+
+    margin:auto;
+
+    margin-bottom:45px;
+}
+
+.hero-btn{
+
+    display:inline-block;
+    margin-top:20px;
+
+    padding:18px 45px;
+
+    background:white;
+
+    color:#1E293B;
+
+    text-decoration:none;
+
+    border-radius:50px;
+
+    font-size:18px;
+
+    font-weight:600;
+
+    transition:.35s;
+}
+
+.hero-btn:hover{
+
+    background:#2563EB;
+
+    color:white;
+
+    transform:translateY(-6px);
+
+    box-shadow:0 15px 30px rgba(37,99,235,.35);
+}
+
+@media(max-width:900px){
+
+.register-hero{
+    width:100%;
+    height:100vh;
+
+    background:
+    linear-gradient(rgba(0,0,0,.55),
+    rgba(0,0,0,.55)),
+    url("pictures/cover.jpg");
+
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    margin-top:90px;
+
+    padding-bottom:220px;   /* ADD THIS */
+}
+
+.hero-content h1{
+
+    font-size:48px;
+
+    line-height:60px;
+}
+
+.hero-content p{
+
+    font-size:17px;
+
+    line-height:30px;
+}
+
+.hero-btn{
+
+    padding:15px 35px;
+}
+
+}
+/*================ BOOKING SECTION ================*/
+
+.booking-section{
+
+    width:100%;
+
+    background:#F8FAFC;
+
+    padding-bottom:100px;
+}
+
+.booking-card{
+
+    width:90%;
+
+    max-width:1200px;
+
+    margin:40px auto 100px;
+
+    background:white;
+
+    border-radius:30px;
+
+    padding:60px;
+
+    box-shadow:0 25px 60px rgba(0,0,0,.12);
+
+    position:relative;
+
+    z-index:100;
+}
+
+.section-heading{
+
+    text-align:center;
+
+    margin-bottom:50px;
+}
+
+.section-heading span{
+
+    display:inline-block;
+
+    padding:10px 24px;
+
+    background:#DBEAFE;
+
+    color:#2563EB;
+
+    border-radius:40px;
+
+    font-weight:600;
+
+    margin-bottom:20px;
+}
+
+.section-heading h2{
+
+    font-size:42px;
+
+    color:#1E293B;
+
+    margin-bottom:15px;
+}
+
+.section-heading p{
+
+    color:#64748B;
+
+    font-size:18px;
+
+    max-width:700px;
+
+    margin:auto;
+
+    line-height:30px;
+}
+
+.input-row{
+
+    display:flex;
+
+    gap:30px;
+
+    margin-bottom:30px;
+}
+
+.input-box{
+
+    flex:1;
+
+    display:flex;
+
+    flex-direction:column;
+}
+
+.input-box label{
+
+    font-weight:600;
+
+    color:#1E293B;
+
+    margin-bottom:10px;
+}
+
+.input-box input,
+
+.input-box textarea{
+
+    padding:18px 20px;
+
+    border:2px solid #E2E8F0;
+
+    border-radius:15px;
+
+    font-size:16px;
+
+    font-family:'Poppins',sans-serif;
+
+    transition:.3s;
+
+    outline:none;
+
+    background:#FAFAFA;
+}
+
+.input-box input:focus,
+
+.input-box textarea:focus{
+
+    border-color:#2563EB;
+
+    background:white;
+
+    box-shadow:0 0 0 4px rgba(37,99,235,.10);
+}
+
+.full{
+
+    width:100%;
+}
+@media(max-width:900px){
+
+.booking-card{
+
+    padding:35px 25px;
+
+    margin-top:-60px;
+}
+
+.input-row{
+
+    flex-direction:column;
+
+    gap:20px;
+}
+
+.section-heading h2{
+
+    font-size:34px;
+}
+
+}
+/*================ STEP 2 SECTION ================*/
+
+.pet-section{
+
+    width:100%;
+
+    background:#F8FAFC;
+
+    padding:0 0 100px;
+}
+
+
+.pet-card{
+
+    width:90%;
+
+    max-width:1200px;
+
+    margin:0 auto;
+
+    background:white;
+
+    border-radius:30px;
+
+    padding:55px 60px;
+
+    box-shadow:0 25px 60px rgba(0,0,0,.12);
+
+}
+
+
+/* STEP 2 HEADING */
+
+.pet-card .section-heading{
+
+    text-align:center;
+
+    margin-bottom:40px;
+
+}
+
+.pet-card .section-heading span{
+
+    display:inline-block;
+
+    padding:8px 22px;
+
+    background:#DBEAFE;
+
+    color:#2563EB;
+
+    border-radius:40px;
+
+    font-weight:600;
+
+    margin-bottom:18px;
+
+}
+
+.pet-card .section-heading h2{
+
+    font-size:40px;
+
+    color:#1E293B;
+
+    margin-bottom:12px;
+
+}
+
+.pet-card .section-heading p{
+
+    color:#64748B;
+
+    font-size:17px;
+
+    max-width:650px;
+
+    margin:auto;
+
+    line-height:28px;
+
+}
+
+
+/* INPUT ROW */
+
+.pet-card .input-row{
+
+    display:flex;
+
+    gap:30px;
+
+    margin-bottom:25px;
+
+}
+
+
+/* INPUT BOX */
+
+.pet-card .input-box{
+
+    flex:1;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+
+/* LABEL */
+
+.pet-card .input-box label{
+
+    font-weight:600;
+
+    color:#1E293B;
+
+    margin-bottom:8px;
+
+}
+
+
+/* INPUT + SELECT */
+
+.pet-card .input-box input,
+.pet-card .input-box select{
+
+    width:100%;
+
+    height:55px;
+
+    padding:14px 18px;
+
+    border:2px solid #E2E8F0;
+
+    border-radius:14px;
+
+    background:#FAFAFA;
+
+    font-size:16px;
+
+    font-family:'Poppins',sans-serif;
+
+    outline:none;
+
+    transition:.3s;
+
+}
+
+
+/* FOCUS */
+
+.pet-card .input-box input:focus,
+.pet-card .input-box select:focus{
+
+    border-color:#2563EB;
+
+    background:white;
+
+    box-shadow:0 0 0 4px rgba(37,99,235,.10);
+
+}
+
+
+/* FILE UPLOAD */
+
+.pet-card .input-box input[type="file"]{
+
+    height:auto;
+
+    padding:14px;
+
+    border:2px dashed #CBD5E1;
+
+    background:#FAFAFA;
+
+    cursor:pointer;
+
+}
+
+
+/* FULL WIDTH */
+
+.pet-card .full{
+
+    width:100%;
+
+}
+
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+    .pet-card{
+
+        width:90%;
+
+        padding:35px 25px;
+
+    }
+
+    .pet-card .input-row{
+
+        flex-direction:column;
+
+        gap:20px;
+
+        margin-bottom:20px;
+
+    }
+
+    .pet-card .section-heading h2{
+
+        font-size:32px;
+
+    }
+
+}    </style>
 </head>
 
 <body>
 
     <nav class="nav_bar">
                 <div class="logo">
-                    <img src="C:/Users/CHAMA COMPUTERS/OneDrive/Desktop/PET Web/pictures/petopia.png"
+                    <img src="pictures/petopia.png"
                          width="70" style="vertical-align: middle;">
                 </div>
 
                 <ul class="nav_links">
                     <li><a href="home.html">Home
-                        <img src="C:/Users/CHAMA COMPUTERS/OneDrive/Desktop/PET Web/pictures/home.png"
+                        <img src="pictures/home.png"
                          width="17" style="vertical-align: middle;">
                     </a></li>
                     <li><a href="Registration.html">Registration
-                        <img src="C:/Users/CHAMA COMPUTERS/OneDrive/Desktop/PET Web/pictures/clipboard-list.png"
+                        <img src="pictures/clipboard-list.png"
                          width="17" style="vertical-align: middle;">
                     </a></li>
                     <li><a href="services.html">Services
-                        <img src="C:/Users/CHAMA COMPUTERS/OneDrive/Desktop/PET Web/pictures/customer-care (1).png"
+                        <img src="pictures/customer-care (1).png"
                          width="17" style="vertical-align: middle;">
                     </a></li>
                     <li><a href="contact.html">Contact
-                        <img src="C:/Users/CHAMA COMPUTERS/OneDrive/Desktop/PET Web/pictures/phone-plus (1).png"
+                        <img src="pictures/phone-plus (1).png"
                          width="17" style="vertical-align: middle;">
                     </a></li>
                     <li><a href="about.html">About
-                        <img src="C:/Users/CHAMA COMPUTERS/OneDrive/Desktop/PET Web/pictures/info (1).png"
+                        <img src="pictures/info (1).png"
                          width="17" style="vertical-align: middle;">
                     </a></li>
+
+                    <div class="loginn_btn">
+                        <a href="login.html" class="log_btn" id="log">LOGIN</a>
+                    </div>
+
 
                 </ul>
             </nav>
 
-    <h1>Make a book here</h1>
+    <!--================ REGISTER HERO ================-->
 
-    <div class="form-box">
+<section class="register-hero">
 
-        <form id="petForm">
+    <div class="hero-overlay">
 
-            <label>Pet's Name:</label>
-            <input type="text" name="pet_name" required>
+        <div class="hero-content">
 
-            <label>Breed:</label>
-            <input type="text" name="breed" required>
+           <p class="hero-subtitle">
+                Professional Pet Care
+            </p>
 
-            <label>Age:</label>
-            <input type="number" name="age" required>
+            <h1>
+                Book Your Pet's
+                <span>Appointment</span>
+            </h1>
 
-            <label>Gender:</label>
-            <div class="radio-group">
-                <label><input type="radio" name="gender" value="male"> Male</label>
-                <label><input type="radio" name="gender" value="female"> Female</label>
-            </div>
+            <p>
+                Schedule professional pet boarding, grooming, veterinary care,
+                or training with just a few clicks. Our experienced team is
+                committed to providing exceptional care for your beloved
+                companion.
+            </p>
 
-            <label>Owner's Name:</label>
-            <input type="text" name="owner_name" required>
+            <a href="#booking-form" class="hero-btn">
+                Start Booking
+            </a>
 
-            <label>Email:</label>
-            <input type="email" name="email" required>
-
-            <label>Contact Number:</label>
-            <input type="text" name="phone" required>
-
-            <label>Location:</label>
-            <div class="radio-group">
-                <label><input type="radio" name="location" value="kandy"> Kandy</label>
-                <label><input type="radio" name="location" value="matale"> Matale</label>
-                <label><input type="radio" name="location" value="nuwara_eliya"> Nuwara Eliya</label>
-            </div>
-
-            <div class="btn-group">
-                <button type="submit" class="submit_btn">Register</button>
-                <button type="reset" class="reset_btn">Clear</button>
-            </div>
-
-        </form>
-
-        <div class="back_btn">
-            <a href="home.html">Back</a>
         </div>
 
     </div>
 
-    <script>
-        document.getElementById("petForm").addEventListener("submit", function(event) {
-            event.preventDefault();
+</section>
 
-            let phone = document.getElementsByName("phone")[0].value;
+<!--================ BOOKING FORM ================-->
 
-            if (phone.length < 10) {
-                alert("Please enter a valid phone number!");
-                return;
-            }
+<section class="booking-section" id="booking-form">
 
-            alert("Registration Successful!");
-        });
-         window.addEventListener("scroll",function(){
-                const navbar = document.querySelector(".nav_bar");
+    <div class="booking-card">
 
-                if(window.scrollY>50){
-                    navbar.style.backgroundColor = "rgba(0,0,0,0.8)";
-                    navbar.style.color = "white";
+        <div class="section-heading">
 
-                }else{
-                    navbar.style.backgroundColor = "transparent";
-                    
-                }
-            });
-            const links = document.querySelectorAll(".nav_links a");
+            <span>Step 1</span>
 
-            links.forEach(link =>{
-                if(link.href === window.location.href){
-                    link.classList.add("active");
-                }
-            });
+            <h2>Owner Information</h2>
 
-    </script>
+            <p>
+                Tell us a little about yourself so we can contact you regarding
+                your pet's appointment.
+            </p>
 
+        </div>
+
+        <form>
+
+            <div class="input-row">
+
+                <div class="input-box">
+
+                    <label>Full Name</label>
+
+                    <input type="text"
+                    placeholder="Enter your full name"
+                    required>
+
+                </div>
+
+                <div class="input-box">
+
+                    <label>Email Address</label>
+
+                    <input type="email"
+                    placeholder="example@email.com"
+                    required>
+
+                </div>
+
+            </div>
+
+            <div class="input-row">
+
+                <div class="input-box">
+
+                    <label>Phone Number</label>
+
+                    <input type="tel"
+                    placeholder="+94 77 123 4567"
+                    required>
+
+                </div>
+
+                <div class="input-box">
+
+                    <label>NIC Number</label>
+
+                    <input type="text"
+                    placeholder="Optional">
+
+                </div>
+
+            </div>
+
+            <div class="input-box full">
+
+                <label>Home Address</label>
+
+                <textarea
+                rows="4"
+                placeholder="Enter your address"></textarea>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</section>
+
+<!--================ STEP 2 PET INFORMATION ================-->
+
+<section class="pet-section">
+
+    <div class="pet-card">
+
+        <div class="section-heading">
+
+            <span>Step 2</span>
+
+            <h2>Pet Information</h2>
+
+            <p>
+                Tell us about your furry companion so we can provide the best care.
+            </p>
+
+        </div>
+
+        <div class="input-row">
+
+            <div class="input-box">
+
+                <label>Pet Name</label>
+
+                <input type="text"
+                       placeholder="Enter pet name"
+                       required>
+
+            </div>
+
+            <div class="input-box">
+
+                <label>Pet Type</label>
+
+                <select required>
+
+                    <option value="">Select Pet</option>
+                    <option>Dog</option>
+                    <option>Cat</option>
+                    <option>Rabbit</option>
+                    <option>Bird</option>
+                    <option>Other</option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <div class="input-row">
+
+            <div class="input-box">
+
+                <label>Breed</label>
+
+                <input type="text"
+                       placeholder="Breed">
+
+            </div>
+
+            <div class="input-box">
+
+                <label>Gender</label>
+
+                <select>
+
+                    <option>Male</option>
+                    <option>Female</option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <div class="input-row">
+
+            <div class="input-box">
+
+                <label>Age</label>
+
+                <input type="number"
+                       placeholder="Years">
+
+            </div>
+
+            <div class="input-box">
+
+                <label>Weight (kg)</label>
+
+                <input type="number"
+                       step="0.1"
+                       placeholder="Weight">
+
+            </div>
+
+        </div>
+
+
+        <div class="input-box full">
+
+            <label>Upload Pet Photo</label>
+
+            <input type="file"
+                   accept="image/*">
+
+        </div>
+
+    </div>
+
+</section>
+    
 </body>
 </html>
