@@ -1723,7 +1723,351 @@ text-align:center;
 justify-content:center;
 }
 
-}             
+}  
+
+
+/* ================= OR DIVIDER ================= */
+
+.or-divider{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin:22px 0;
+
+}
+
+.or-divider span{
+
+    flex:1;
+
+    height:1px;
+
+    background:#E2E8F0;
+
+}
+
+.or-divider p{
+
+    margin:0;
+
+    color:#94A3B8;
+
+    font-size:13px;
+
+}
+
+
+/* ================= GOOGLE BUTTON ================= */
+
+.google-btn{
+
+    width:100%;
+
+    height:50px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;
+
+    border:2px solid #E2E8F0;
+
+    border-radius:12px;
+
+    background:white;
+
+    color:#1E293B;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.google-btn img{
+
+    width:19px;
+
+    height:19px;
+
+    object-fit:contain;
+
+}
+
+.google-btn:hover{
+
+    background:#F8FAFC;
+
+    border-color:#CBD5E1;
+
+    transform:translateY(-2px);
+
+    box-shadow:0 7px 18px rgba(0,0,0,.08);
+
+}
+/* ================= LOGIN / REGISTER POPUP ================= */
+
+.auth-popup{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(15,23,42,.65);
+    backdrop-filter:blur(8px);
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+}
+
+.auth-box{
+    width:850px;
+    max-width:90%;
+    min-height:520px;
+    background:white;
+    border-radius:25px;
+    overflow:hidden;
+    display:flex;
+    position:relative;
+    box-shadow:0 25px 70px rgba(0,0,0,.3);
+    animation:popupOpen .3s ease;
+}
+
+@keyframes popupOpen{
+
+    from{
+        opacity:0;
+        transform:scale(.85);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+
+}
+
+.close-btn{
+    position:absolute;
+    top:15px;
+    right:20px;
+    font-size:32px;
+    color:#1E293B;
+    cursor:pointer;
+    z-index:10;
+}
+
+.close-btn:hover{
+    color:#2563EB;
+}
+
+.auth-left{
+    width:45%;
+    overflow:hidden;
+}
+
+.auth-left img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.auth-right{
+    width:55%;
+    padding:50px 45px;
+}
+
+/* ================= LOGIN / REGISTER TABS ================= */
+
+.tab-buttons{
+    display:flex;
+    justify-content:center;
+    gap:0;
+    margin-bottom:35px;
+    background:#F1F5F9;
+    padding:5px;
+    border-radius:50px;
+}
+
+.tab{
+    flex:1;
+    border:none;
+    background:transparent;
+
+    padding:12px 25px;
+
+    border-radius:50px;
+
+    font-family:'Poppins',sans-serif;
+    font-size:15px;
+    font-weight:600;
+
+    color:#64748B;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.tab.active{
+    background:#2563EB;
+    color:white;
+
+    box-shadow:0 5px 15px rgba(37,99,235,.25);
+}
+
+.tab:hover:not(.active){
+    color:#2563EB;
+}
+#loginForm h2,
+#registerForm h2{
+    font-size:30px;
+    color:#1E293B;
+    margin-bottom:8px;
+}
+
+#loginForm p,
+#registerForm p{
+    color:#64748B;
+    font-size:14px;
+    margin-bottom:25px;
+}
+
+#loginForm input,
+#registerForm input{
+    width:100%;
+    height:50px;
+    margin-bottom:15px;
+    padding:0 16px;
+    border:2px solid #E2E8F0;
+    border-radius:12px;
+    outline:none;
+    font-family:'Poppins',sans-serif;
+    font-size:14px;
+}
+
+#loginForm input:focus,
+#registerForm input:focus{
+    border-color:#2563EB;
+    box-shadow:0 0 0 4px rgba(37,99,235,.1);
+}
+
+.submit-btn{
+    width:100%;
+    height:50px;
+    border:none;
+    border-radius:12px;
+    background:#2563EB;
+    color:white;
+    font-family:'Poppins',sans-serif;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.submit-btn:hover{
+    background:#1D4ED8;
+    transform:translateY(-2px);
+}
+
+.forgot-password{
+    width:100%;
+    text-align:right;
+    margin-top:-5px;
+    margin-bottom:18px;
+}
+
+.forgot-password a{
+    color:#64748B;
+    text-decoration:none;
+    font-size:13px;
+    font-weight:600;
+}
+
+.forgot-password a:hover{
+    color:#2563EB;
+    text-decoration:underline;
+}
+
+.or-divider{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin:22px 0;
+}
+
+.or-divider span{
+    flex:1;
+    height:1px;
+    background:#E2E8F0;
+}
+
+.or-divider p{
+    margin:0 !important;
+    color:#94A3B8 !important;
+    font-size:13px !important;
+}
+
+.google-btn{
+    width:100%;
+    height:50px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    border:2px solid #E2E8F0;
+    border-radius:12px;
+    background:white;
+    color:#1E293B;
+    font-family:'Poppins',sans-serif;
+    font-size:14px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.google-btn img{
+    width:19px;
+    height:19px;
+    object-fit:contain;
+}
+
+.google-btn:hover{
+    background:#F8FAFC;
+    border-color:#CBD5E1;
+    transform:translateY(-2px);
+}
+
+@media(max-width:700px){
+
+    .auth-box{
+        width:95%;
+        min-height:auto;
+    }
+
+    .auth-left{
+        display:none;
+    }
+
+    .auth-right{
+        width:100%;
+        padding:40px 25px;
+    }
+
+}           
  
 </style>
 </head>
@@ -1757,7 +2101,7 @@ justify-content:center;
                     </a></li>
 
                     <div class="loginn_btn">
-                        <a href="login.html" class="log_btn" id="log">LOGIN</a>
+                        <a href="#" class="log_btn" onclick="openPopup()">LOGIN</a>
                     </div>
 
 
@@ -2426,5 +2770,192 @@ justify-content:center;
 
 </footer>
 
+           <!--================ LOGIN / REGISTER POPUP ================-->
+
+<div class="auth-popup" id="authPopup">
+
+    <div class="auth-box">
+
+        <span class="close-btn" onclick="closePopup()">&times;</span>
+
+        <div class="auth-left">
+
+            <img src="pictures/cover-log.jpg">
+
+        </div>
+
+        <div class="auth-right">
+
+            <div class="tab-buttons">
+
+                <button class="tab active" onclick="showLogin()">Login</button>
+
+                <button class="tab" onclick="showRegister()">Register</button>
+
+            </div>
+
+           <!-- LOGIN -->
+
+<div id="loginForm">
+
+    <h2>Welcome Back</h2>
+
+    <p>Login to continue your PetSphere journey.</p>
+
+    <input type="email" placeholder="Email">
+
+    <input type="password" placeholder="Password">
+
+    <!-- FORGOT PASSWORD -->
+
+    <div class="forgot-password">
+
+        <a href="forgot-password.html">
+            Forgot Password?
+        </a>
+
+    </div>
+
+    <!-- NORMAL LOGIN -->
+
+    <button class="submit-btn">
+        LOGIN
+    </button>
+
+
+    <!-- GOOGLE LOGIN -->
+
+    <div class="or-divider">
+
+        <span></span>
+
+        <p>OR</p>
+
+        <span></span>
+
+    </div>
+
+    <button class="google-btn" type="button" onclick="googleLogin()">
+
+    <img src="pictures/google.png" alt="Google">
+
+    <span>Continue with Google</span>
+
+</button>
+
+</div>
+
+
+<!-- REGISTER -->
+
+<div id="registerForm" style="display:none;">
+
+    <h2>Create Account</h2>
+
+    <p>Join PetSphere and care for your furry friend.</p>
+
+    <input type="text" placeholder="Full Name">
+
+    <input type="email" placeholder="Email">
+
+    <input type="password" placeholder="Password">
+
+    <button class="submit-btn">
+        REGISTER
+    </button>
+
+</div>
+
+<script>
+
+/* ================= OPEN POPUP ================= */
+
+function openPopup(){
+
+    document.getElementById("authPopup").style.display = "flex";
+
+    document.body.style.overflow = "hidden";
+
+}
+
+
+/* ================= CLOSE POPUP ================= */
+
+function closePopup(){
+
+    document.getElementById("authPopup").style.display = "none";
+
+    document.body.style.overflow = "auto";
+
+}
+
+
+/* ================= CLOSE OUTSIDE POPUP ================= */
+
+window.onclick = function(e){
+
+    let popup = document.getElementById("authPopup");
+
+    if(e.target === popup){
+
+        closePopup();
+
+    }
+
+};
+
+
+/* ================= LOGIN TAB ================= */
+
+function showLogin(){
+
+    document.getElementById("loginForm").style.display = "block";
+
+    document.getElementById("registerForm").style.display = "none";
+
+    document.querySelectorAll(".tab")[0].classList.add("active");
+
+    document.querySelectorAll(".tab")[1].classList.remove("active");
+
+}
+
+
+/* ================= REGISTER TAB ================= */
+
+function showRegister(){
+
+    document.getElementById("loginForm").style.display = "none";
+
+    document.getElementById("registerForm").style.display = "block";
+
+    document.querySelectorAll(".tab")[1].classList.add("active");
+
+    document.querySelectorAll(".tab")[0].classList.remove("active");
+
+}
+
+
+/* ================= GOOGLE LOGIN ================= */
+
+function googleLogin(){
+
+    alert("Google Login will be connected here.");
+
+}
+
+
+/* ================= ESC KEY ================= */
+
+document.addEventListener("keydown", function(e){
+
+    if(e.key === "Escape"){
+
+        closePopup();
+
+    }
+
+});
+
+</script>
 
 </body>

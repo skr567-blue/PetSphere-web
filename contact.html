@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Services Page</title>
+
+    <style>
+
+         *{
+                    margin: 0;
+                    padding: 0;
+                    box-sizing: border-box; 
+                }
+                html{
+
+                         scroll-behavior:smooth;
+                }
+                .logo{
+                    font-weight: bold;
+                    font-size: 20px;
+                }
+
+                .nav_bar{
+                    display: flex;
+                    justify-content:space-between;
+                    align-items: center;
+                    backdrop-filter: blur(10px);
+                    padding: 15px 40px;
+                    font-family: 'Poppins', sans-serif;
+                    font-weight: bold;
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    z-index: 1000;
+                    transition: .4s;
+                }
+                .nav_links{
+                    list-style: none;
+                    display: flex;
+                }
+                .nav_links li{
+                    margin-left: 25px;
+                }
+                .nav_links a{
+                    position: relative;
+                    text-decoration: none;
+                    color: #1E293B;
+                    font-weight: 500;
+                    transition: 0.3s ease;
+                    font-size: 16px;
+                    position: relative;
+                }
+                .nav_links a::after{
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    bottom: -6px;
+                    width: 0;
+                    height: 3px;
+                    background:  #000;;
+                    border-radius: 10px;
+                    transition: width 0.3s ease;
+                }
+
+                .nav_links a:hover{
+                    color: #000;
+                }
+                .nav_links a:hover::after{
+                    width:100%;
+                }
+                .nav_links a.active{
+                    color:#000;
+                }
+                .nav_links a.active img{
+                    filter: brightness(0) invert(1) 
+                }
+
+                .nav_bar.scrolled .nav_links a::after{
+                    background:white;
+                }
+
+                .nav_links a.log_btn{
+                    display: inline-block;
+                    padding: 15px 20px;
+                    margin-left: 30px;
+                    background-color: #000;
+                    color: aliceblue;
+                    border-radius: 70px;
+                    font-size:15px;
+                    text-decoration: none;
+                    font-weight: bold;
+
+                }
+                .nav_links a.log_btn:hover{
+                    background-color: #2563EB;
+                    color: white;
+                }
+ /*==================================================
+                CONTACT HERO
+==================================================*/
+
+.contact-hero{
+
+    width:90%;
+    margin:auto;
+    padding-top:130px;
+    min-height:90vh;
+
+    display:flex;
+    align-items:center;
+}
+
+.hero-content{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:70px;
+}
+
+.hero-text{
+
+    width:50%;
+}
+
+.hero-text h1{
+
+    font-size:65px;
+    line-height:75px;
+    color:#1E293B;
+    margin-bottom:25px;
+}
+
+.hero-text span{
+
+    color:#2563EB;
+}
+
+.hero-text p{
+
+    font-size:18px;
+    color:#64748B;
+    line-height:30px;
+    margin-bottom:40px;
+}
+
+.hero-btn{
+
+    display:inline-block;
+
+    padding:16px 40px;
+
+    background:#2563EB;
+
+    color:white;
+
+    text-decoration:none;
+
+    border-radius:50px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+    box-shadow:0 12px 25px rgba(37,99,235,.25);
+}
+
+.hero-btn:hover{
+
+    background:#1D4ED8;
+
+    transform:translateY(-5px);
+}
+
+.hero-image{
+
+    width:45%;
+    position:relative;
+}
+
+.hero-image img{
+
+    width:100%;
+    animation:float 4s ease-in-out infinite;
+}
+
+/* Floating Cards */
+
+.hero-card{
+
+    position:absolute;
+
+    background:white;
+
+    padding:15px 22px;
+
+    border-radius:18px;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.12);
+
+    font-weight:600;
+
+    color:#1E293B;
+
+    transition:.3s;
+}
+
+.hero-card:hover{
+
+    transform:translateY(-8px);
+}
+
+.card1{
+
+    top:40px;
+    left:-20px;
+}
+
+.card2{
+
+    top:220px;
+    left:-35px;
+}
+
+.card3{
+
+    bottom:40px;
+    right:-20px;
+}
+
+/*==================================================
+                CONTACT INFO
+==================================================*/
+
+.contact-info{
+
+    width:90%;
+    margin:90px auto;
+    text-align:center;
+}
+
+.contact-info h2{
+
+    font-size:45px;
+    color:#1E293B;
+    margin-bottom:15px;
+}
+
+.contact-subtitle{
+
+    color:#64748B;
+    font-size:18px;
+    margin-bottom:50px;
+}
+
+.contact-cards{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+
+    gap:25px;
+}
+
+.contact-card{
+
+    background:white;
+
+    padding:40px 25px;
+
+    border-radius:22px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+    transition:.35s;
+}
+
+.contact-card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:0 20px 40px rgba(37,99,235,.18);
+}
+
+.contact-icon{
+
+    font-size:45px;
+
+    margin-bottom:18px;
+}
+
+.contact-card h3{
+
+    font-size:24px;
+
+    color:#1E293B;
+
+    margin-bottom:12px;
+}
+
+.contact-card p{
+
+    color:#64748B;
+
+    line-height:28px;
+
+    font-size:16px;
+}
+
+/* Floating Animation */
+
+@keyframes float{
+
+    0%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-20px);
+    }
+
+    100%{
+        transform:translateY(0);
+    }
+}
+          /*================ FOOTER ================*/
+
+.footer{
+
+    background:#0F172A;
+    color:white;
+    padding:70px 8% 20px;
+    border-radius:35px 35px 0 0;
+}
+
+.footer-container{
+
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr 1.5fr;
+    gap:40px;
+}
+
+.footer h2{
+
+    color:#60A5FA;
+    margin-bottom:20px;
+}
+
+.footer h3{
+
+    margin-bottom:20px;
+}
+
+.footer p{
+
+    color:#CBD5E1;
+    line-height:28px;
+}
+
+.footer a{
+
+    display:block;
+    color:#CBD5E1;
+    text-decoration:none;
+    margin-bottom:12px;
+    transition:.3s;
+}
+
+.footer a:hover{
+
+    color:#60A5FA;
+    padding-left:8px;
+}
+
+.social-icons{
+
+    margin-top:25px;
+}
+
+.social-icons a{
+
+    display:inline-block;
+    width:45px;
+    height:45px;
+    line-height:45px;
+    text-align:center;
+
+    background:#1E293B;
+
+    border-radius:50%;
+
+    margin-right:10px;
+
+    transition:.3s;
+}
+
+.social-icons a:hover{
+
+  
+
+    transform:translateY(-5px);
+}
+.social-icons img{
+    width:38px;
+    height:38px;
+    transition:0.3s;
+     margin-right:12px;
+}
+
+.social-icons img:hover{
+    transform:scale(1.15);
+}
+
+.footer-bottom{
+
+    border-top:1px solid #334155;
+    margin-top:50px;
+    padding-top:20px;
+    text-align:center;
+}
+
+.footer-bottom p{
+
+    color:#94A3B8;
+}
+@media(max-width:900px){
+
+.footer-container{
+
+grid-template-columns:1fr;
+
+text-align:center;
+}
+
+.social-icons{
+
+justify-content:center;
+}
+
+}
+
+
+/* ================= OR DIVIDER ================= */
+
+.or-divider{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin:22px 0;
+
+}
+
+.or-divider span{
+
+    flex:1;
+
+    height:1px;
+
+    background:#E2E8F0;
+
+}
+
+.or-divider p{
+
+    margin:0;
+
+    color:#94A3B8;
+
+    font-size:13px;
+
+}
+
+
+/* ================= GOOGLE BUTTON ================= */
+
+.google-btn{
+
+    width:100%;
+
+    height:50px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;
+
+    border:2px solid #E2E8F0;
+
+    border-radius:12px;
+
+    background:white;
+
+    color:#1E293B;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.google-btn img{
+
+    width:19px;
+
+    height:19px;
+
+    object-fit:contain;
+
+}
+
+.google-btn:hover{
+
+    background:#F8FAFC;
+
+    border-color:#CBD5E1;
+
+    transform:translateY(-2px);
+
+    box-shadow:0 7px 18px rgba(0,0,0,.08);
+
+}
+/* ================= LOGIN / REGISTER POPUP ================= */
+
+.auth-popup{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(15,23,42,.65);
+    backdrop-filter:blur(8px);
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+}
+
+.auth-box{
+    width:850px;
+    max-width:90%;
+    min-height:520px;
+    background:white;
+    border-radius:25px;
+    overflow:hidden;
+    display:flex;
+    position:relative;
+    box-shadow:0 25px 70px rgba(0,0,0,.3);
+    animation:popupOpen .3s ease;
+}
+
+@keyframes popupOpen{
+
+    from{
+        opacity:0;
+        transform:scale(.85);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+
+}
+
+.close-btn{
+    position:absolute;
+    top:15px;
+    right:20px;
+    font-size:32px;
+    color:#1E293B;
+    cursor:pointer;
+    z-index:10;
+}
+
+.close-btn:hover{
+    color:#2563EB;
+}
+
+.auth-left{
+    width:45%;
+    overflow:hidden;
+}
+
+.auth-left img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.auth-right{
+    width:55%;
+    padding:50px 45px;
+}
+
+/* ================= LOGIN / REGISTER TABS ================= */
+
+.tab-buttons{
+    display:flex;
+    justify-content:center;
+    gap:0;
+    margin-bottom:35px;
+    background:#F1F5F9;
+    padding:5px;
+    border-radius:50px;
+}
+
+.tab{
+    flex:1;
+    border:none;
+    background:transparent;
+
+    padding:12px 25px;
+
+    border-radius:50px;
+
+    font-family:'Poppins',sans-serif;
+    font-size:15px;
+    font-weight:600;
+
+    color:#64748B;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.tab.active{
+    background:#2563EB;
+    color:white;
+
+    box-shadow:0 5px 15px rgba(37,99,235,.25);
+}
+
+.tab:hover:not(.active){
+    color:#2563EB;
+}
+#loginForm h2,
+#registerForm h2{
+    font-size:30px;
+    color:#1E293B;
+    margin-bottom:8px;
+}
+
+#loginForm p,
+#registerForm p{
+    color:#64748B;
+    font-size:14px;
+    margin-bottom:25px;
+}
+
+#loginForm input,
+#registerForm input{
+    width:100%;
+    height:50px;
+    margin-bottom:15px;
+    padding:0 16px;
+    border:2px solid #E2E8F0;
+    border-radius:12px;
+    outline:none;
+    font-family:'Poppins',sans-serif;
+    font-size:14px;
+}
+
+#loginForm input:focus,
+#registerForm input:focus{
+    border-color:#2563EB;
+    box-shadow:0 0 0 4px rgba(37,99,235,.1);
+}
+
+.submit-btn{
+    width:100%;
+    height:50px;
+    border:none;
+    border-radius:12px;
+    background:#2563EB;
+    color:white;
+    font-family:'Poppins',sans-serif;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.submit-btn:hover{
+    background:#1D4ED8;
+    transform:translateY(-2px);
+}
+
+.forgot-password{
+    width:100%;
+    text-align:right;
+    margin-top:-5px;
+    margin-bottom:18px;
+}
+
+.forgot-password a{
+    color:#64748B;
+    text-decoration:none;
+    font-size:13px;
+    font-weight:600;
+}
+
+.forgot-password a:hover{
+    color:#2563EB;
+    text-decoration:underline;
+}
+
+.or-divider{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin:22px 0;
+}
+
+.or-divider span{
+    flex:1;
+    height:1px;
+    background:#E2E8F0;
+}
+
+.or-divider p{
+    margin:0 !important;
+    color:#94A3B8 !important;
+    font-size:13px !important;
+}
+
+.google-btn{
+    width:100%;
+    height:50px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    border:2px solid #E2E8F0;
+    border-radius:12px;
+    background:white;
+    color:#1E293B;
+    font-family:'Poppins',sans-serif;
+    font-size:14px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.google-btn img{
+    width:19px;
+    height:19px;
+    object-fit:contain;
+}
+
+.google-btn:hover{
+    background:#F8FAFC;
+    border-color:#CBD5E1;
+    transform:translateY(-2px);
+}
+
+@media(max-width:700px){
+
+    .auth-box{
+        width:95%;
+        min-height:auto;
+    }
+
+    .auth-left{
+        display:none;
+    }
+
+    .auth-right{
+        width:100%;
+        padding:40px 25px;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+    <nav class="nav_bar">
+                <div class="logo">
+                    <img src="pictures/petopia.png"
+                         width="70" style="vertical-align: middle;">
+                </div>
+
+                <ul class="nav_links">
+                    <li><a href="home.html">Home
+                        <img src="pictures/home.png"
+                         width="17" style="vertical-align: middle;">
+                    </a></li>
+                    <li><a href="Registration.html">Registration
+                        <img src="pictures/clipboard-list.png"
+                         width="17" style="vertical-align: middle;">
+                    </a></li>
+                    <li><a href="services.html">Services
+                        <img src="pictures/customer-care (1).png"
+                         width="17" style="vertical-align: middle;">
+                    </a></li>
+                    <li><a href="contact.html">Contact
+                        <img src="pictures/phone-plus (1).png"
+                         width="17" style="vertical-align: middle;">
+                    </a></li>
+                    <li><a href="about.html">About
+                        <img src="pictures/info (1).png"
+                         width="17" style="vertical-align: middle;">
+                    </a></li>
+
+                    <div class="loginn_btn">
+                        <a href="#" class="log_btn" onclick="openPopup()">LOGIN</a>
+                    </div>
+
+
+                </ul>
+            </nav>
+
+  <!--================ CONTACT HERO ================-->
+
+<section class="contact-hero">
+
+    <div class="hero-content">
+
+        <div class="hero-text">
+
+            <h1>
+                We'd Love To
+                <span>Hear From You</span>
+            </h1>
+
+            <p>
+                Whether you need pet boarding, professional grooming,
+                veterinary care, or expert training, our friendly team is
+                always ready to help. Contact PetSphere today and let us
+                provide the best care for your furry friend.
+            </p>
+
+            <a href="#contactForm" class="hero-btn">
+                Send Message
+            </a>
+
+        </div>
+
+        <div class="hero-image">
+
+            <img src="pictures/contact-hero.png" alt="Contact">
+
+            <div class="hero-card card1">
+                📞 Friendly Support
+            </div>
+
+            <div class="hero-card card2">
+                🐾 Pet Experts
+            </div>
+
+            <div class="hero-card card3">
+                ❤️ Fast Response
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!--================ CONTACT INFO ================-->
+
+<section class="contact-info">
+
+    <h2>Get In Touch</h2>
+
+    <p class="contact-subtitle">
+        Reach us anytime. We're always happy to help you and your pets.
+    </p>
+
+    <div class="contact-cards">
+
+        <div class="contact-card">
+
+            <div class="contact-icon">📞</div>
+
+            <h3>Phone</h3>
+
+            <p>+94 77 123 4567</p>
+
+        </div>
+
+        <div class="contact-card">
+
+            <div class="contact-icon">📧</div>
+
+            <h3>Email</h3>
+
+            <p>petsphere@gmail.com</p>
+
+        </div>
+
+        <div class="contact-card">
+
+            <div class="contact-icon">📍</div>
+
+            <h3>Location</h3>
+
+            <p>Trincomalee, Sri Lanka</p>
+
+        </div>
+
+        <div class="contact-card">
+
+            <div class="contact-icon">🕒</div>
+
+            <h3>Working Hours</h3>
+
+            <p>Mon - Sun<br>8:00 AM - 8:00 PM</p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!--================ FOOTER ================-->
+
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <div class="footer-about">
+
+            <h2> PetSphere</h2>
+
+            <p>
+                Giving your pets the love, care, and attention they deserve.
+                We provide trusted grooming, veterinary care, boarding, and training services.
+            </p>
+
+            <div class="social-icons">
+
+                <a href="#"><img src="pictures/facebook-icon.png" alt="Facebook"></a>
+
+                <a href="#"><img src="pictures/instagram-icon.png" alt="Instagram"></a>
+
+                <a href="#"><img src="pictures/whatsapp-icon.png" alt="WhatsApp"></a>
+
+            </div>
+
+        </div>
+
+        <div class="footer-links">
+
+            <h3>Quick Links</h3>
+
+            <a href="home.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html">Services</a>
+            <a href="contact.html">Contact</a>
+
+        </div>
+
+        <div class="footer-services">
+
+            <h3>Services</h3>
+
+            <a href="#">Pet Boarding</a>
+            <a href="#">Pet Grooming</a>
+            <a href="#">Training</a>
+            <a href="#">Veterinary Care</a>
+
+        </div>
+
+        <div class="footer-contact">
+
+            <h3>Contact</h3>
+
+            <p><i class="fas fa-phone"></i> +94 77 123 4567</p>
+
+            <p><i class="fas fa-envelope"></i> petSphere@gmail.com</p>
+
+            <p><i class="fas fa-location-dot"></i> Trincomalee, Sri Lanka</p>
+
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+
+        <p>© 2026 Petopia | All Rights Reserved</p>
+
+    </div>
+
+</footer>
+           <!--================ LOGIN / REGISTER POPUP ================-->
+
+<div class="auth-popup" id="authPopup">
+
+    <div class="auth-box">
+
+        <span class="close-btn" onclick="closePopup()">&times;</span>
+
+        <div class="auth-left">
+
+            <img src="pictures/cover-log.jpg">
+
+        </div>
+
+        <div class="auth-right">
+
+            <div class="tab-buttons">
+
+                <button class="tab active" onclick="showLogin()">Login</button>
+
+                <button class="tab" onclick="showRegister()">Register</button>
+
+            </div>
+
+           <!-- LOGIN -->
+
+<div id="loginForm">
+
+    <h2>Welcome Back</h2>
+
+    <p>Login to continue your PetSphere journey.</p>
+
+    <input type="email" placeholder="Email">
+
+    <input type="password" placeholder="Password">
+
+    <!-- FORGOT PASSWORD -->
+
+    <div class="forgot-password">
+
+        <a href="forgot-password.html">
+            Forgot Password?
+        </a>
+
+    </div>
+
+    <!-- NORMAL LOGIN -->
+
+    <button class="submit-btn">
+        LOGIN
+    </button>
+
+
+    <!-- GOOGLE LOGIN -->
+
+    <div class="or-divider">
+
+        <span></span>
+
+        <p>OR</p>
+
+        <span></span>
+
+    </div>
+
+    <button class="google-btn" type="button" onclick="googleLogin()">
+
+    <img src="pictures/google.png" alt="Google">
+
+    <span>Continue with Google</span>
+
+</button>
+
+</div>
+
+
+<!-- REGISTER -->
+
+<div id="registerForm" style="display:none;">
+
+    <h2>Create Account</h2>
+
+    <p>Join PetSphere and care for your furry friend.</p>
+
+    <input type="text" placeholder="Full Name">
+
+    <input type="email" placeholder="Email">
+
+    <input type="password" placeholder="Password">
+
+    <button class="submit-btn">
+        REGISTER
+    </button>
+
+</div>
+
+<script>
+
+/* ================= OPEN POPUP ================= */
+
+function openPopup(){
+
+    document.getElementById("authPopup").style.display = "flex";
+
+    document.body.style.overflow = "hidden";
+
+}
+
+
+/* ================= CLOSE POPUP ================= */
+
+function closePopup(){
+
+    document.getElementById("authPopup").style.display = "none";
+
+    document.body.style.overflow = "auto";
+
+}
+
+
+/* ================= CLOSE OUTSIDE POPUP ================= */
+
+window.onclick = function(e){
+
+    let popup = document.getElementById("authPopup");
+
+    if(e.target === popup){
+
+        closePopup();
+
+    }
+
+};
+
+
+/* ================= LOGIN TAB ================= */
+
+function showLogin(){
+
+    document.getElementById("loginForm").style.display = "block";
+
+    document.getElementById("registerForm").style.display = "none";
+
+    document.querySelectorAll(".tab")[0].classList.add("active");
+
+    document.querySelectorAll(".tab")[1].classList.remove("active");
+
+}
+
+
+/* ================= REGISTER TAB ================= */
+
+function showRegister(){
+
+    document.getElementById("loginForm").style.display = "none";
+
+    document.getElementById("registerForm").style.display = "block";
+
+    document.querySelectorAll(".tab")[1].classList.add("active");
+
+    document.querySelectorAll(".tab")[0].classList.remove("active");
+
+}
+
+
+/* ================= GOOGLE LOGIN ================= */
+
+function googleLogin(){
+
+    alert("Google Login will be connected here.");
+
+}
+
+
+/* ================= ESC KEY ================= */
+
+document.addEventListener("keydown", function(e){
+
+    if(e.key === "Escape"){
+
+        closePopup();
+
+    }
+
+});
+
+// ================= CONTACT FORM =================
+
+const contactForm = document.getElementById("contactForm");
+
+contactForm.addEventListener("submit", function(e) {
+
+    e.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const service = document.getElementById("service").value;
+    const message = document.getElementById("message").value.trim();
+
+    // Name
+    if(name === ""){
+        alert("Please enter your full name.");
+        return;
+    }
+
+    // Email
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if(!emailPattern.test(email)){
+        alert("Please enter a valid email address.");
+        return;
+    }
+
+    // Phone (optional but must contain only digits if entered)
+    if(phone !== "" && !/^[0-9]{10}$/.test(phone)){
+        alert("Please enter a valid 10-digit phone number.");
+        return;
+    }
+
+    // Service
+    if(service === ""){
+        alert("Please select a service.");
+        return;
+    }
+
+    // Message
+    if(message.length < 10){
+        alert("Please write a longer message.");
+        return;
+    }
+
+    // Success
+    alert("Thank you! Your message has been sent successfully.");
+
+    contactForm.reset();
+
+});
+
+
+</script>
+
+    
+</body>
+</html>

@@ -286,7 +286,7 @@
 
     max-width:1200px;
 
-    margin:40px auto 100px;
+    margin:40px auto 5px;
 
     background:white;
 
@@ -440,7 +440,8 @@
 
     background:#F8FAFC;
 
-    padding:0 0 100px;
+    padding:0 0 70px;
+    margin-top:0;
 }
 
 
@@ -451,6 +452,9 @@
     max-width:1200px;
 
     margin:0 auto;
+
+    position:relative;
+    top:-10px;
 
     background:white;
 
@@ -651,7 +655,988 @@
 
     }
 
-}    </style>
+} 
+  /*================ STEP 3 SERVICE SECTION ================*/
+
+.service-section{
+
+    width:100%;
+    background:#F8FAFC;
+    padding:0 0 100px;
+
+}
+
+.service-card{
+
+    width:90%;
+    max-width:1200px;
+
+    margin:0 auto;
+
+    background:white;
+
+    border-radius:30px;
+
+    padding:55px 60px;
+
+    box-shadow:0 25px 60px rgba(0,0,0,.12);
+
+}
+
+/* Heading */
+
+.service-card .section-heading{
+
+    text-align:center;
+    margin-bottom:40px;
+
+}
+
+.service-card .section-heading span{
+
+    display:inline-block;
+
+    padding:8px 22px;
+
+    background:#DBEAFE;
+
+    color:#2563EB;
+
+    border-radius:40px;
+
+    font-weight:600;
+
+    margin-bottom:18px;
+
+}
+
+.service-card .section-heading h2{
+
+    font-size:40px;
+
+    color:#1E293B;
+
+    margin-bottom:12px;
+
+}
+
+.service-card .section-heading p{
+
+    color:#64748B;
+
+    font-size:17px;
+
+    max-width:650px;
+
+    margin:auto;
+
+    line-height:28px;
+
+}
+
+/* Rows */
+
+.service-card .input-row{
+
+    display:flex;
+
+    gap:30px;
+
+    margin-bottom:25px;
+
+}
+
+.service-card .input-box{
+
+    flex:1;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.service-card .input-box label{
+
+    margin-bottom:8px;
+
+    font-weight:600;
+
+    color:#1E293B;
+
+}
+
+.service-card .input-box input,
+.service-card .input-box select,
+.service-card .input-box textarea{
+
+    width:100%;
+
+    padding:16px 18px;
+
+    border:2px solid #E2E8F0;
+
+    border-radius:14px;
+
+    background:#FAFAFA;
+
+    font-size:16px;
+
+    font-family:'Poppins',sans-serif;
+
+    outline:none;
+
+    transition:.3s;
+
+}
+
+.service-card .input-box input:focus,
+.service-card .input-box select:focus,
+.service-card .input-box textarea:focus{
+
+    border-color:#2563EB;
+
+    background:#fff;
+
+    box-shadow:0 0 0 4px rgba(37,99,235,.10);
+
+}
+
+.service-card textarea{
+
+    resize:vertical;
+
+}
+
+.service-card .full{
+
+    width:100%;
+
+}
+
+/* Mobile */
+
+@media(max-width:900px){
+
+.service-card{
+
+    width:90%;
+
+    padding:35px 25px;
+
+}
+
+.service-card .input-row{
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+.service-card .section-heading h2{
+
+    font-size:32px;
+
+}
+
+} 
+/*================ STEP 4 REVIEW ================*/
+
+.review-section{
+
+    width:100%;
+
+    background:#F8FAFC;
+
+    padding:0 0 120px;
+
+}
+
+.review-card{
+
+    width:90%;
+
+    max-width:1200px;
+
+    margin:0 auto;
+
+    background:white;
+
+    border-radius:30px;
+
+    padding:55px 60px;
+
+    box-shadow:0 25px 60px rgba(0,0,0,.12);
+
+}
+
+.review-box{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:25px;
+
+    margin-top:40px;
+
+}
+
+.review-item{
+
+    background:#F8FAFC;
+
+    border:2px solid #E2E8F0;
+
+    border-radius:18px;
+
+    padding:30px;
+
+}
+
+.review-item h3{
+
+    color:#2563EB;
+
+    margin-bottom:18px;
+
+    font-size:22px;
+
+}
+
+.review-item p{
+
+    margin-bottom:12px;
+
+    color:#475569;
+
+    line-height:28px;
+
+}
+
+.agree-box{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:15px;
+
+    margin:45px 0;
+
+}
+
+.agree-box input{
+
+    margin-top:4px;
+
+    width:20px;
+
+    height:20px;
+
+}
+
+.agree-box label{
+
+    color:#475569;
+
+    line-height:28px;
+
+}
+
+.button-group{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+}
+
+.back-btn{
+
+    flex:1;
+
+    padding:18px;
+
+    background:white;
+
+    border:2px solid #2563EB;
+
+    color:#2563EB;
+
+    border-radius:50px;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.back-btn:hover{
+
+    background:#2563EB;
+
+    color:white;
+
+}
+
+.submit-btn{
+
+    flex:1;
+
+    padding:18px;
+
+    border:none;
+
+    background:#2563EB;
+
+    color:white;
+
+    border-radius:50px;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.submit-btn:hover{
+
+    background:#1D4ED8;
+
+    transform:translateY(-4px);
+
+    box-shadow:0 15px 30px rgba(37,99,235,.25);
+
+}
+
+/* Mobile */
+
+@media(max-width:900px){
+
+.review-card{
+
+    width:90%;
+
+    padding:35px 25px;
+
+}
+
+.review-box{
+
+    grid-template-columns:1fr;
+
+}
+
+.button-group{
+
+    flex-direction:column;
+
+}
+
+}
+
+/*================ REVIEW SECTION ================*/
+
+.review-section{
+
+    width:100%;
+    background:#F8FAFC;
+    padding:0 0 100px;
+
+}
+
+.review-card{
+
+    width:90%;
+    max-width:1200px;
+    margin:0 auto;
+    background:#fff;
+    border-radius:30px;
+    padding:60px;
+    box-shadow:0 25px 60px rgba(0,0,0,.12);
+
+}
+
+.review-grid{
+
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:30px;
+    margin-top:40px;
+    margin-bottom:50px;
+
+}
+
+.review-box{
+
+    background:#F8FAFC;
+    border:2px solid #E2E8F0;
+    border-radius:20px;
+    padding:30px;
+    transition:.3s;
+
+}
+
+.review-box:hover{
+
+    border-color:#2563EB;
+    transform:translateY(-8px);
+
+}
+
+.review-box h3{
+
+    color:#1E293B;
+    margin-bottom:20px;
+    font-size:22px;
+
+}
+
+.review-box ul{
+
+    list-style:none;
+
+}
+
+.review-box li{
+
+    margin-bottom:14px;
+    color:#475569;
+    font-size:16px;
+
+}
+
+.terms{
+
+    text-align:center;
+    margin-bottom:35px;
+    color:#475569;
+
+}
+
+.terms input{
+
+    margin-right:10px;
+    transform:scale(1.2);
+
+}
+
+.submit-area{
+
+    text-align:center;
+
+}
+
+.submit-btn{
+
+    padding:18px 55px;
+    border:none;
+    border-radius:50px;
+    background:#2563EB;
+    color:white;
+    font-size:18px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+
+}
+
+.submit-btn:hover{
+
+    background:#1D4ED8;
+    transform:translateY(-5px);
+    box-shadow:0 15px 35px rgba(37,99,235,.35);
+
+}
+
+@media(max-width:900px){
+
+.review-card{
+
+    padding:35px 25px;
+
+}
+
+.review-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+}
+
+          /*================ FOOTER ================*/
+
+.footer{
+
+    background:#0F172A;
+    color:white;
+    padding:70px 8% 20px;
+    border-radius:35px 35px 0 0;
+}
+
+.footer-container{
+
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr 1.5fr;
+    gap:40px;
+}
+
+.footer h2{
+
+    color:#60A5FA;
+    margin-bottom:20px;
+}
+
+.footer h3{
+
+    margin-bottom:20px;
+}
+
+.footer p{
+
+    color:#CBD5E1;
+    line-height:28px;
+}
+
+.footer a{
+
+    display:block;
+    color:#CBD5E1;
+    text-decoration:none;
+    margin-bottom:12px;
+    transition:.3s;
+}
+
+.footer a:hover{
+
+    color:#60A5FA;
+    padding-left:8px;
+}
+
+.social-icons{
+
+    margin-top:25px;
+}
+
+.social-icons a{
+
+    display:inline-block;
+    width:45px;
+    height:45px;
+    line-height:45px;
+    text-align:center;
+
+    background:#1E293B;
+
+    border-radius:50%;
+
+    margin-right:10px;
+
+    transition:.3s;
+}
+
+.social-icons a:hover{
+
+  
+
+    transform:translateY(-5px);
+}
+.social-icons img{
+    width:38px;
+    height:38px;
+    transition:0.3s;
+     margin-right:12px;
+}
+
+.social-icons img:hover{
+    transform:scale(1.15);
+}
+
+.footer-bottom{
+
+    border-top:1px solid #334155;
+    margin-top:50px;
+    padding-top:20px;
+    text-align:center;
+}
+
+.footer-bottom p{
+
+    color:#94A3B8;
+}
+@media(max-width:900px){
+
+.footer-container{
+
+grid-template-columns:1fr;
+
+text-align:center;
+}
+
+.social-icons{
+
+justify-content:center;
+}
+
+}
+
+
+/* ================= OR DIVIDER ================= */
+
+.or-divider{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin:22px 0;
+
+}
+
+.or-divider span{
+
+    flex:1;
+
+    height:1px;
+
+    background:#E2E8F0;
+
+}
+
+.or-divider p{
+
+    margin:0;
+
+    color:#94A3B8;
+
+    font-size:13px;
+
+}
+
+
+/* ================= GOOGLE BUTTON ================= */
+
+.google-btn{
+
+    width:100%;
+
+    height:50px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;
+
+    border:2px solid #E2E8F0;
+
+    border-radius:12px;
+
+    background:white;
+
+    color:#1E293B;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.google-btn img{
+
+    width:19px;
+
+    height:19px;
+
+    object-fit:contain;
+
+}
+
+.google-btn:hover{
+
+    background:#F8FAFC;
+
+    border-color:#CBD5E1;
+
+    transform:translateY(-2px);
+
+    box-shadow:0 7px 18px rgba(0,0,0,.08);
+
+}
+/* ================= LOGIN / REGISTER POPUP ================= */
+
+.auth-popup{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(15,23,42,.65);
+    backdrop-filter:blur(8px);
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+}
+
+.auth-box{
+    width:850px;
+    max-width:90%;
+    min-height:520px;
+    background:white;
+    border-radius:25px;
+    overflow:hidden;
+    display:flex;
+    position:relative;
+    box-shadow:0 25px 70px rgba(0,0,0,.3);
+    animation:popupOpen .3s ease;
+}
+
+@keyframes popupOpen{
+
+    from{
+        opacity:0;
+        transform:scale(.85);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+
+}
+
+.close-btn{
+    position:absolute;
+    top:15px;
+    right:20px;
+    font-size:32px;
+    color:#1E293B;
+    cursor:pointer;
+    z-index:10;
+}
+
+.close-btn:hover{
+    color:#2563EB;
+}
+
+.auth-left{
+    width:45%;
+    overflow:hidden;
+}
+
+.auth-left img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.auth-right{
+    width:55%;
+    padding:50px 45px;
+}
+
+/* ================= LOGIN / REGISTER TABS ================= */
+
+.tab-buttons{
+    display:flex;
+    justify-content:center;
+    gap:0;
+    margin-bottom:35px;
+    background:#F1F5F9;
+    padding:5px;
+    border-radius:50px;
+}
+
+.tab{
+    flex:1;
+    border:none;
+    background:transparent;
+
+    padding:12px 25px;
+
+    border-radius:50px;
+
+    font-family:'Poppins',sans-serif;
+    font-size:15px;
+    font-weight:600;
+
+    color:#64748B;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.tab.active{
+    background:#2563EB;
+    color:white;
+
+    box-shadow:0 5px 15px rgba(37,99,235,.25);
+}
+
+.tab:hover:not(.active){
+    color:#2563EB;
+}
+#loginForm h2,
+#registerForm h2{
+    font-size:30px;
+    color:#1E293B;
+    margin-bottom:8px;
+}
+
+#loginForm p,
+#registerForm p{
+    color:#64748B;
+    font-size:14px;
+    margin-bottom:25px;
+}
+
+#loginForm input,
+#registerForm input{
+    width:100%;
+    height:50px;
+    margin-bottom:15px;
+    padding:0 16px;
+    border:2px solid #E2E8F0;
+    border-radius:12px;
+    outline:none;
+    font-family:'Poppins',sans-serif;
+    font-size:14px;
+}
+
+#loginForm input:focus,
+#registerForm input:focus{
+    border-color:#2563EB;
+    box-shadow:0 0 0 4px rgba(37,99,235,.1);
+}
+
+.submit-btn{
+    width:100%;
+    height:50px;
+    border:none;
+    border-radius:12px;
+    background:#2563EB;
+    color:white;
+    font-family:'Poppins',sans-serif;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.submit-btn:hover{
+    background:#1D4ED8;
+    transform:translateY(-2px);
+}
+
+.forgot-password{
+    width:100%;
+    text-align:right;
+    margin-top:-5px;
+    margin-bottom:18px;
+}
+
+.forgot-password a{
+    color:#64748B;
+    text-decoration:none;
+    font-size:13px;
+    font-weight:600;
+}
+
+.forgot-password a:hover{
+    color:#2563EB;
+    text-decoration:underline;
+}
+
+.or-divider{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin:22px 0;
+}
+
+.or-divider span{
+    flex:1;
+    height:1px;
+    background:#E2E8F0;
+}
+
+.or-divider p{
+    margin:0 !important;
+    color:#94A3B8 !important;
+    font-size:13px !important;
+}
+
+.google-btn{
+    width:100%;
+    height:50px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    border:2px solid #E2E8F0;
+    border-radius:12px;
+    background:white;
+    color:#1E293B;
+    font-family:'Poppins',sans-serif;
+    font-size:14px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.google-btn img{
+    width:19px;
+    height:19px;
+    object-fit:contain;
+}
+
+.google-btn:hover{
+    background:#F8FAFC;
+    border-color:#CBD5E1;
+    transform:translateY(-2px);
+}
+
+@media(max-width:700px){
+
+    .auth-box{
+        width:95%;
+        min-height:auto;
+    }
+
+    .auth-left{
+        display:none;
+    }
+
+    .auth-right{
+        width:100%;
+        padding:40px 25px;
+    }
+
+}
+</style>
 </head>
 
 <body>
@@ -685,7 +1670,7 @@
                     </a></li>
 
                     <div class="loginn_btn">
-                        <a href="login.html" class="log_btn" id="log">LOGIN</a>
+                        <a href="#" class="log_btn" onclick="openPopup()">LOGIN</a>
                     </div>
 
 
@@ -923,6 +1908,519 @@
     </div>
 
 </section>
+
+<!--================ STEP 3 SERVICE DETAILS ================-->
+
+<section class="service-section">
+
+    <div class="service-card">
+
+        <div class="section-heading">
+
+            <span>Step 3</span>
+
+            <h2>Service Details</h2>
+
+            <p>
+                Select the service you need and choose a convenient appointment date.
+            </p>
+
+        </div>
+
+        <div class="input-row">
+
+            <div class="input-box">
+
+                <label>Select Service</label>
+
+                <select required>
+
+                    <option value="">Choose Service</option>
+
+                    <option>Veterinary Care</option>
+                    <option>Pet Grooming</option>
+                    <option>Pet Boarding</option>
+                    <option>Pet Training</option>
+
+                </select>
+
+            </div>
+
+            <div class="input-box">
+
+                <label>Preferred Doctor / Trainer</label>
+
+                <select>
+
+                    <option>No Preference</option>
+                    <option>Dr. John Perera</option>
+                    <option>Dr. Nethmi Silva</option>
+                    <option>Trainer Kanishka</option>
+                    <option>Trainer Amanda</option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+        <div class="input-row">
+
+            <div class="input-box">
+
+                <label>Appointment Date</label>
+
+                <input type="date" required>
+
+            </div>
+
+            <div class="input-box">
+
+                <label>Preferred Time</label>
+
+                <input type="time" required>
+
+            </div>
+
+        </div>
+
+        <div class="input-box full">
+
+            <label>Additional Notes</label>
+
+            <textarea rows="5"
+                placeholder="Tell us anything we should know about your pet..."></textarea>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!--================ STEP 4 REVIEW ================-->
+
+<section class="review-section">
+
+    <div class="review-card">
+
+        <div class="section-heading">
+
+            <span>Step 4</span>
+
+            <h2>Review & Confirm</h2>
+
+            <p>
+                Please review your appointment details before submitting your request.
+            </p>
+
+        </div>
+
+        <div class="review-box">
+
+            <div class="review-item">
+
+                <h3>Owner Information</h3>
+
+                <p><strong>Name :</strong> John Doe</p>
+                <p><strong>Email :</strong> john@email.com</p>
+                <p><strong>Phone :</strong> +94 77 123 4567</p>
+
+            </div>
+
+            <div class="review-item">
+
+                <h3>Pet Information</h3>
+
+                <p><strong>Name :</strong> Bruno</p>
+                <p><strong>Type :</strong> Dog</p>
+                <p><strong>Breed :</strong> Labrador</p>
+
+            </div>
+
+            <div class="review-item">
+
+                <h3>Appointment</h3>
+
+                <p><strong>Service :</strong> Pet Grooming</p>
+                <p><strong>Date :</strong> 18 July 2026</p>
+                <p><strong>Time :</strong> 10.30 AM</p>
+
+            </div>
+
+        </div>
+
+        <div class="agree-box">
+
+            <input type="checkbox" required>
+
+            <label>
+                I confirm that all information provided is correct and agree
+                to the clinic's terms and conditions.
+            </label>
+
+        </div>
+
+        <div class="button-group">
+
+            <button type="button" class="back-btn">
+                Previous Step
+            </button>
+
+            <button type="submit" class="submit-btn">
+                Book Appointment
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!--================ STEP 5 : REVIEW & SUBMIT ================-->
+
+<section class="review-section">
+
+    <div class="review-card">
+
+        <div class="section-heading">
+
+            <span>Step 5</span>
+
+            <h2>Review & Submit</h2>
+
+            <p>
+                Please review your information before submitting your appointment request.
+            </p>
+
+        </div>
+
+        <div class="review-grid">
+
+            <div class="review-box">
+
+                <h3>Owner Information</h3>
+
+                <ul>
+                    <li>✔ Full Name</li>
+                    <li>✔ Email Address</li>
+                    <li>✔ Phone Number</li>
+                    <li>✔ Home Address</li>
+                </ul>
+
+            </div>
+
+            <div class="review-box">
+
+                <h3>Pet Information</h3>
+
+                <ul>
+                    <li>✔ Pet Name</li>
+                    <li>✔ Pet Type</li>
+                    <li>✔ Breed</li>
+                    <li>✔ Age & Weight</li>
+                </ul>
+
+            </div>
+
+            <div class="review-box">
+
+                <h3>Selected Service</h3>
+
+                <ul>
+                    <li>✔ Service Type</li>
+                    <li>✔ Preferred Date</li>
+                    <li>✔ Preferred Time</li>
+                    <li>✔ Special Requests</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+        <div class="terms">
+
+            <label>
+
+                <input type="checkbox" required>
+
+                I confirm that the information provided is accurate and agree to the booking terms.
+
+            </label>
+
+        </div>
+
+        <div class="submit-area">
+
+            <button type="submit" class="submit-btn">
+
+                Confirm Booking
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!--================ FOOTER ================-->
+
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <div class="footer-about">
+
+            <h2> PetSphere</h2>
+
+            <p>
+                Giving your pets the love, care, and attention they deserve.
+                We provide trusted grooming, veterinary care, boarding, and training services.
+            </p>
+
+            <div class="social-icons">
+
+                <a href="#"><img src="pictures/facebook-icon.png" alt="Facebook"></a>
+
+                <a href="#"><img src="pictures/instagram-icon.png" alt="Instagram"></a>
+
+                <a href="#"><img src="pictures/whatsapp-icon.png" alt="WhatsApp"></a>
+
+            </div>
+
+        </div>
+
+        <div class="footer-links">
+
+            <h3>Quick Links</h3>
+
+            <a href="home.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html">Services</a>
+            <a href="contact.html">Contact</a>
+
+        </div>
+
+        <div class="footer-services">
+
+            <h3>Services</h3>
+
+            <a href="#">Pet Boarding</a>
+            <a href="#">Pet Grooming</a>
+            <a href="#">Training</a>
+            <a href="#">Veterinary Care</a>
+
+        </div>
+
+        <div class="footer-contact">
+
+            <h3>Contact</h3>
+
+            <p><i class="fas fa-phone"></i> +94 77 123 4567</p>
+
+            <p><i class="fas fa-envelope"></i> petSphere@gmail.com</p>
+
+            <p><i class="fas fa-location-dot"></i> Trincomalee, Sri Lanka</p>
+
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+
+        <p>© 2026 Petopia | All Rights Reserved</p>
+
+    </div>
+
+</footer>
+           <!--================ LOGIN / REGISTER POPUP ================-->
+
+<div class="auth-popup" id="authPopup">
+
+    <div class="auth-box">
+
+        <span class="close-btn" onclick="closePopup()">&times;</span>
+
+        <div class="auth-left">
+
+            <img src="pictures/cover-log.jpg">
+
+        </div>
+
+        <div class="auth-right">
+
+            <div class="tab-buttons">
+
+                <button class="tab active" onclick="showLogin()">Login</button>
+
+                <button class="tab" onclick="showRegister()">Register</button>
+
+            </div>
+
+           <!-- LOGIN -->
+
+<div id="loginForm">
+
+    <h2>Welcome Back</h2>
+
+    <p>Login to continue your PetSphere journey.</p>
+
+    <input type="email" placeholder="Email">
+
+    <input type="password" placeholder="Password">
+
+    <!-- FORGOT PASSWORD -->
+
+    <div class="forgot-password">
+
+        <a href="forgot-password.html">
+            Forgot Password?
+        </a>
+
+    </div>
+
+    <!-- NORMAL LOGIN -->
+
+    <button class="submit-btn">
+        LOGIN
+    </button>
+
+
+    <!-- GOOGLE LOGIN -->
+
+    <div class="or-divider">
+
+        <span></span>
+
+        <p>OR</p>
+
+        <span></span>
+
+    </div>
+
+    <button class="google-btn" type="button" onclick="googleLogin()">
+
+    <img src="pictures/google.png" alt="Google">
+
+    <span>Continue with Google</span>
+
+</button>
+
+</div>
+
+
+<!-- REGISTER -->
+
+<div id="registerForm" style="display:none;">
+
+    <h2>Create Account</h2>
+
+    <p>Join PetSphere and care for your furry friend.</p>
+
+    <input type="text" placeholder="Full Name">
+
+    <input type="email" placeholder="Email">
+
+    <input type="password" placeholder="Password">
+
+    <button class="submit-btn">
+        REGISTER
+    </button>
+
+</div>
+
+<script>
+
+/* ================= OPEN POPUP ================= */
+
+function openPopup(){
+
+    document.getElementById("authPopup").style.display = "flex";
+
+    document.body.style.overflow = "hidden";
+
+}
+
+
+/* ================= CLOSE POPUP ================= */
+
+function closePopup(){
+
+    document.getElementById("authPopup").style.display = "none";
+
+    document.body.style.overflow = "auto";
+
+}
+
+
+/* ================= CLOSE OUTSIDE POPUP ================= */
+
+window.onclick = function(e){
+
+    let popup = document.getElementById("authPopup");
+
+    if(e.target === popup){
+
+        closePopup();
+
+    }
+
+};
+
+
+/* ================= LOGIN TAB ================= */
+
+function showLogin(){
+
+    document.getElementById("loginForm").style.display = "block";
+
+    document.getElementById("registerForm").style.display = "none";
+
+    document.querySelectorAll(".tab")[0].classList.add("active");
+
+    document.querySelectorAll(".tab")[1].classList.remove("active");
+
+}
+
+
+/* ================= REGISTER TAB ================= */
+
+function showRegister(){
+
+    document.getElementById("loginForm").style.display = "none";
+
+    document.getElementById("registerForm").style.display = "block";
+
+    document.querySelectorAll(".tab")[1].classList.add("active");
+
+    document.querySelectorAll(".tab")[0].classList.remove("active");
+
+}
+
+
+/* ================= GOOGLE LOGIN ================= */
+
+function googleLogin(){
+
+    alert("Google Login will be connected here.");
+
+}
+
+
+/* ================= ESC KEY ================= */
+
+document.addEventListener("keydown", function(e){
+
+    if(e.key === "Escape"){
+
+        closePopup();
+
+    }
+
+});
+
+</script>
+
     
 </body>
 </html>
