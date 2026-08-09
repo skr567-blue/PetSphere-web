@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-    <html>
-        <head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
             <title>home page</title>
 
             <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -72,8 +73,12 @@
                 .nav_links a.active{
                     color:#000;
                 }
+                .nav_links a img{
+                    filter: brightness(0);
+                    transition: filter 0.3s ease;
+                }
                 .nav_links a.active img{
-                    filter: brightness(0) invert(1) 
+                    filter: brightness(0);
                 }
 
                 .nav_bar.scrolled .nav_links a::after{
@@ -1035,12 +1040,12 @@ justify-content:center;
             
             <nav class="nav_bar">
                 <div class="logo">
-                    <img src="pictures/petopia.png"
+                    <img src="pictures/logo.png"
                          width="70" style="vertical-align: middle;">
                 </div>
 
                 <ul class="nav_links">
-                    <li><a href="home.html">Home
+                    <li><a href="home.html" class="active">Home
                         <img src="pictures/home.png"
                          width="17" style="vertical-align: middle;">
                     </a></li>
@@ -1342,15 +1347,15 @@ justify-content:center;
 
                 window.addEventListener("scroll", () => {
                     if(window.scrollY > 50){
-                        navbar.style.background = "rgba(0,0,0,.92)";
-                        navbar.style.boxShadow = "0 5px 20px rgba(0,0,0,.25)";
+                        navbar.style.background = "transparent";
+                        navbar.style.boxShadow = "none";
 
                         document.querySelectorAll(".nav_links a").forEach(link => {
-                            link.style.color = "white";
+                            link.style.color = "#1E293B";
                         });
 
-                        document.querySelector(".log_btn").style.background = "white";
-                        document.querySelector(".log_btn").style.color = "black";
+                        document.querySelector(".log_btn").style.background = "#000";
+                        document.querySelector(".log_btn").style.color = "white";
                     } else {
                         navbar.style.background = "transparent";
                         navbar.style.boxShadow = "none";
@@ -1359,7 +1364,7 @@ justify-content:center;
                             link.style.color = "#1E293B";
                         });
 
-                        document.querySelector(".log_btn").style.background = "black";
+                        document.querySelector(".log_btn").style.background = "#000";
                         document.querySelector(".log_btn").style.color = "white";
                     }
                 });

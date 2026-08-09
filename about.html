@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>About Page</title>
 
     <style>
@@ -714,10 +715,33 @@
     gap:40px;
 }
 
-.footer h2{
+.footer-brand {
+
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:20px;
+}
+
+.footer-brand h2{
 
     color:#60A5FA;
-    margin-bottom:20px;
+    margin:0;
+}
+
+.footer-logo{
+
+    width:58px;
+    height:58px;
+    object-fit:contain;
+    border-radius:16px;
+    box-shadow:0 8px 20px rgba(96,165,250,.25);
+}
+
+.footer-logo:hover{
+
+    transform:scale(1.05);
+    transition:transform .3s ease;
 }
 
 .footer h3{
@@ -1163,7 +1187,7 @@ justify-content:center;
 
     <nav class="nav_bar">
                 <div class="logo">
-                    <img src="pictures/petopia.png"
+                    <img src="pictures/logo.png"
                          width="70" style="vertical-align: middle;">
                 </div>
 

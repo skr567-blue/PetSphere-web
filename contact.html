@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+     <meta charset="UTF-8"> 
     <title>Contact Page</title>
 
     <style>
@@ -57,9 +58,20 @@
                     bottom: -6px;
                     width: 0;
                     height: 3px;
-                    background:  #000;;
+                    background:  #000;
                     border-radius: 10px;
                     transition: width 0.3s ease;
+                }
+
+                .footer h2{
+
+                    color:#60A5FA;
+                    margin-bottom:20px;
+                }
+
+                .footer h3{
+
+                    margin-bottom:20px;
                 }
 
                 .nav_links a:hover{
@@ -71,8 +83,12 @@
                 .nav_links a.active{
                     color:#000;
                 }
+                .nav_links a img{
+                    filter: brightness(0);
+                    transition: filter 0.3s ease;
+                }
                 .nav_links a.active img{
-                    filter: brightness(0) invert(1) 
+                    filter: brightness(0);
                 }
 
                 .nav_bar.scrolled .nav_links a::after{
@@ -1674,7 +1690,7 @@ justify-content:center;
 <body>
     <nav class="nav_bar">
                 <div class="logo">
-                    <img src="pictures/petopia.png"
+                    <img src="pictures/logo.png"
                          width="70" style="vertical-align: middle;">
                 </div>
 
@@ -1744,15 +1760,7 @@ justify-content:center;
 
     <div class="contact-image">
 
-        <img src="pictures/contact-hero.png" alt="Contact PetSphere">
-
-        <div class="floating-card card1">
-            📞 Quick Response
-        </div>
-
-        <div class="floating-card card2">
-            🐾 Friendly Support
-        </div>
+        <img src="pictures/contact-heroo.png" alt="Contact PetSphere">
 
     </div>
 
