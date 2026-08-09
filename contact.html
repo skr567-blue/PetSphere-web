@@ -2211,90 +2211,60 @@ justify-content:center;
         <span class="close-btn" onclick="closePopup()">&times;</span>
 
         <div class="auth-left">
-
-            <img src="pictures/cover-log.jpg">
-
+            <img src="pictures/cover-log.jpg" alt="PetSphere">
         </div>
 
         <div class="auth-right">
 
             <div class="tab-buttons">
-
-                <button class="tab active" onclick="showLogin()">Login</button>
-
-                <button class="tab" onclick="showRegister()">Register</button>
-
+                <button class="tab active" type="button" onclick="showLogin()">Login</button>
+                <button class="tab" type="button" onclick="showRegister()">Register</button>
             </div>
 
-           <!-- LOGIN -->
+            <form id="loginForm" action="backend/auth/login.php" method="POST">
+                <h2>Welcome Back</h2>
+                <p>Login to continue your PetSphere journey.</p>
 
-<div id="loginForm">
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
 
-    <h2>Welcome Back</h2>
+                <div class="forgot-password">
+                    <a href="forgot-password.html">Forgot Password?</a>
+                </div>
 
-    <p>Login to continue your PetSphere journey.</p>
+                <div id="login-message" class="auth-message"></div>
 
-    <input type="email" placeholder="Email">
+                <button class="submit-btn" type="submit">LOGIN</button>
 
-    <input type="password" placeholder="Password">
+                <div class="or-divider">
+                    <span></span>
+                    <p>OR</p>
+                    <span></span>
+                </div>
 
-    <!-- FORGOT PASSWORD -->
+                <button class="google-btn" type="button" onclick="googleLogin()">
+                    <img src="pictures/google.png" alt="Google">
+                    <span>Continue with Google</span>
+                </button>
+            </form>
 
-    <div class="forgot-password">
+            <form id="registerForm" action="backend/auth/register.php" method="POST" style="display:none;">
+                <h2>Create Account</h2>
+                <p>Join PetSphere and care for your furry friend.</p>
 
-        <a href="forgot-password.html">
-            Forgot Password?
-        </a>
+                <input type="text" name="fullname" placeholder="Full Name" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="tel" name="phone" placeholder="Phone">
+                <input type="password" name="password" placeholder="Password" required>
+
+                <div id="register-message" class="auth-message"></div>
+
+                <button class="submit-btn" type="submit">REGISTER</button>
+            </form>
+
+        </div>
 
     </div>
-
-    <!-- NORMAL LOGIN -->
-
-    <button class="submit-btn">
-        LOGIN
-    </button>
-
-
-    <!-- GOOGLE LOGIN -->
-
-    <div class="or-divider">
-
-        <span></span>
-
-        <p>OR</p>
-
-        <span></span>
-
-    </div>
-
-    <button class="google-btn" type="button" onclick="googleLogin()">
-
-    <img src="pictures/google.png" alt="Google">
-
-    <span>Continue with Google</span>
-
-</button>
-
-</div>
-
-
-<!-- REGISTER -->
-
-<div id="registerForm" style="display:none;">
-
-    <h2>Create Account</h2>
-
-    <p>Join PetSphere and care for your furry friend.</p>
-
-    <input type="text" placeholder="Full Name">
-
-    <input type="email" placeholder="Email">
-
-    <input type="password" placeholder="Password">
-
-    <button class="submit-btn">
-        REGISTER
-    </button>
 
 </div>
 
@@ -2302,92 +2272,133 @@ justify-content:center;
 
 /* ================= OPEN POPUP ================= */
 
-function openPopup(){
-
+function openPopup() {
     document.getElementById("authPopup").style.display = "flex";
-
     document.body.style.overflow = "hidden";
-
 }
-
 
 /* ================= CLOSE POPUP ================= */
 
-function closePopup(){
-
+function closePopup() {
     document.getElementById("authPopup").style.display = "none";
-
     document.body.style.overflow = "auto";
-
 }
-
 
 /* ================= CLOSE OUTSIDE POPUP ================= */
 
-window.onclick = function(e){
-
-    let popup = document.getElementById("authPopup");
-
-    if(e.target === popup){
-
+window.addEventListener("click", function(e) {
+    const popup = document.getElementById("authPopup");
+    if (e.target === popup) {
         closePopup();
-
     }
-
-};
-
+});
 
 /* ================= LOGIN TAB ================= */
 
-function showLogin(){
-
+function showLogin() {
     document.getElementById("loginForm").style.display = "block";
-
     document.getElementById("registerForm").style.display = "none";
-
     document.querySelectorAll(".tab")[0].classList.add("active");
-
     document.querySelectorAll(".tab")[1].classList.remove("active");
-
 }
-
 
 /* ================= REGISTER TAB ================= */
 
-function showRegister(){
-
+function showRegister() {
     document.getElementById("loginForm").style.display = "none";
-
     document.getElementById("registerForm").style.display = "block";
-
     document.querySelectorAll(".tab")[1].classList.add("active");
-
     document.querySelectorAll(".tab")[0].classList.remove("active");
-
 }
-
 
 /* ================= GOOGLE LOGIN ================= */
 
-function googleLogin(){
-
+function googleLogin() {
     alert("Google Login will be connected here.");
-
 }
-
 
 /* ================= ESC KEY ================= */
 
-document.addEventListener("keydown", function(e){
-
-    if(e.key === "Escape"){
-
+document.addEventListener("keydown", function(e) {
+    if (e.key === "Escape") {
         closePopup();
-
     }
-
 });
 
+/* ================================================= */
+/* ================= REGISTER ======================= */
+/* ================================================= */
+
+const registerForm = document.getElementById("registerForm");
+
+if (registerForm) {
+    registerForm.addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        const messageBox = document.getElementById("register-message");
+        const formData = new FormData(registerForm);
+
+        fetch("backend/auth/register.php", {
+            method: "POST",
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            messageBox.textContent = data.message;
+            messageBox.classList.remove("success", "error");
+
+            if (data.status === "success") {
+                messageBox.classList.add("success");
+                registerForm.reset();
+            } else {
+                messageBox.classList.add("error");
+            }
+        })
+        .catch(error => {
+            console.error(error);
+            messageBox.textContent = "Something went wrong. Please try again.";
+            messageBox.classList.remove("success");
+            messageBox.classList.add("error");
+        });
+    });
+}
+
+/* ================================================= */
+/* ================= LOGIN ========================== */
+/* ================================================= */
+
+const loginForm = document.getElementById("loginForm");
+
+if (loginForm) {
+    loginForm.addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        const messageBox = document.getElementById("login-message");
+        const formData = new FormData(loginForm);
+
+        fetch("backend/auth/login.php", {
+            method: "POST",
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            messageBox.textContent = data.message;
+            messageBox.classList.remove("success", "error");
+
+            if (data.status === "success") {
+                messageBox.classList.add("success");
+            } else {
+                messageBox.classList.add("error");
+            }
+        })
+        .catch(error => {
+            console.error(error);
+            messageBox.textContent = "Something went wrong. Please try again.";
+            messageBox.classList.remove("success");
+            messageBox.classList.add("error");
+        });
+    });
+}
 </script>
 
 <!--================ CONTACT PAGE SCRIPTS ================-->

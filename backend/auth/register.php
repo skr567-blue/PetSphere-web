@@ -2,17 +2,29 @@
 
 include "../config/database.php";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+header("Content-Type: application/json");
+
+if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+    echo json_encode([
+        "status" => "error",
+        "message" => "Invalid request."
+    ]);
+    exit();
+}
 
     // Get form data
-    $fullname = trim($_POST["fullname"]);
-    $email = trim($_POST["email"]);
-    $phone = trim($_POST["phone"]);
-    $password = $_POST["password"];
+    $fullname = trim($_POST["fullname"] ?? "");
+    $email = trim($_POST["email"] ?? "");
+    $phone = trim($_POST["phone"] ?? "");
+    $password = $_POST["password"] ?? "";
 
     // Check required fields
     if (empty($fullname) || empty($email) || empty($password)) {
-        die("Please fill in all required fields.");
+        echo json_encode([
+            "status" => "error",
+            "message" => "Please fill in all required fields."
+        ]);
+        exit();
     }
 
     // Check if email already exists
@@ -26,7 +38,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $checkEmail->get_result();
 
     if ($result->num_rows > 0) {
-        die("This email is already registered.");
+            echo json_encode([
+                "status" => "error",
+                "message" => "This email is already registered."
+            ]);
+            
+            $checkEmail->close();
+            $conn->close();
+
+            exit();
     }
 
     // Hash the password
@@ -51,16 +71,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Execute INSERT
     if ($stmt->execute()) {
-        echo "Registration successful!";
+        echo json_encode([
+            "status" => "success",
+            "message" => "Registration successful! Welcome to PetSphere."
+        ]);
+
     } else {
-        echo "Registration failed: " . $stmt->error;
+        echo json_encode([
+            "status" => "error",
+            "message" => "Registration failed. Please try again"
+        ]);    
     }
 
     // Close statements
     $checkEmail->close();
     $stmt->close();
-}
-
 $conn->close();
 
 ?>
