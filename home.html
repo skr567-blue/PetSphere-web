@@ -865,6 +865,26 @@ justify-content:center;
     box-shadow:0 0 0 4px rgba(37,99,235,.1);
 }
 
+.password-toggle{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin:-5px 0 15px;
+    color:#64748B;
+    font-size:13px;
+}
+
+.password-toggle input{
+    width:16px !important;
+    height:16px !important;
+    margin:0 !important;
+    accent-color:#2563EB;
+}
+
+.password-toggle label{
+    cursor:pointer;
+}
+
 .submit-btn{
     width:100%;
     height:50px;
@@ -908,6 +928,36 @@ justify-content:center;
     background: #fef2f2;
     color: #dc2626;
     border: 1px solid #fecaca;
+}
+/* ================= AUTH MESSAGE ================= */
+
+.auth-message {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    text-align: center;
+
+    display: none;
+}
+
+.auth-message.success {
+    display: block;
+    background: #DCFCE7;
+    color: #166534;
+    border: 1px solid #86EFAC;
+}
+
+.auth-message.error {
+    display: block;
+    background: #FEE2E2;
+    color: #991B1B;
+    border: 1px solid #FCA5A5;
 }
 
 @media(max-width:700px){
@@ -1309,9 +1359,15 @@ justify-content:center;
                        required>
 
                 <input type="password"
+                       id="loginPassword"
                        name="password"
                        placeholder="Password"
                        required>
+
+                <div class="password-toggle">
+                    <input type="checkbox" id="loginShowPassword" onchange="togglePassword('loginPassword', this)">
+                    <label for="loginShowPassword">Show password</label>
+                </div>
 
                 <div class="forgot-password">
                     <a href="forgot-password.html">
@@ -1369,14 +1425,16 @@ justify-content:center;
                        placeholder="Email"
                        required>
 
-                <input type="tel"
-                       name="phone"
-                       placeholder="Phone">
-
                 <input type="password"
+                       id="registerPassword"
                        name="password"
                        placeholder="Password"
                        required>
+
+                <div class="password-toggle">
+                    <input type="checkbox" id="registerShowPassword" onchange="togglePassword('registerPassword', this)">
+                    <label for="registerShowPassword">Show password</label>
+                </div>
 
                 <div id="register-message"
                      class="auth-message">
@@ -1463,6 +1521,10 @@ function showRegister() {
 
 }
 
+function togglePassword(inputId, checkbox) {
+    document.getElementById(inputId).type = checkbox.checked ? "text" : "password";
+}
+
 
 /* ================= GOOGLE LOGIN ================= */
 
@@ -1490,8 +1552,7 @@ document.addEventListener("keydown", function(e) {
 /* ================= REGISTER ======================= */
 /* ================================================= */
 
-const registerForm =
-    document.getElementById("registerForm");
+const registerForm = document.getElementById("registerForm");
 
 if (registerForm) {
 
@@ -1499,31 +1560,22 @@ if (registerForm) {
 
         e.preventDefault();
 
-        const messageBox =
-            document.getElementById("register-message");
+        const messageBox = document.getElementById("register-message");
 
-        const formData =
-            new FormData(registerForm);
+        const formData = new FormData(registerForm);
 
         fetch("backend/auth/register.php", {
-
             method: "POST",
-
             body: formData
-
         })
 
         .then(response => response.json())
 
         .then(data => {
 
-            messageBox.textContent =
-                data.message;
+            messageBox.textContent = data.message;
 
-            messageBox.classList.remove(
-                "success",
-                "error"
-            );
+            messageBox.classList.remove("success", "error");
 
             if (data.status === "success") {
 
@@ -1556,13 +1608,11 @@ if (registerForm) {
 
 }
 
-
-/* ================================================= */
+//* ================================================= */
 /* ================= LOGIN ========================== */
 /* ================================================= */
 
-const loginForm =
-    document.getElementById("loginForm");
+const loginForm = document.getElementById("loginForm");
 
 if (loginForm) {
 
@@ -1570,35 +1620,28 @@ if (loginForm) {
 
         e.preventDefault();
 
-        const messageBox =
-            document.getElementById("login-message");
+        const messageBox = document.getElementById("login-message");
 
-        const formData =
-            new FormData(loginForm);
+        const formData = new FormData(loginForm);
 
         fetch("backend/auth/login.php", {
-
             method: "POST",
-
             body: formData
-
         })
 
         .then(response => response.json())
 
         .then(data => {
 
-            messageBox.textContent =
-                data.message;
+            messageBox.textContent = data.message;
 
-            messageBox.classList.remove(
-                "success",
-                "error"
-            );
+            messageBox.classList.remove("success", "error");
 
             if (data.status === "success") {
 
                 messageBox.classList.add("success");
+
+                loginForm.reset();
 
             } else {
 
@@ -1624,7 +1667,6 @@ if (loginForm) {
     });
 
 }
-
 </script>
  </body>
 </html>

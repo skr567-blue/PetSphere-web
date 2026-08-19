@@ -1969,6 +1969,26 @@ justify-content:center;
     box-shadow:0 0 0 4px rgba(37,99,235,.1);
 }
 
+.password-toggle{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin:-5px 0 15px;
+    color:#64748B;
+    font-size:13px;
+}
+
+.password-toggle input{
+    width:16px !important;
+    height:16px !important;
+    margin:0 !important;
+    accent-color:#2563EB;
+}
+
+.password-toggle label{
+    cursor:pointer;
+}
+
 .submit-btn{
     width:100%;
     height:50px;
@@ -1986,6 +2006,33 @@ justify-content:center;
 .submit-btn:hover{
     background:#1D4ED8;
     transform:translateY(-2px);
+}
+
+/* ================= AUTH MESSAGE ================= */
+
+.auth-message {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    display: none;
+}
+
+.auth-message.success {
+    display: block;
+    background: #DCFCE7;
+    color: #166534;
+    border: 1px solid #86EFAC;
+}
+
+.auth-message.error {
+    display: block;
+    background: #FEE2E2;
+    color: #991B1B;
+    border: 1px solid #FCA5A5;
 }
 
 .forgot-password{
@@ -2799,7 +2846,12 @@ justify-content:center;
                 <p>Login to continue your PetSphere journey.</p>
 
                 <input type="email" name="email" placeholder="Email" required>
-                <input type="password" name="password" placeholder="Password" required>
+                <input type="password" id="loginPassword" name="password" placeholder="Password" required>
+
+                <div class="password-toggle">
+                    <input type="checkbox" id="loginShowPassword" onchange="togglePassword('loginPassword', this)">
+                    <label for="loginShowPassword">Show password</label>
+                </div>
 
                 <div class="forgot-password">
                     <a href="forgot-password.html">Forgot Password?</a>
@@ -2827,8 +2879,12 @@ justify-content:center;
 
                 <input type="text" name="fullname" placeholder="Full Name" required>
                 <input type="email" name="email" placeholder="Email" required>
-                <input type="tel" name="phone" placeholder="Phone">
-                <input type="password" name="password" placeholder="Password" required>
+                <input type="password" id="registerPassword" name="password" placeholder="Password" required>
+
+                <div class="password-toggle">
+                    <input type="checkbox" id="registerShowPassword" onchange="togglePassword('registerPassword', this)">
+                    <label for="registerShowPassword">Show password</label>
+                </div>
 
                 <div id="register-message" class="auth-message"></div>
 
@@ -2882,6 +2938,10 @@ function showRegister() {
     document.getElementById("registerForm").style.display = "block";
     document.querySelectorAll(".tab")[1].classList.add("active");
     document.querySelectorAll(".tab")[0].classList.remove("active");
+}
+
+function togglePassword(inputId, checkbox) {
+    document.getElementById(inputId).type = checkbox.checked ? "text" : "password";
 }
 
 /* ================= GOOGLE LOGIN ================= */
