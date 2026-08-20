@@ -17,5 +17,11 @@ if(!$result){
 
 $services = [];
 
-while($row = mysqli_fetch_assoc)
+while($row = mysqli_fetch_assoc($result)){
+    $services[] = $row;
+}
+echo json_encode([
+    "status" => "success",
+    "services" => $services
+]);
 ?>
