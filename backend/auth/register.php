@@ -1,91 +1,141 @@
 <?php
 
-include "../config/database.php";
+session_start();
 
 header("Content-Type: application/json");
 
+require_once "../config/database.php";
+
+
+/* ================= CHECK REQUEST ================= */
+
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+
     echo json_encode([
         "status" => "error",
-        "message" => "Invalid request."
+        "message" => "Invalid request method."
     ]);
-    exit();
+
+    exit;
 }
 
-    // Get form data
-    $fullname = trim($_POST["fullname"] ?? "");
-    $email = trim($_POST["email"] ?? "");
-    $phone = trim($_POST["phone"] ?? "");
-    $password = $_POST["password"] ?? "";
 
-    // Check required fields
-    if (empty($fullname) || empty($email) || empty($password)) {
-        echo json_encode([
-            "status" => "error",
-            "message" => "Please fill in all required fields."
-        ]);
-        exit();
-    }
+/* ================= GET FORM DATA ================= */
 
-    // Check if email already exists
-    $checkEmail = $conn->prepare(
-        "SELECT id FROM users WHERE email = ?"
-    );
+$fullname = trim($_POST["fullname"] ?? "");
 
-    $checkEmail->bind_param("s", $email);
-    $checkEmail->execute();
+$email = trim($_POST["email"] ?? "");
 
-    $result = $checkEmail->get_result();
+$password = $_POST["password"] ?? "";
 
-    if ($result->num_rows > 0) {
-            echo json_encode([
-                "status" => "error",
-                "message" => "This email is already registered."
-            ]);
-            
-            $checkEmail->close();
-            $conn->close();
 
-            exit();
-    }
+/* ================= VALIDATION ================= */
 
-    // Hash the password
-    $hashedPassword = password_hash(
-        $password,
-        PASSWORD_DEFAULT
-    );
+if ($fullname === "" || $email === "" || $password === "") {
 
-    // Insert user into database
-    $stmt = $conn->prepare(
-        "INSERT INTO users (fullname, email, phone, password)
-         VALUES (?, ?, ?, ?)"
-    );
+    echo json_encode([
+        "status" => "error",
+        "message" => "Please fill in all required fields."
+    ]);
 
-    $stmt->bind_param(
-        "ssss",
-        $fullname,
-        $email,
-        $phone,
-        $hashedPassword
-    );
+    exit;
+}
 
-    // Execute INSERT
-    if ($stmt->execute()) {
-        echo json_encode([
-            "status" => "success",
-            "message" => "Registration successful! Welcome to PetSphere."
-        ]);
 
-    } else {
-        echo json_encode([
-            "status" => "error",
-            "message" => "Registration failed. Please try again"
-        ]);    
-    }
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
-    // Close statements
-    $checkEmail->close();
-    $stmt->close();
+    echo json_encode([
+        "status" => "error",
+        "message" => "Please enter a valid email address."
+    ]);
+
+    exit;
+}
+
+
+if (strlen($password) < 6) {
+
+    echo json_encode([
+        "status" => "error",
+        "message" => "Password must contain at least 6 characters."
+    ]);
+
+    exit;
+}
+
+
+/* ================= CHECK EXISTING EMAIL ================= */
+
+$check = $conn->prepare(
+    "SELECT id FROM users WHERE email = ?"
+);
+
+$check->bind_param("s", $email);
+
+$check->execute();
+
+$result = $check->get_result();
+
+
+if ($result->num_rows > 0) {
+
+    echo json_encode([
+        "status" => "error",
+        "message" => "An account with this email already exists."
+    ]);
+
+    exit;
+}
+
+
+/* ================= HASH PASSWORD ================= */
+
+$hashedPassword = password_hash(
+    $password,
+    PASSWORD_DEFAULT
+);
+
+
+/* ================= INSERT USER ================= */
+
+$stmt = $conn->prepare(
+    "INSERT INTO users (fullname, email, password)
+     VALUES (?, ?, ?)"
+);
+
+$stmt->bind_param(
+    "sss",
+    $fullname,
+    $email,
+    $hashedPassword
+);
+
+
+/* ================= SAVE USER ================= */
+
+if ($stmt->execute()) {
+
+    echo json_encode([
+        "status" => "success",
+        "message" => "Registration successful! You can now login."
+    ]);
+
+} else {
+
+    echo json_encode([
+        "status" => "error",
+        "message" => "Registration failed. Please try again."
+    ]);
+
+}
+
+
+/* ================= CLOSE CONNECTION ================= */
+
+$stmt->close();
+
+$check->close();
+
 $conn->close();
 
 ?>

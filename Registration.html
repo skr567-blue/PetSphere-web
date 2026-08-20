@@ -2022,8 +2022,6 @@ justify-content:center;
 
 </section>
 
-<!--================ STEP 3 SERVICE DETAILS ================-->
-
 <section class="service-section">
 
     <div class="service-card">
@@ -2046,9 +2044,14 @@ justify-content:center;
 
                 <label>Select Service</label>
 
-                <select id="service_id" name="service_id" required>
+                <select required>
 
-                    <option value="">Loading services...</option>
+                    <option value="">Choose Service</option>
+
+                    <option>Veterinary Care</option>
+                    <option>Pet Grooming</option>
+                    <option>Pet Boarding</option>
+                    <option>Pet Training</option>
 
                 </select>
 
@@ -2058,10 +2061,9 @@ justify-content:center;
 
                 <label>Preferred Doctor / Trainer</label>
 
-                <select id="staff_id" name="staff_id">
+                <select id="staffSelect" name="staff_id">
 
-                    
-                        <option value="">No Preference</option>
+                    <option value="">No Preference</option>
 
                 </select>
 
@@ -2075,12 +2077,7 @@ justify-content:center;
 
                 <label>Appointment Date</label>
 
-                <input
-                    type="date"
-                    id="appointment_date"
-                    name="appointment_date"
-                    required
-                >
+                <input type="date" required>
 
             </div>
 
@@ -2088,12 +2085,7 @@ justify-content:center;
 
                 <label>Preferred Time</label>
 
-                <input
-                    type="time"
-                    id="appointment_time"
-                    name="appointment_time"
-                    required
-                >
+                <input type="time" required>
 
             </div>
 
@@ -2104,8 +2096,6 @@ justify-content:center;
             <label>Additional Notes</label>
 
             <textarea
-                id="notes"
-                name="notes"
                 rows="5"
                 placeholder="Tell us anything we should know about your pet..."
             ></textarea>
@@ -2535,49 +2525,42 @@ function loadServices() {
 
 /* ================= LOAD STAFF ================= */
 
-function loadStaff() {
+const staffSelect = document.getElementById("staffSelect");
 
-    fetch("backend/appointments/getStaff.php")
+if (staffSelect) {
+
+    fetch("backend/appoinment/getStaff.php")
 
         .then(response => response.json())
 
         .then(data => {
 
-            const staffSelect =
-                document.getElementById("staff_id");
+            if (data.status === "success") {
 
-            if (data.status !== "success") {
+                data.data.forEach(staff => {
 
-                return;
+                    const option = document.createElement("option");
+
+                    option.value = staff.id;
+
+                    option.textContent =
+                        staff.fullname + " - " + staff.staff_type;
+
+                    staffSelect.appendChild(option);
+
+                });
+
             }
-
-            staffSelect.innerHTML =
-                '<option value="">No Preference</option>';
-
-            data.staff.forEach(staffMember => {
-
-                const option = document.createElement("option");
-
-                option.value = staffMember.id;
-
-                option.textContent =
-                    staffMember.fullname +
-                    " - " +
-                    staffMember.staff_type;
-
-                staffSelect.appendChild(option);
-
-            });
 
         })
 
         .catch(error => {
 
-            console.error(error);
+            console.error("Error loading staff:", error);
 
         });
-}
 
+}
 
 /* ================= LOAD APPOINTMENT DATA ================= */
 
