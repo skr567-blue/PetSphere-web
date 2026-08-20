@@ -1129,14 +1129,14 @@ justify-content:center;
 }
 
 .auth-message.success {
-    display: block;
+    display: block !important;
     background: #DCFCE7;
     color: #166534;
     border: 1px solid #86EFAC;
 }
 
 .auth-message.error {
-    display: block;
+    display: block !important;
     background: #FEE2E2;
     color: #991B1B;
     border: 1px solid #FCA5A5;
@@ -1796,12 +1796,12 @@ if (registerForm) {
         })
         .then(response => response.json())
         .then(data => {
-            messageBox.textContent = data.message;
+            messageBox.textContent = data.message || (data.status === "success" ? "Registration successful!" : "Registration failed. Please try again.");
             messageBox.classList.remove("success", "error");
+            messageBox.style.display = "block";
 
             if (data.status === "success") {
                 messageBox.classList.add("success");
-                registerForm.reset();
             } else {
                 messageBox.classList.add("error");
             }
@@ -1811,6 +1811,7 @@ if (registerForm) {
             messageBox.textContent = "Something went wrong. Please try again.";
             messageBox.classList.remove("success");
             messageBox.classList.add("error");
+            messageBox.style.display = "block";
         });
     });
 }
@@ -1834,8 +1835,9 @@ if (loginForm) {
         })
         .then(response => response.json())
         .then(data => {
-            messageBox.textContent = data.message;
+            messageBox.textContent = data.message || (data.status === "success" ? "Login successful!" : "Invalid email or password.");
             messageBox.classList.remove("success", "error");
+            messageBox.style.display = "block";
 
             if (data.status === "success") {
                 messageBox.classList.add("success");
@@ -1848,6 +1850,7 @@ if (loginForm) {
             messageBox.textContent = "Something went wrong. Please try again.";
             messageBox.classList.remove("success");
             messageBox.classList.add("error");
+            messageBox.style.display = "block";
         });
     });
 }

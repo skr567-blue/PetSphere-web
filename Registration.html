@@ -1621,14 +1621,14 @@ justify-content:center;
 }
 
 .auth-message.success {
-    display: block;
+    display: block !important;
     background: #DCFCE7;
     color: #166534;
     border: 1px solid #86EFAC;
 }
 
 .auth-message.error {
-    display: block;
+    display: block !important;
     background: #FEE2E2;
     color: #991B1B;
     border: 1px solid #FCA5A5;
@@ -2048,12 +2048,7 @@ justify-content:center;
 
                 <select id="service_id" name="service_id" required>
 
-                    <option value="">Choose Service</option>
-
-                    <option value="1">Veterinary Care</option>
-                    <option value="2">Pet Grooming</option>
-                    <option value="3">Pet Boarding</option>
-                    <option value="4">Pet Training</option>
+                    <option value="">Loading services...</option>
 
                 </select>
 
@@ -2065,12 +2060,8 @@ justify-content:center;
 
                 <select id="staff_id" name="staff_id">
 
-                    <option value="">No Preference</option>
-
-                    <option value="1">Dr. John Perera</option>
-                    <option value="2">Dr. Nethmi Silva</option>
-                    <option value="3">Trainer Kanishka</option>
-                    <option value="4">Trainer Amanda</option>
+                    
+                        <option value="">No Preference</option>
 
                 </select>
 
@@ -2490,6 +2481,110 @@ if (savePetBtn) {
 
 }
 
+/* ================= LOAD SERVICES ================= */
+
+function loadServices() {
+
+    fetch("backend/appointments/getServices.php")
+
+        .then(response => response.json())
+
+        .then(data => {
+
+            const serviceSelect =
+                document.getElementById("service_id");
+
+            if (data.status !== "success") {
+
+                serviceSelect.innerHTML =
+                    '<option value="">Unable to load services</option>';
+
+                return;
+            }
+
+            serviceSelect.innerHTML =
+                '<option value="">Choose Service</option>';
+
+            data.services.forEach(service => {
+
+                const option = document.createElement("option");
+
+                option.value = service.id;
+
+                option.textContent =
+                    service.service_name +
+                    " - Rs. " +
+                    service.price;
+
+                serviceSelect.appendChild(option);
+
+            });
+
+        })
+
+        .catch(error => {
+
+            console.error(error);
+
+            document.getElementById("service_id").innerHTML =
+                '<option value="">Unable to load services</option>';
+
+        });
+}
+
+
+/* ================= LOAD STAFF ================= */
+
+function loadStaff() {
+
+    fetch("backend/appointments/getStaff.php")
+
+        .then(response => response.json())
+
+        .then(data => {
+
+            const staffSelect =
+                document.getElementById("staff_id");
+
+            if (data.status !== "success") {
+
+                return;
+            }
+
+            staffSelect.innerHTML =
+                '<option value="">No Preference</option>';
+
+            data.staff.forEach(staffMember => {
+
+                const option = document.createElement("option");
+
+                option.value = staffMember.id;
+
+                option.textContent =
+                    staffMember.fullname +
+                    " - " +
+                    staffMember.staff_type;
+
+                staffSelect.appendChild(option);
+
+            });
+
+        })
+
+        .catch(error => {
+
+            console.error(error);
+
+        });
+}
+
+
+/* ================= LOAD APPOINTMENT DATA ================= */
+
+loadServices();
+
+loadStaff();
+
 
 
 
@@ -2571,12 +2666,12 @@ if (registerForm) {
         })
         .then(response => response.json())
         .then(data => {
-            messageBox.textContent = data.message;
+            messageBox.textContent = data.message || (data.status === "success" ? "Registration successful!" : "Registration failed. Please try again.");
             messageBox.classList.remove("success", "error");
+            messageBox.style.display = "block";
 
             if (data.status === "success") {
                 messageBox.classList.add("success");
-                registerForm.reset();
             } else {
                 messageBox.classList.add("error");
             }
@@ -2586,6 +2681,7 @@ if (registerForm) {
             messageBox.textContent = "Something went wrong. Please try again.";
             messageBox.classList.remove("success");
             messageBox.classList.add("error");
+            messageBox.style.display = "block";
         });
     });
 }
@@ -2609,8 +2705,9 @@ if (loginForm) {
         })
         .then(response => response.json())
         .then(data => {
-            messageBox.textContent = data.message;
+            messageBox.textContent = data.message || (data.status === "success" ? "Login successful!" : "Invalid email or password.");
             messageBox.classList.remove("success", "error");
+            messageBox.style.display = "block";
 
             if (data.status === "success") {
                 messageBox.classList.add("success");
@@ -2623,6 +2720,7 @@ if (loginForm) {
             messageBox.textContent = "Something went wrong. Please try again.";
             messageBox.classList.remove("success");
             messageBox.classList.add("error");
+            messageBox.style.display = "block";
         });
     });
 }
