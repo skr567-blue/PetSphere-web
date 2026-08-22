@@ -9,7 +9,7 @@
          *{
                     margin: 0;
                     padding: 0;
-                    box-sizing: border-box; 
+                    box-sizing: border-box;
                 }
                 html{
 
@@ -73,7 +73,7 @@
                     color:#000;
                 }
                 .nav_links a.active img{
-                    filter: brightness(0) invert(1) 
+                    filter: brightness(0) invert(1)
                 }
 
                 .nav_bar.scrolled .nav_links a::after{
@@ -449,7 +449,6 @@
     margin-top:0;
 }
 
-
 .pet-card{
 
     width:90%;
@@ -470,7 +469,6 @@
     box-shadow:0 25px 60px rgba(0,0,0,.12);
 
 }
-
 
 /* STEP 2 HEADING */
 
@@ -524,7 +522,6 @@
 
 }
 
-
 /* INPUT ROW */
 
 .pet-card .input-row{
@@ -536,7 +533,6 @@
     margin-bottom:25px;
 
 }
-
 
 /* INPUT BOX */
 
@@ -550,7 +546,6 @@
 
 }
 
-
 /* LABEL */
 
 .pet-card .input-box label{
@@ -562,7 +557,6 @@
     margin-bottom:8px;
 
 }
-
 
 /* INPUT + SELECT */
 
@@ -591,7 +585,6 @@
 
 }
 
-
 /* FOCUS */
 
 .pet-card .input-box input:focus,
@@ -604,7 +597,6 @@
     box-shadow:0 0 0 4px rgba(37,99,235,.10);
 
 }
-
 
 /* FILE UPLOAD */
 
@@ -621,7 +613,6 @@
     cursor:pointer;
 
 }
-
 
 /* FULL WIDTH */
 
@@ -662,7 +653,6 @@
     box-shadow: 0 15px 30px rgba(37, 99, 235, 0.30);
 }
 
-
 /* MOBILE */
 
 @media(max-width:900px){
@@ -691,7 +681,7 @@
 
     }
 
-} 
+}
   /*================ STEP 3 SERVICE SECTION ================*/
 
 .service-section{
@@ -876,7 +866,7 @@
 
 }
 
-} 
+}
 /*================ STEP 4 REVIEW ================*/
 
 .review-section{
@@ -1286,8 +1276,6 @@
 
 .social-icons a:hover{
 
-  
-
     transform:translateY(-5px);
 }
 .social-icons img{
@@ -1329,7 +1317,6 @@ justify-content:center;
 
 }
 
-
 /* ================= OR DIVIDER ================= */
 
 .or-divider{
@@ -1363,7 +1350,6 @@ justify-content:center;
     font-size:13px;
 
 }
-
 
 /* ================= GOOGLE BUTTON ================= */
 
@@ -1756,7 +1742,6 @@ justify-content:center;
                         <a href="#" class="log_btn" onclick="openPopup()">LOGIN</a>
                     </div>
 
-
                 </ul>
             </nav>
 
@@ -1821,9 +1806,12 @@ justify-content:center;
 
                     <label>Full Name</label>
 
-                    <input type="text"
-                    placeholder="Enter your full name"
-                    required>
+                    <input
+                        type="text"
+                        id="ownerName"
+                        placeholder="Enter your full name"
+                        required
+                    >
 
                 </div>
 
@@ -1832,6 +1820,7 @@ justify-content:center;
                     <label>Email Address</label>
 
                     <input type="email"
+                    id="ownerEmail"
                     placeholder="example@email.com"
                     required>
 
@@ -1846,6 +1835,7 @@ justify-content:center;
                     <label>Phone Number</label>
 
                     <input type="tel"
+                    id="ownerPhone"
                     placeholder="+94 77 123 4567"
                     required>
 
@@ -1897,7 +1887,6 @@ justify-content:center;
 
         </div>
 
-
         <div class="input-row">
 
             <div class="input-box">
@@ -1912,7 +1901,6 @@ justify-content:center;
                 >
 
             </div>
-
 
             <div class="input-box">
 
@@ -1934,7 +1922,6 @@ justify-content:center;
 
         </div>
 
-
         <div class="input-row">
 
             <div class="input-box">
@@ -1948,7 +1935,6 @@ justify-content:center;
                 >
 
             </div>
-
 
             <div class="input-box">
 
@@ -1967,7 +1953,6 @@ justify-content:center;
 
         </div>
 
-
         <div class="input-row">
 
             <div class="input-box">
@@ -1982,7 +1967,6 @@ justify-content:center;
                 >
 
             </div>
-
 
             <div class="input-box">
 
@@ -1999,7 +1983,6 @@ justify-content:center;
             </div>
 
         </div>
-
 
         <div class="input-box full">
 
@@ -2077,7 +2060,7 @@ justify-content:center;
 
                 <label>Appointment Date</label>
 
-                <input type="date" required>
+                <input type="date" id="appointment_date" name="appointment_date" required>
 
             </div>
 
@@ -2085,7 +2068,7 @@ justify-content:center;
 
                 <label>Preferred Time</label>
 
-                <input type="time" required>
+                <input type="time" id="appointment_time" name="appointment_time" required>
 
             </div>
 
@@ -2096,8 +2079,10 @@ justify-content:center;
             <label>Additional Notes</label>
 
             <textarea
+                id="notes"
+                name="notes"
                 rows="5"
-                placeholder="Tell us anything we should know about your pet..."
+                placeholder="Tell us anything we should know about..."
             ></textarea>
 
         </div>
@@ -2126,37 +2111,76 @@ justify-content:center;
 
         <div class="review-box">
 
-            <div class="review-item">
+    <!-- OWNER INFORMATION -->
 
-                <h3>Owner Information</h3>
+    <div class="review-item">
 
-                <p><strong>Name :</strong> John Doe</p>
-                <p><strong>Email :</strong> john@email.com</p>
-                <p><strong>Phone :</strong> +94 77 123 4567</p>
+        <h3>Owner Information</h3>
 
-            </div>
+        <p>
+            <strong>Name :</strong>
+            <span id="reviewOwnerName">Not entered</span>
+        </p>
 
-            <div class="review-item">
+        <p>
+            <strong>Email :</strong>
+            <span id="reviewOwnerEmail">Not entered</span>
+        </p>
 
-                <h3>Pet Information</h3>
+        <p>
+            <strong>Phone :</strong>
+            <span id="reviewOwnerPhone">Not entered</span>
+        </p>
 
-                <p><strong>Name :</strong> Bruno</p>
-                <p><strong>Type :</strong> Dog</p>
-                <p><strong>Breed :</strong> Labrador</p>
+    </div>
 
-            </div>
+    <!-- PET INFORMATION -->
 
-            <div class="review-item">
+    <div class="review-item">
 
-                <h3>Appointment</h3>
+        <h3>Pet Information</h3>
 
-                <p><strong>Service :</strong> Pet Grooming</p>
-                <p><strong>Date :</strong> 18 July 2026</p>
-                <p><strong>Time :</strong> 10.30 AM</p>
+        <p>
+            <strong>Name :</strong>
+            <span id="reviewPetName">Not entered</span>
+        </p>
 
-            </div>
+        <p>
+            <strong>Type :</strong>
+            <span id="reviewPetType">Not selected</span>
+        </p>
 
-        </div>
+        <p>
+            <strong>Breed :</strong>
+            <span id="reviewPetBreed">Not entered</span>
+        </p>
+
+    </div>
+
+    <!-- APPOINTMENT -->
+
+    <div class="review-item">
+
+        <h3>Appointment</h3>
+
+        <p>
+            <strong>Service :</strong>
+            <span id="reviewService">Not selected</span>
+        </p>
+
+        <p>
+            <strong>Date :</strong>
+            <span id="reviewDate">Not selected</span>
+        </p>
+
+        <p>
+            <strong>Time :</strong>
+            <span id="reviewTime">Not selected</span>
+        </p>
+
+    </div>
+
+</div>
 
         <div class="agree-box">
 
@@ -2417,7 +2441,6 @@ justify-content:center;
 
 </div>
 
-
 <script>
 
     // step 2 //
@@ -2522,7 +2545,6 @@ function loadServices() {
         });
 }
 
-
 /* ================= LOAD STAFF ================= */
 
 const staffSelect = document.getElementById("staffSelect");
@@ -2567,9 +2589,6 @@ if (staffSelect) {
 loadServices();
 
 loadStaff();
-
-
-
 
 /* ================= OPEN POPUP ================= */
 
