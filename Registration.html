@@ -839,6 +839,39 @@
     width:100%;
 
 }
+/* ================= SAVE APPOINTMENT BUTTON ================= */
+
+.appointment-button-area {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.save-appointment-btn {
+    padding: 16px 45px;
+
+    border: none;
+    border-radius: 50px;
+
+    background: #2563EB;
+    color: white;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .3s;
+}
+
+.save-appointment-btn:hover {
+    background: #1D4ED8;
+
+    transform: translateY(-4px);
+
+    box-shadow: 0 15px 30px rgba(37,99,235,.25);
+}
 
 /* Mobile */
 
@@ -867,341 +900,192 @@
 }
 
 }
-/*================ STEP 4 REVIEW ================*/
 
-.review-section{
+/* ================= REVIEW & CONFIRM ================= */
 
-    width:100%;
-
-    background:#F8FAFC;
-
-    padding:0 0 120px;
-
+.review-section {
+    width: 100%;
+    background: #F8FAFC;
+    padding: 0 0 100px;
 }
 
-.review-card{
-
-    width:90%;
-
-    max-width:1200px;
-
-    margin:0 auto;
-
-    background:white;
-
-    border-radius:30px;
-
-    padding:55px 60px;
-
-    box-shadow:0 25px 60px rgba(0,0,0,.12);
-
+.review-card {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #FFFFFF;
+    border-radius: 30px;
+    padding: 60px;
+    box-shadow: 0 25px 60px rgba(0,0,0,.12);
 }
 
-.review-box{
+/* REVIEW GRID */
 
-    display:grid;
-
-    grid-template-columns:repeat(3,1fr);
-
-    gap:25px;
-
-    margin-top:40px;
-
+.review-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 40px;
+    margin-bottom: 45px;
 }
 
-.review-item{
+/* REVIEW BOX */
 
-    background:#F8FAFC;
-
-    border:2px solid #E2E8F0;
-
-    border-radius:18px;
-
-    padding:30px;
-
+.review-box {
+    background: #F8FAFC;
+    border: 2px solid #E2E8F0;
+    border-radius: 20px;
+    padding: 30px;
+    transition: .3s;
 }
 
-.review-item h3{
-
-    color:#2563EB;
-
-    margin-bottom:18px;
-
-    font-size:22px;
-
+.review-box:hover {
+    border-color: #2563EB;
+    transform: translateY(-5px);
 }
 
-.review-item p{
-
-    margin-bottom:12px;
-
-    color:#475569;
-
-    line-height:28px;
-
+.review-box h3 {
+    color: #2563EB;
+    margin-bottom: 20px;
+    font-size: 22px;
 }
 
-.agree-box{
-
-    display:flex;
-
-    align-items:flex-start;
-
-    gap:15px;
-
-    margin:45px 0;
-
+.review-box ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
-.agree-box input{
-
-    margin-top:4px;
-
-    width:20px;
-
-    height:20px;
-
+.review-box li {
+    margin-bottom: 14px;
+    color: #475569;
+    font-size: 15px;
+    line-height: 24px;
 }
 
-.agree-box label{
-
-    color:#475569;
-
-    line-height:28px;
-
+.review-box li strong {
+    color: #1E293B;
 }
 
-.button-group{
+/* TERMS */
 
-    display:flex;
-
-    justify-content:space-between;
-
-    gap:20px;
-
+.terms {
+    text-align: center;
+    margin-bottom: 35px;
+    color: #475569;
 }
 
-.back-btn{
-
-    flex:1;
-
-    padding:18px;
-
-    background:white;
-
-    border:2px solid #2563EB;
-
-    color:#2563EB;
-
-    border-radius:50px;
-
-    font-size:17px;
-
-    font-weight:600;
-
-    cursor:pointer;
-
-    transition:.3s;
-
+.terms label {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 25px;
 }
 
-.back-btn:hover{
-
-    background:#2563EB;
-
-    color:white;
-
+.terms input {
+    margin-top: 5px;
+    width: 18px;
+    height: 18px;
+    accent-color: #2563EB;
 }
 
-.submit-btn{
+/* BUTTON GROUP */
 
-    flex:1;
-
-    padding:18px;
-
-    border:none;
-
-    background:#2563EB;
-
-    color:white;
-
-    border-radius:50px;
-
-    font-size:17px;
-
-    font-weight:600;
-
-    cursor:pointer;
-
-    transition:.3s;
-
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
 }
 
-.submit-btn:hover{
-
-    background:#1D4ED8;
-
-    transform:translateY(-4px);
-
-    box-shadow:0 15px 30px rgba(37,99,235,.25);
-
+.back-btn,
+.confirm-booking-btn {
+    flex: 1;
+    padding: 18px;
+    border-radius: 50px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .3s;
 }
 
-/* Mobile */
+/* PREVIOUS */
 
-@media(max-width:900px){
-
-.review-card{
-
-    width:90%;
-
-    padding:35px 25px;
-
+.back-btn {
+    background: white;
+    border: 2px solid #2563EB;
+    color: #2563EB;
 }
 
-.review-box{
-
-    grid-template-columns:1fr;
-
+.back-btn:hover {
+    background: #2563EB;
+    color: white;
 }
 
-.button-group{
+/* CONFIRM */
 
-    flex-direction:column;
-
+.confirm-booking-btn {
+    border: none;
+    background: #2563EB;
+    color: white;
 }
 
+.confirm-booking-btn:hover {
+    background: #1D4ED8;
+    transform: translateY(-4px);
+    box-shadow: 0 15px 30px rgba(37,99,235,.25);
 }
 
-/*================ REVIEW SECTION ================*/
+/* CANCEL */
 
-.review-section{
-
-    width:100%;
-    background:#F8FAFC;
-    padding:0 0 100px;
-
+.cancel-area {
+    text-align: center;
+    margin-top: 25px;
 }
 
-.review-card{
-
-    width:90%;
-    max-width:1200px;
-    margin:0 auto;
-    background:#fff;
-    border-radius:30px;
-    padding:60px;
-    box-shadow:0 25px 60px rgba(0,0,0,.12);
-
+.cancel-appointment-btn {
+    padding: 16px 45px;
+    border: none;
+    border-radius: 50px;
+    background: #DC2626;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .3s;
 }
 
-.review-grid{
-
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:30px;
-    margin-top:40px;
-    margin-bottom:50px;
-
+.cancel-appointment-btn:hover {
+    background: #B91C1C;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(220,38,38,.25);
 }
 
-.review-box{
+/* MOBILE */
 
-    background:#F8FAFC;
-    border:2px solid #E2E8F0;
-    border-radius:20px;
-    padding:30px;
-    transition:.3s;
+@media(max-width:900px) {
 
+    .review-card {
+        width: 90%;
+        padding: 35px 25px;
+    }
+
+    .review-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    .terms label {
+        text-align: left;
+    }
 }
 
-.review-box:hover{
-
-    border-color:#2563EB;
-    transform:translateY(-8px);
-
-}
-
-.review-box h3{
-
-    color:#1E293B;
-    margin-bottom:20px;
-    font-size:22px;
-
-}
-
-.review-box ul{
-
-    list-style:none;
-
-}
-
-.review-box li{
-
-    margin-bottom:14px;
-    color:#475569;
-    font-size:16px;
-
-}
-
-.terms{
-
-    text-align:center;
-    margin-bottom:35px;
-    color:#475569;
-
-}
-
-.terms input{
-
-    margin-right:10px;
-    transform:scale(1.2);
-
-}
-
-.submit-area{
-
-    text-align:center;
-
-}
-
-.submit-btn{
-
-    padding:18px 55px;
-    border:none;
-    border-radius:50px;
-    background:#2563EB;
-    color:white;
-    font-size:18px;
-    font-weight:600;
-    cursor:pointer;
-    transition:.3s;
-
-}
-
-.submit-btn:hover{
-
-    background:#1D4ED8;
-    transform:translateY(-5px);
-    box-shadow:0 15px 35px rgba(37,99,235,.35);
-
-}
-
-@media(max-width:900px){
-
-.review-card{
-
-    padding:35px 25px;
-
-}
-
-.review-grid{
-
-    grid-template-columns:1fr;
-
-}
-
-}
 
           /*================ FOOTER ================*/
 
@@ -1798,71 +1682,98 @@ justify-content:center;
 
         </div>
 
-        <form>
+        <form id="ownerForm">
 
-            <div class="input-row">
+    <div class="input-row">
 
-                <div class="input-box">
+        <div class="input-box">
 
-                    <label>Full Name</label>
+            <label>Full Name</label>
 
-                    <input
-                        type="text"
-                        id="ownerName"
-                        placeholder="Enter your full name"
-                        required
-                    >
+            <input
+                type="text"
+                id="ownerName"
+                name="fullname"
+                placeholder="Enter your full name"
+                required
+            >
 
-                </div>
+        </div>
 
-                <div class="input-box">
 
-                    <label>Email Address</label>
+        <div class="input-box">
 
-                    <input type="email"
-                    id="ownerEmail"
-                    placeholder="example@email.com"
-                    required>
+            <label>Email Address</label>
 
-                </div>
+            <input
+                type="email"
+                id="ownerEmail"
+                name="email"
+                placeholder="example@email.com"
+                required
+            >
 
-            </div>
+        </div>
 
-            <div class="input-row">
+    </div>
 
-                <div class="input-box">
 
-                    <label>Phone Number</label>
+    <div class="input-row">
 
-                    <input type="tel"
-                    id="ownerPhone"
-                    placeholder="+94 77 123 4567"
-                    required>
+        <div class="input-box">
 
-                </div>
+            <label>Phone Number</label>
 
-                <div class="input-box">
+            <input
+                type="tel"
+                id="ownerPhone"
+                name="phone"
+                placeholder="+94 77 123 4567"
+                required
+            >
 
-                    <label>NIC Number</label>
+        </div>
 
-                    <input type="text"
-                    placeholder="Optional">
 
-                </div>
+        <div class="input-box">
 
-            </div>
+            <label>NIC Number</label>
 
-            <div class="input-box full">
+            <input
+                type="text"
+                id="ownerNIC"
+                name="nic"
+                placeholder="Optional"
+            >
 
-                <label>Home Address</label>
+        </div>
 
-                <textarea
-                rows="4"
-                placeholder="Enter your address"></textarea>
+    </div>
 
-            </div>
 
-        </form>
+    <div class="input-box full">
+
+        <label>Home Address</label>
+
+        <textarea
+            id="ownerAddress"
+            name="address"
+            rows="4"
+            placeholder="Enter your address"
+        ></textarea>
+
+    </div>
+
+
+    <button
+        type="button"
+        class="save-pet-btn"
+        id="saveOwnerBtn"
+    >
+        Save Owner
+    </button>
+
+</form>
 
     </div>
 
@@ -1870,7 +1781,7 @@ justify-content:center;
 
 <!--================ STEP 2 PET INFORMATION ================-->
 
-<section class="pet-section">
+<section class="pet-section" id="step2">
 
     <div class="pet-card">
         <form id="petForm" enctype="multipart/form-data">
@@ -2007,7 +1918,7 @@ justify-content:center;
 
 <!--================ STEP 3 SERVICE SECTION ================-->
 
-<section class="service-section">
+<section class="service-section" id="step3">
 
     <form class="service-card" id="appointmentForm">
 
@@ -2086,13 +1997,27 @@ justify-content:center;
 
         <input type="hidden" id="pet_id" name="pet_id">
 
+        <div class="appointment-button-area">
+
+            <button
+                type="button"
+                class="save-appointment-btn"
+                id="saveAppointmentBtn"
+            >
+                Save Appointment
+            </button>
+
+        </div>
+
+<input type="hidden" id="pet_id" name="pet_id">
+
     </form>
 
 </section>
 
-<!--================ STEP 4 REVIEW ================-->
+<!--================ REVIEW & CONFIRM ================-->
 
-<section class="review-section">
+<section class="review-section" id="step4">
 
     <div class="review-card">
 
@@ -2108,185 +2033,200 @@ justify-content:center;
 
         </div>
 
-        <div class="review-box">
 
-    <!-- OWNER INFORMATION -->
-
-    <div class="review-item">
-
-        <h3>Owner Information</h3>
-
-        <p>
-            <strong>Name :</strong>
-            <span id="reviewOwnerName">Not entered</span>
-        </p>
-
-        <p>
-            <strong>Email :</strong>
-            <span id="reviewOwnerEmail">Not entered</span>
-        </p>
-
-        <p>
-            <strong>Phone :</strong>
-            <span id="reviewOwnerPhone">Not entered</span>
-        </p>
-
-    </div>
-
-    <!-- PET INFORMATION -->
-
-    <div class="review-item">
-
-        <h3>Pet Information</h3>
-
-        <p>
-            <strong>Name :</strong>
-            <span id="reviewPetName">Not entered</span>
-        </p>
-
-        <p>
-            <strong>Type :</strong>
-            <span id="reviewPetType">Not selected</span>
-        </p>
-
-        <p>
-            <strong>Breed :</strong>
-            <span id="reviewPetBreed">Not entered</span>
-        </p>
-
-    </div>
-
-    <!-- APPOINTMENT -->
-
-    <div class="review-item">
-
-        <h3>Appointment</h3>
-
-        <p>
-            <strong>Service :</strong>
-            <span id="reviewService">Not selected</span>
-        </p>
-
-        <p>
-            <strong>Date :</strong>
-            <span id="reviewDate">Not selected</span>
-        </p>
-
-        <p>
-            <strong>Time :</strong>
-            <span id="reviewTime">Not selected</span>
-        </p>
-
-    </div>
-
-</div>
-
-        <div class="agree-box">
-
-            <input type="checkbox" required>
-
-            <label>
-                I confirm that all information provided is correct and agree
-                to the clinic's terms and conditions.
-            </label>
-
-        </div>
-
-        <div class="button-group">
-
-            <button type="button" class="back-btn">
-                Previous Step
-            </button>
-
-            <button type="submit" form="appointmentForm" class="submit-btn">
-                Book Appointment
-            </button>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!--================ STEP 5 : REVIEW & SUBMIT ================-->
-
-<section class="review-section">
-
-    <div class="review-card">
-
-        <div class="section-heading">
-
-            <span>Step 5</span>
-
-            <h2>Review & Submit</h2>
-
-            <p>
-                Please review your information before submitting your appointment request.
-            </p>
-
-        </div>
+        <!-- REVIEW INFORMATION -->
 
         <div class="review-grid">
+
+
+            <!-- OWNER INFORMATION -->
 
             <div class="review-box">
 
                 <h3>Owner Information</h3>
 
                 <ul>
-                    <li>✔ Full Name</li>
-                    <li>✔ Email Address</li>
-                    <li>✔ Phone Number</li>
-                    <li>✔ Home Address</li>
+
+                    <li>
+                        <strong>Name:</strong>
+                        <span id="reviewOwnerName">
+                            Not entered
+                        </span>
+                    </li>
+
+                    <li>
+                        <strong>Email:</strong>
+                        <span id="reviewOwnerEmail">
+                            Not entered
+                        </span>
+                    </li>
+
+                    <li>
+                        <strong>Phone:</strong>
+                        <span id="reviewOwnerPhone">
+                            Not entered
+                        </span>
+                    </li>
+
                 </ul>
 
             </div>
+
+
+            <!-- PET INFORMATION -->
 
             <div class="review-box">
 
                 <h3>Pet Information</h3>
 
                 <ul>
-                    <li>✔ Pet Name</li>
-                    <li>✔ Pet Type</li>
-                    <li>✔ Breed</li>
-                    <li>✔ Age & Weight</li>
+
+                    <li>
+                        <strong>Name:</strong>
+                        <span id="reviewPetName">
+                            Not entered
+                        </span>
+                    </li>
+
+                    <li>
+                        <strong>Type:</strong>
+                        <span id="reviewPetType">
+                            Not selected
+                        </span>
+                    </li>
+
+                    <li>
+                        <strong>Breed:</strong>
+                        <span id="reviewPetBreed">
+                            Not entered
+                        </span>
+                    </li>
+
+                    <li>
+                        <strong>Age:</strong>
+                        <span id="reviewPetAge">
+                            Not entered
+                        </span>
+                    </li>
+
+                    <li>
+                        <strong>Weight:</strong>
+                        <span id="reviewPetWeight">
+                            Not entered
+                        </span>
+                    </li>
+
                 </ul>
 
             </div>
+
+
+            <!-- APPOINTMENT INFORMATION -->
 
             <div class="review-box">
 
-                <h3>Selected Service</h3>
+                <h3>Appointment</h3>
 
-                <ul>
-                    <li>✔ Service Type</li>
-                    <li>✔ Preferred Date</li>
-                    <li>✔ Preferred Time</li>
-                    <li>✔ Special Requests</li>
-                </ul>
+            <ul>
 
-            </div>
+            <li>
+                <strong>Service:</strong>
+                <span id="reviewService">
+                    Not selected
+                </span>
+            </li>
+
+            <li>
+                <strong>Staff:</strong>
+                <span id="reviewStaff">
+                    No Preference
+                </span>
+            </li>
+
+            <li>
+            <strong>Date:</strong>
+            <span id="reviewDate">
+                Not selected
+            </span>
+        </li>
+
+        <li>
+            <strong>Time:</strong>
+            <span id="reviewTime">
+                Not selected
+            </span>
+        </li>
+
+        <li>
+            <strong>Notes:</strong>
+            <span id="reviewNotes">
+                No additional notes
+            </span>
+        </li>
+
+    </ul>
+
+</div>
 
         </div>
+
+
+        <!-- TERMS -->
 
         <div class="terms">
 
             <label>
 
-                <input type="checkbox" required>
+                <input
+                    type="checkbox"
+                    id="termsCheckbox"
+                    required
+                >
 
-                I confirm that the information provided is accurate and agree to the booking terms.
+                I confirm that the information provided is accurate
+                and agree to the booking terms.
 
             </label>
 
         </div>
 
-        <div class="submit-area">
 
-            <button type="submit" class="submit-btn">
+        <!-- BUTTONS -->
 
+        <div class="button-group">
+
+            <button
+                type="button"
+                class="back-btn"
+                id="previousStepBtn"
+            >
+                Previous Step
+            </button>
+
+
+            <button
+                type="submit"
+                form="appointmentForm"
+                class="confirm-booking-btn"
+                id="confirmBookingBtn"
+            >
                 Confirm Booking
+            </button>
 
+        </div>
+
+
+        <!-- CANCEL APPOINTMENT -->
+
+        <div class="cancel-area">
+
+            <button
+                type="button"
+                class="cancel-appointment-btn"
+                id="cancelAppointmentBtn"
+                style="display:none;"
+            >
+                Cancel Appointment
             </button>
 
         </div>
@@ -2294,7 +2234,6 @@ justify-content:center;
     </div>
 
 </section>
-
 <!--================ FOOTER ================-->
 
 <footer class="footer">
@@ -2441,6 +2380,81 @@ justify-content:center;
 </div>
 
 <script>
+    /* ================= STEP ELEMENTS ================= */
+
+const step1 = document.getElementById("booking-form");
+const step2 = document.getElementById("step2");
+const step3 = document.getElementById("step3");
+const step4 = document.getElementById("step4");
+
+const petIdInput = document.getElementById("pet_id");
+
+
+    /* ================= SAVE OWNER ================= */
+
+const saveOwnerBtn = document.getElementById("saveOwnerBtn");
+const ownerForm = document.getElementById("ownerForm");
+
+if (saveOwnerBtn && ownerForm) {
+
+    saveOwnerBtn.addEventListener("click", function () {
+
+        /* Check required fields */
+
+        if (!ownerForm.checkValidity()) {
+
+            ownerForm.reportValidity();
+
+            return;
+        }
+
+
+        /* Collect owner information */
+
+        const ownerData = new FormData(ownerForm);
+
+
+        /* Send information to backend */
+
+        fetch("backend/users/saveOwner.php", {
+
+            method: "POST",
+
+            body: ownerData
+
+        })
+
+        .then(response => response.json())
+
+        .then(data => {
+
+            if (data.status === "success") {
+
+                alert(data.message);
+
+                updateOwnerReview();
+
+            } else {
+
+                alert(data.message);
+
+            }
+
+        })
+
+        .catch(error => {
+
+            console.error("Save Owner Error:", error);
+
+            alert(
+                "Something went wrong while saving owner information."
+            );
+
+        });
+
+    });
+
+}
 
     // step 2 //
 
@@ -2455,16 +2469,22 @@ if (savePetBtn && petForm) {
 
         // Check the form before sending
         if (!petForm.checkValidity()) {
+
             petForm.reportValidity();
+
             return;
         }
 
-        // Collect all pet form data
+        // Collect pet form data
         const petData = new FormData(petForm);
 
+        // Send pet data to backend
         fetch("backend/pets/addPet.php", {
+
             method: "POST",
+
             body: petData
+
         })
 
         .then(response => response.json())
@@ -2473,12 +2493,17 @@ if (savePetBtn && petForm) {
 
             if (data.status === "success") {
 
+                // Show successful message
                 alert(data.message);
 
-                    document.getElementById("pet_id").value = data.pet_id;
+                // Store the pet ID returned by backend
+                petIdInput.value = data.pet_id;
 
-                // Clear the form after successful save
-                petForm.reset();
+                // Move to Step 3
+                step3.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
 
             } else {
 
@@ -2492,7 +2517,9 @@ if (savePetBtn && petForm) {
 
             console.error("Save Pet Error:", error);
 
-            alert("Something went wrong while saving the pet.");
+            alert(
+                "Something went wrong while saving the pet."
+            );
 
         });
 
@@ -2613,43 +2640,346 @@ function loadStaff() {
 loadServices();
 loadStaff();
 
+/* ================= UPDATE OWNER REVIEW ================= */
+
+function updateOwnerReview() {
+
+    document.getElementById("reviewOwnerName").textContent =
+        document.getElementById("ownerName").value || "Not entered";
+
+    document.getElementById("reviewOwnerEmail").textContent =
+        document.getElementById("ownerEmail").value || "Not entered";
+
+    document.getElementById("reviewOwnerPhone").textContent =
+        document.getElementById("ownerPhone").value || "Not entered";
+
+}
+if (data.status === "success") {
+
+    alert(data.message);
+
+    updateOwnerReview();
+
+}
+
 /* ================= BOOK APPOINTMENT ================= */
 
 const appointmentForm = document.getElementById("appointmentForm");
 const petIdInput = document.getElementById("pet_id");
 
+const cancelAppointmentBtn =
+    document.getElementById("cancelAppointmentBtn");
+
 if (appointmentForm) {
+
     appointmentForm.addEventListener("submit", function (event) {
+
         event.preventDefault();
 
         if (!petIdInput.value) {
+
             alert("Please save your pet before booking the appointment.");
+
             return;
         }
 
         if (!appointmentForm.checkValidity()) {
+
             appointmentForm.reportValidity();
+
             return;
         }
 
         fetch("backend/appoinment/book.php", {
-            method: "POST",
-            body: new FormData(appointmentForm)
-        })
-            .then(response => response.json())
-            .then(data => {
-                alert(data.message);
 
-                if (data.status === "success") {
-                    appointmentForm.reset();
-                    petIdInput.value = "";
+            method: "POST",
+
+            body: new FormData(appointmentForm)
+
+        })
+
+        .then(response => response.json())
+
+        .then(data => {
+
+            alert(data.message);
+
+            if (data.status === "success") {
+
+                /*
+                 * The backend should return the
+                 * newly created appointment ID.
+                 */
+
+                if (data.appointment_id) {
+
+                    cancelAppointmentBtn.dataset.appointmentId =
+                        data.appointment_id;
+
+                    cancelAppointmentBtn.style.display =
+                        "inline-block";
                 }
-            })
-            .catch(error => {
-                console.error("Appointment Booking Error:", error);
-                alert("Something went wrong while booking the appointment.");
-            });
+
+                appointmentForm.reset();
+
+                petIdInput.value = "";
+            }
+
+        })
+
+        .catch(error => {
+
+            console.error(
+                "Appointment Booking Error:",
+                error
+            );
+
+            alert(
+                "Something went wrong while booking the appointment."
+            );
+
+        });
+
     });
+
+}
+
+/* ================= STEP NAVIGATION ================= */
+
+const previousStepBtn =
+    document.getElementById("previousStepBtn");
+
+const saveAppointmentBtn =
+    document.getElementById("saveAppointmentBtn");
+
+/* ================= PREVIOUS STEP ================= */
+
+if (previousStepBtn) {
+
+    previousStepBtn.addEventListener("click", function () {
+
+        step3.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+    });
+
+}
+/* ================= SAVE / REVIEW APPOINTMENT ================= */
+
+if (saveAppointmentBtn) {
+
+    saveAppointmentBtn.addEventListener("click", function () {
+
+        /* Check if pet was saved */
+
+        if (!petIdInput.value) {
+
+            alert("Please save your pet before creating an appointment.");
+
+            step2.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+
+            return;
+        }
+
+
+        /* Check Step 3 form */
+
+        if (!appointmentForm.checkValidity()) {
+
+            appointmentForm.reportValidity();
+
+            return;
+        }
+
+
+        /* ================= GET SERVICE ================= */
+
+        const serviceSelect =
+            document.getElementById("service_id");
+
+        const selectedService =
+            serviceSelect.options[
+                serviceSelect.selectedIndex
+            ];
+
+
+        /* ================= GET STAFF ================= */
+
+        const staffSelect =
+            document.getElementById("staffSelect");
+
+        const selectedStaff =
+            staffSelect.options[
+                staffSelect.selectedIndex
+            ];
+
+
+        /* ================= UPDATE REVIEW ================= */
+
+        document.getElementById("reviewService").textContent =
+            selectedService.textContent || "Not selected";
+
+
+        document.getElementById("reviewStaff").textContent =
+            selectedStaff.textContent || "No Preference";
+
+
+        document.getElementById("reviewDate").textContent =
+            document.getElementById("appointment_date").value ||
+            "Not selected";
+
+
+        document.getElementById("reviewTime").textContent =
+            document.getElementById("appointment_time").value ||
+            "Not selected";
+
+
+        document.getElementById("reviewNotes").textContent =
+            document.getElementById("notes").value ||
+            "No additional notes";
+
+
+        /* ================= UPDATE OWNER ================= */
+
+        updateOwnerReview();
+
+
+        /* ================= UPDATE PET ================= */
+
+        const petName =
+            document.querySelector(
+                '#petForm input[name="pet_name"]'
+            ).value;
+
+        const petType =
+            document.querySelector(
+                '#petForm select[name="species"]'
+            ).value;
+
+        const petBreed =
+            document.querySelector(
+                '#petForm input[name="breed"]'
+            ).value;
+
+        const petAge =
+            document.querySelector(
+                '#petForm input[name="age"]'
+            ).value;
+
+        const petWeight =
+            document.querySelector(
+                '#petForm input[name="weight"]'
+            ).value;
+
+
+        document.getElementById("reviewPetName").textContent =
+            petName || "Not entered";
+
+
+        document.getElementById("reviewPetType").textContent =
+            petType || "Not selected";
+
+
+        document.getElementById("reviewPetBreed").textContent =
+            petBreed || "Not entered";
+
+
+        document.getElementById("reviewPetAge").textContent =
+            petAge ? petAge + " years" : "Not entered";
+
+
+        document.getElementById("reviewPetWeight").textContent =
+            petWeight ? petWeight + " kg" : "Not entered";
+
+
+        /* ================= GO TO STEP 4 ================= */
+
+        step4.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+    });
+
+}
+
+/* ================= CANCEL APPOINTMENT ================= */
+
+if (cancelAppointmentBtn) {
+
+    cancelAppointmentBtn.addEventListener("click", function () {
+
+        const appointmentId =
+            this.dataset.appointmentId;
+
+        if (!appointmentId) {
+
+            alert("No appointment selected.");
+
+            return;
+        }
+
+        const confirmed = confirm(
+            "Are you sure you want to cancel this appointment?"
+        );
+
+        if (!confirmed) {
+
+            return;
+        }
+
+        const formData = new FormData();
+
+        formData.append(
+            "appointment_id",
+            appointmentId
+        );
+
+        fetch("backend/appoinment/cancel.php", {
+
+            method: "POST",
+
+            body: formData
+
+        })
+
+        .then(response => response.json())
+
+        .then(data => {
+
+            alert(data.message);
+
+            if (data.status === "success") {
+
+                cancelAppointmentBtn.style.display =
+                    "none";
+
+                delete cancelAppointmentBtn.dataset.appointmentId;
+
+            }
+
+        })
+
+        .catch(error => {
+
+            console.error(
+                "Cancellation Error:",
+                error
+            );
+
+            alert(
+                "Something went wrong while cancelling the appointment."
+            );
+
+        });
+
+    });
+
 }
 
 /* ================= OPEN POPUP ================= */
