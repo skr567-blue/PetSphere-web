@@ -1995,7 +1995,6 @@ justify-content:center;
 
         </div>
 
-        <input type="hidden" id="pet_id" name="pet_id">
 
         <div class="appointment-button-area">
 
@@ -2380,7 +2379,10 @@ justify-content:center;
 </div>
 
 <script>
-    /* ================= STEP ELEMENTS ================= */
+
+/* =========================================================
+   STEP ELEMENTS
+========================================================= */
 
 const step1 = document.getElementById("booking-form");
 const step2 = document.getElementById("step2");
@@ -2390,53 +2392,85 @@ const step4 = document.getElementById("step4");
 const petIdInput = document.getElementById("pet_id");
 
 
-    /* ================= SAVE OWNER ================= */
+/* =========================================================
+   HELPER FUNCTION
+========================================================= */
 
-const saveOwnerBtn = document.getElementById("saveOwnerBtn");
+function scrollToSection(section) {
+
+    if (!section) {
+        return;
+    }
+
+    section.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+
+
+/* =========================================================
+   SAVE OWNER
+========================================================= */
+
 const ownerForm = document.getElementById("ownerForm");
+const saveOwnerBtn = document.getElementById("saveOwnerBtn");
 
-if (saveOwnerBtn && ownerForm) {
+if (ownerForm && saveOwnerBtn) {
 
     saveOwnerBtn.addEventListener("click", function () {
-
-        /* Check required fields */
 
         if (!ownerForm.checkValidity()) {
 
             ownerForm.reportValidity();
-
             return;
+
         }
 
-
-        /* Collect owner information */
-
         const ownerData = new FormData(ownerForm);
-
-
-        /* Send information to backend */
 
         fetch("backend/users/saveOwner.php", {
 
             method: "POST",
-
             body: ownerData
 
         })
 
-        .then(response => response.json())
+        .then(response => {
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "HTTP Error: " + response.status
+                );
+
+            }
+
+            return response.json();
+
+        })
 
         .then(data => {
 
+            console.log("OWNER RESPONSE:", data);
+
             if (data.status === "success") {
 
-                alert(data.message);
+                alert(
+                    data.message ||
+                    "Owner information saved successfully."
+                );
 
                 updateOwnerReview();
 
+                scrollToSection(step2);
+
             } else {
 
-                alert(data.message);
+                alert(
+                    data.message ||
+                    "Unable to save owner information."
+                );
 
             }
 
@@ -2444,7 +2478,7 @@ if (saveOwnerBtn && ownerForm) {
 
         .catch(error => {
 
-            console.error("Save Owner Error:", error);
+            console.error("OWNER ERROR:", error);
 
             alert(
                 "Something went wrong while saving owner information."
@@ -2456,58 +2490,153 @@ if (saveOwnerBtn && ownerForm) {
 
 }
 
-    // step 2 //
 
-/* ================= SAVE PET ================= */
+/* =========================================================
+   UPDATE OWNER REVIEW
+========================================================= */
 
-const savePetBtn = document.getElementById("savePetBtn");
+function updateOwnerReview() {
+
+    const ownerName =
+        document.getElementById("ownerName");
+
+    const ownerEmail =
+        document.getElementById("ownerEmail");
+
+    const ownerPhone =
+        document.getElementById("ownerPhone");
+
+
+    document.getElementById("reviewOwnerName").textContent =
+        ownerName.value || "Not entered";
+
+    document.getElementById("reviewOwnerEmail").textContent =
+        ownerEmail.value || "Not entered";
+
+    document.getElementById("reviewOwnerPhone").textContent =
+        ownerPhone.value || "Not entered";
+}
+
+
+/* =========================================================
+   SAVE PET
+========================================================= */
+
 const petForm = document.getElementById("petForm");
+const savePetBtn = document.getElementById("savePetBtn");
 
-if (savePetBtn && petForm) {
+if (petForm && savePetBtn) {
 
     savePetBtn.addEventListener("click", function () {
 
-        // Check the form before sending
+        /* Check pet form */
+
         if (!petForm.checkValidity()) {
 
             petForm.reportValidity();
-
             return;
+
         }
 
-        // Collect pet form data
+
+        /* Check owner information */
+
+        const ownerName =
+            document.getElementById("ownerName").value.trim();
+
+        const ownerEmail =
+            document.getElementById("ownerEmail").value.trim();
+
+        const ownerPhone =
+            document.getElementById("ownerPhone").value.trim();
+
+
+        if (!ownerName || !ownerEmail || !ownerPhone) {
+
+            alert(
+                "Please save your owner information first."
+            );
+
+            scrollToSection(step1);
+
+            return;
+
+        }
+
+
+        /* Create FormData */
+
         const petData = new FormData(petForm);
 
-        // Send pet data to backend
+
         fetch("backend/pets/addPet.php", {
 
             method: "POST",
-
             body: petData
 
         })
 
-        .then(response => response.json())
+        .then(response => {
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "HTTP Error: " + response.status
+                );
+
+            }
+
+            return response.json();
+
+        })
 
         .then(data => {
 
+            console.log("PET RESPONSE:", data);
+
             if (data.status === "success") {
 
-                // Show successful message
-                alert(data.message);
+                alert(
+                    data.message ||
+                    "Pet saved successfully."
+                );
 
-                // Store the pet ID returned by backend
-                petIdInput.value = data.pet_id;
 
-                // Move to Step 3
-                step3.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
+                /*
+                 * IMPORTANT
+                 * Store the ID returned by PHP.
+                 */
+
+                if (data.pet_id) {
+
+                    petIdInput.value = data.pet_id;
+
+                    console.log(
+                        "Saved Pet ID:",
+                        petIdInput.value
+                    );
+
+                } else {
+
+                    alert(
+                        "Pet was saved, but no pet ID was returned by the server."
+                    );
+
+                    return;
+
+                }
+
+
+                updatePetReview();
+
+                scrollToSection(step3);
 
             } else {
 
-                alert(data.message);
+                alert(
+                    data.message ||
+                    "Unable to save pet."
+                );
 
             }
 
@@ -2515,7 +2644,7 @@ if (savePetBtn && petForm) {
 
         .catch(error => {
 
-            console.error("Save Pet Error:", error);
+            console.error("PET ERROR:", error);
 
             alert(
                 "Something went wrong while saving the pet."
@@ -2527,21 +2656,91 @@ if (savePetBtn && petForm) {
 
 }
 
-/* ================= LOAD SERVICES ================= */
+
+/* =========================================================
+   UPDATE PET REVIEW
+========================================================= */
+
+function updatePetReview() {
+
+    const petName =
+        document.querySelector(
+            '#petForm input[name="pet_name"]'
+        ).value;
+
+    const petType =
+        document.querySelector(
+            '#petForm select[name="species"]'
+        ).value;
+
+    const petBreed =
+        document.querySelector(
+            '#petForm input[name="breed"]'
+        ).value;
+
+    const petAge =
+        document.querySelector(
+            '#petForm input[name="age"]'
+        ).value;
+
+    const petWeight =
+        document.querySelector(
+            '#petForm input[name="weight"]'
+        ).value;
+
+
+    document.getElementById("reviewPetName").textContent =
+        petName || "Not entered";
+
+    document.getElementById("reviewPetType").textContent =
+        petType || "Not selected";
+
+    document.getElementById("reviewPetBreed").textContent =
+        petBreed || "Not entered";
+
+    document.getElementById("reviewPetAge").textContent =
+        petAge ? petAge + " years" : "Not entered";
+
+    document.getElementById("reviewPetWeight").textContent =
+        petWeight ? petWeight + " kg" : "Not entered";
+
+}
+
+
+/* =========================================================
+   LOAD SERVICES
+========================================================= */
 
 function loadServices() {
 
-    const serviceSelect = document.getElementById("service_id");
+    const serviceSelect =
+        document.getElementById("service_id");
 
     if (!serviceSelect) {
         return;
     }
 
+
     fetch("backend/appoinment/getServices.php")
 
-        .then(response => response.json())
+        .then(response => {
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "HTTP Error: " + response.status
+                );
+
+            }
+
+            return response.json();
+
+        })
 
         .then(data => {
+
+            console.log("SERVICES RESPONSE:", data);
+
 
             if (data.status !== "success") {
 
@@ -2549,180 +2748,32 @@ function loadServices() {
                     '<option value="">Unable to load services</option>';
 
                 return;
+
             }
 
-            // Clear existing options
+
             serviceSelect.innerHTML =
                 '<option value="">Choose Service</option>';
 
-            // Add services from database
-            data.services.forEach(service => {
 
-                const option = document.createElement("option");
+            if (Array.isArray(data.services)) {
 
-                option.value = service.id;
+                data.services.forEach(service => {
 
-                option.textContent =
-                    service.service_name +
-                    " - Rs. " +
-                    service.price;
+                    const option =
+                        document.createElement("option");
 
-                serviceSelect.appendChild(option);
+                    option.value = service.id;
 
-            });
+                    option.textContent =
+                        service.service_name +
+                        " - Rs. " +
+                        service.price;
 
-        })
+                    serviceSelect.appendChild(option);
 
-        .catch(error => {
+                });
 
-            console.error("Service Loading Error:", error);
-
-            serviceSelect.innerHTML =
-                '<option value="">Unable to load services</option>';
-
-        });
-}
-
-/* ================= LOAD STAFF ================= */
-
-function loadStaff() {
-
-    const staffSelect = document.getElementById("staffSelect");
-
-    if (!staffSelect) {
-        return;
-    }
-
-    fetch("backend/appoinment/getStaff.php")
-
-        .then(response => response.json())
-
-        .then(data => {
-
-            if (data.status !== "success") {
-
-                console.error("Unable to load staff.");
-
-                return;
-            }
-
-            // Keep "No Preference"
-            staffSelect.innerHTML =
-                '<option value="">No Preference</option>';
-
-            // Add staff from database
-            data.data.forEach(staff => {
-
-                const option = document.createElement("option");
-
-                option.value = staff.id;
-
-                option.textContent =
-                    staff.fullname +
-                    " - " +
-                    staff.staff_type;
-
-                staffSelect.appendChild(option);
-
-            });
-
-        })
-
-        .catch(error => {
-
-            console.error("Staff Loading Error:", error);
-
-        });
-}
-
-/* ================= LOAD SERVICES AND STAFF ================= */
-
-loadServices();
-loadStaff();
-
-/* ================= UPDATE OWNER REVIEW ================= */
-
-function updateOwnerReview() {
-
-    document.getElementById("reviewOwnerName").textContent =
-        document.getElementById("ownerName").value || "Not entered";
-
-    document.getElementById("reviewOwnerEmail").textContent =
-        document.getElementById("ownerEmail").value || "Not entered";
-
-    document.getElementById("reviewOwnerPhone").textContent =
-        document.getElementById("ownerPhone").value || "Not entered";
-
-}
-if (data.status === "success") {
-
-    alert(data.message);
-
-    updateOwnerReview();
-
-}
-
-/* ================= BOOK APPOINTMENT ================= */
-
-const appointmentForm = document.getElementById("appointmentForm");
-const petIdInput = document.getElementById("pet_id");
-
-const cancelAppointmentBtn =
-    document.getElementById("cancelAppointmentBtn");
-
-if (appointmentForm) {
-
-    appointmentForm.addEventListener("submit", function (event) {
-
-        event.preventDefault();
-
-        if (!petIdInput.value) {
-
-            alert("Please save your pet before booking the appointment.");
-
-            return;
-        }
-
-        if (!appointmentForm.checkValidity()) {
-
-            appointmentForm.reportValidity();
-
-            return;
-        }
-
-        fetch("backend/appoinment/book.php", {
-
-            method: "POST",
-
-            body: new FormData(appointmentForm)
-
-        })
-
-        .then(response => response.json())
-
-        .then(data => {
-
-            alert(data.message);
-
-            if (data.status === "success") {
-
-                /*
-                 * The backend should return the
-                 * newly created appointment ID.
-                 */
-
-                if (data.appointment_id) {
-
-                    cancelAppointmentBtn.dataset.appointmentId =
-                        data.appointment_id;
-
-                    cancelAppointmentBtn.style.display =
-                        "inline-block";
-                }
-
-                appointmentForm.reset();
-
-                petIdInput.value = "";
             }
 
         })
@@ -2730,74 +2781,151 @@ if (appointmentForm) {
         .catch(error => {
 
             console.error(
-                "Appointment Booking Error:",
+                "SERVICE ERROR:",
                 error
             );
 
-            alert(
-                "Something went wrong while booking the appointment."
+            serviceSelect.innerHTML =
+                '<option value="">Unable to load services</option>';
+
+        });
+
+}
+
+
+/* =========================================================
+   LOAD STAFF
+========================================================= */
+
+function loadStaff() {
+
+    const staffSelect =
+        document.getElementById("staffSelect");
+
+    if (!staffSelect) {
+        return;
+    }
+
+
+    fetch("backend/appoinment/getStaff.php")
+
+        .then(response => {
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "HTTP Error: " + response.status
+                );
+
+            }
+
+            return response.json();
+
+        })
+
+        .then(data => {
+
+            console.log("STAFF RESPONSE:", data);
+
+
+            staffSelect.innerHTML =
+                '<option value="">No Preference</option>';
+
+
+            if (
+                data.status === "success" &&
+                Array.isArray(data.data)
+            ) {
+
+                data.data.forEach(staff => {
+
+                    const option =
+                        document.createElement("option");
+
+                    option.value = staff.id;
+
+                    option.textContent =
+                        staff.fullname +
+                        " - " +
+                        staff.staff_type;
+
+                    staffSelect.appendChild(option);
+
+                });
+
+            }
+
+        })
+
+        .catch(error => {
+
+            console.error(
+                "STAFF ERROR:",
+                error
             );
 
         });
 
-    });
-
 }
 
-/* ================= STEP NAVIGATION ================= */
 
-const previousStepBtn =
-    document.getElementById("previousStepBtn");
+/* =========================================================
+   LOAD DATA
+========================================================= */
+
+loadServices();
+loadStaff();
+
+
+/* =========================================================
+   SAVE APPOINTMENT / GO TO REVIEW
+========================================================= */
+
+const appointmentForm =
+    document.getElementById("appointmentForm");
 
 const saveAppointmentBtn =
     document.getElementById("saveAppointmentBtn");
 
-/* ================= PREVIOUS STEP ================= */
 
-if (previousStepBtn) {
-
-    previousStepBtn.addEventListener("click", function () {
-
-        step3.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-        });
-
-    });
-
-}
-/* ================= SAVE / REVIEW APPOINTMENT ================= */
-
-if (saveAppointmentBtn) {
+if (saveAppointmentBtn && appointmentForm) {
 
     saveAppointmentBtn.addEventListener("click", function () {
 
-        /* Check if pet was saved */
+
+        /* -----------------------------------------------
+           CHECK PET ID
+        ------------------------------------------------ */
 
         if (!petIdInput.value) {
 
-            alert("Please save your pet before creating an appointment.");
+            alert(
+                "Please save your pet before creating an appointment."
+            );
 
-            step2.scrollIntoView({
-                behavior: "smooth",
-                block: "start"
-            });
+            scrollToSection(step2);
 
             return;
+
         }
 
 
-        /* Check Step 3 form */
+        /* -----------------------------------------------
+           CHECK APPOINTMENT FORM
+        ------------------------------------------------ */
 
         if (!appointmentForm.checkValidity()) {
 
             appointmentForm.reportValidity();
 
             return;
+
         }
 
 
-        /* ================= GET SERVICE ================= */
+        /* -----------------------------------------------
+           GET SERVICE
+        ------------------------------------------------ */
 
         const serviceSelect =
             document.getElementById("service_id");
@@ -2808,7 +2936,9 @@ if (saveAppointmentBtn) {
             ];
 
 
-        /* ================= GET STAFF ================= */
+        /* -----------------------------------------------
+           GET STAFF
+        ------------------------------------------------ */
 
         const staffSelect =
             document.getElementById("staffSelect");
@@ -2819,306 +2949,958 @@ if (saveAppointmentBtn) {
             ];
 
 
-        /* ================= UPDATE REVIEW ================= */
+        /* -----------------------------------------------
+           UPDATE REVIEW
+        ------------------------------------------------ */
 
-        document.getElementById("reviewService").textContent =
-            selectedService.textContent || "Not selected";
+        document.getElementById(
+            "reviewService"
+        ).textContent =
 
-
-        document.getElementById("reviewStaff").textContent =
-            selectedStaff.textContent || "No Preference";
-
-
-        document.getElementById("reviewDate").textContent =
-            document.getElementById("appointment_date").value ||
-            "Not selected";
+            selectedService.value
+                ? selectedService.textContent
+                : "Not selected";
 
 
-        document.getElementById("reviewTime").textContent =
-            document.getElementById("appointment_time").value ||
-            "Not selected";
+        document.getElementById(
+            "reviewStaff"
+        ).textContent =
+
+            selectedStaff.value
+                ? selectedStaff.textContent
+                : "No Preference";
 
 
-        document.getElementById("reviewNotes").textContent =
-            document.getElementById("notes").value ||
+        document.getElementById(
+            "reviewDate"
+        ).textContent =
+
+            document.getElementById(
+                "appointment_date"
+            ).value || "Not selected";
+
+
+        document.getElementById(
+            "reviewTime"
+        ).textContent =
+
+            document.getElementById(
+                "appointment_time"
+            ).value || "Not selected";
+
+
+        document.getElementById(
+            "reviewNotes"
+        ).textContent =
+
+            document.getElementById(
+                "notes"
+            ).value.trim() ||
+
             "No additional notes";
 
 
-        /* ================= UPDATE OWNER ================= */
-
         updateOwnerReview();
 
-
-        /* ================= UPDATE PET ================= */
-
-        const petName =
-            document.querySelector(
-                '#petForm input[name="pet_name"]'
-            ).value;
-
-        const petType =
-            document.querySelector(
-                '#petForm select[name="species"]'
-            ).value;
-
-        const petBreed =
-            document.querySelector(
-                '#petForm input[name="breed"]'
-            ).value;
-
-        const petAge =
-            document.querySelector(
-                '#petForm input[name="age"]'
-            ).value;
-
-        const petWeight =
-            document.querySelector(
-                '#petForm input[name="weight"]'
-            ).value;
+        updatePetReview();
 
 
-        document.getElementById("reviewPetName").textContent =
-            petName || "Not entered";
+        /* -----------------------------------------------
+           SHOW PET ID IN CONSOLE
+           This is useful for debugging.
+        ------------------------------------------------ */
+
+        console.log(
+            "PET ID BEFORE BOOKING:",
+            petIdInput.value
+        );
+
+        console.log(
+            "SERVICE ID:",
+            serviceSelect.value
+        );
+
+        console.log(
+            "STAFF ID:",
+            staffSelect.value
+        );
+
+        console.log(
+            "DATE:",
+            document.getElementById(
+                "appointment_date"
+            ).value
+        );
+
+        console.log(
+            "TIME:",
+            document.getElementById(
+                "appointment_time"
+            ).value
+        );
 
 
-        document.getElementById("reviewPetType").textContent =
-            petType || "Not selected";
+        /* -----------------------------------------------
+           GO TO STEP 4
+        ------------------------------------------------ */
 
-
-        document.getElementById("reviewPetBreed").textContent =
-            petBreed || "Not entered";
-
-
-        document.getElementById("reviewPetAge").textContent =
-            petAge ? petAge + " years" : "Not entered";
-
-
-        document.getElementById("reviewPetWeight").textContent =
-            petWeight ? petWeight + " kg" : "Not entered";
-
-
-        /* ================= GO TO STEP 4 ================= */
-
-        step4.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-        });
+        scrollToSection(step4);
 
     });
 
 }
 
-/* ================= CANCEL APPOINTMENT ================= */
+
+/* =========================================================
+   BOOK APPOINTMENT
+========================================================= */
+
+const cancelAppointmentBtn =
+    document.getElementById(
+        "cancelAppointmentBtn"
+    );
+
+
+if (appointmentForm) {
+
+    appointmentForm.addEventListener(
+        "submit",
+        function (event) {
+
+            event.preventDefault();
+
+
+            /* -----------------------------------------------
+               CHECK PET ID
+            ------------------------------------------------ */
+
+            if (!petIdInput.value) {
+
+                alert(
+                    "Pet ID is missing. Please save your pet again."
+                );
+
+                scrollToSection(step2);
+
+                return;
+
+            }
+
+
+            /* -----------------------------------------------
+               CHECK REQUIRED APPOINTMENT FIELDS
+            ------------------------------------------------ */
+
+            if (!appointmentForm.checkValidity()) {
+
+                appointmentForm.reportValidity();
+
+                return;
+
+            }
+
+
+            /* -----------------------------------------------
+               CHECK TERMS
+            ------------------------------------------------ */
+
+            const termsCheckbox =
+                document.getElementById(
+                    "termsCheckbox"
+                );
+
+
+            if (!termsCheckbox.checked) {
+
+                alert(
+                    "Please confirm that the information provided is accurate."
+                );
+
+                termsCheckbox.focus();
+
+                return;
+
+            }
+
+
+            /* -----------------------------------------------
+               CREATE FORM DATA
+            ------------------------------------------------ */
+
+            const formData =
+                new FormData(appointmentForm);
+
+
+            /*
+             * Make absolutely sure pet_id is included.
+             */
+
+            formData.set(
+                "pet_id",
+                petIdInput.value
+            );
+
+
+            /* -----------------------------------------------
+               DEBUG
+            ------------------------------------------------ */
+
+            console.log(
+                "========== APPOINTMENT DATA =========="
+            );
+
+            for (const [key, value] of formData.entries()) {
+
+                console.log(
+                    key + ":",
+                    value
+                );
+
+            }
+
+            console.log(
+                "======================================"
+            );
+
+
+            /* -----------------------------------------------
+               DISABLE BUTTON
+            ------------------------------------------------ */
+
+            const confirmButton =
+                document.getElementById(
+                    "confirmBookingBtn"
+                );
+
+
+            if (confirmButton) {
+
+                confirmButton.disabled = true;
+
+                confirmButton.textContent =
+                    "Booking...";
+
+            }
+
+
+            /* -----------------------------------------------
+               SEND TO PHP
+            ------------------------------------------------ */
+
+            fetch(
+                "backend/appoinment/book.php",
+                {
+                    method: "POST",
+                    body: formData
+                }
+            )
+
+            .then(response => {
+
+                console.log(
+                    "BOOKING HTTP STATUS:",
+                    response.status
+                );
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "HTTP Error: " +
+                        response.status
+                    );
+
+                }
+
+
+                return response.text();
+
+            })
+
+            .then(text => {
+
+                /*
+                 * We first receive TEXT instead of directly
+                 * calling response.json().
+                 *
+                 * This makes debugging much easier because
+                 * PHP may sometimes output an error/warning
+                 * before the JSON.
+                 */
+
+                console.log(
+                    "RAW BOOKING RESPONSE:",
+                    text
+                );
+
+
+                let data;
+
+                try {
+
+                    data = JSON.parse(text);
+
+                } catch (error) {
+
+                    console.error(
+                        "INVALID JSON FROM PHP:",
+                        text
+                    );
+
+                    throw new Error(
+                        "The server did not return valid JSON."
+                    );
+
+                }
+
+
+                console.log(
+                    "BOOKING RESPONSE:",
+                    data
+                );
+
+
+                if (data.status === "success") {
+
+                    alert(
+                        data.message ||
+                        "Appointment booked successfully!"
+                    );
+
+
+                    /* ---------------------------------------
+                       SAVE APPOINTMENT ID
+                    ---------------------------------------- */
+
+                    if (
+                        data.appointment_id &&
+                        cancelAppointmentBtn
+                    ) {
+
+                        cancelAppointmentBtn.dataset.appointmentId =
+                            data.appointment_id;
+
+                        cancelAppointmentBtn.style.display =
+                            "inline-block";
+
+                    }
+
+
+                    /*
+                     * DO NOT reset appointmentForm here.
+                     *
+                     * appointmentForm contains the hidden
+                     * pet_id and Step 3 information.
+                     *
+                     * Resetting it can make debugging and
+                     * cancellation harder.
+                     */
+
+
+                    if (confirmButton) {
+
+                        confirmButton.disabled = false;
+
+                        confirmButton.textContent =
+                            "Confirm Booking";
+
+                    }
+
+
+                } else {
+
+                    alert(
+                        data.message ||
+                        "Appointment booking failed."
+                    );
+
+
+                    if (confirmButton) {
+
+                        confirmButton.disabled = false;
+
+                        confirmButton.textContent =
+                            "Confirm Booking";
+
+                    }
+
+                }
+
+            })
+
+            .catch(error => {
+
+                console.error(
+                    "APPOINTMENT BOOKING ERROR:",
+                    error
+                );
+
+
+                alert(
+                    "Appointment booking failed. Check the browser console for details."
+                );
+
+
+                if (confirmButton) {
+
+                    confirmButton.disabled = false;
+
+                    confirmButton.textContent =
+                        "Confirm Booking";
+
+                }
+
+            });
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   PREVIOUS STEP
+========================================================= */
+
+const previousStepBtn =
+    document.getElementById(
+        "previousStepBtn"
+    );
+
+
+if (previousStepBtn) {
+
+    previousStepBtn.addEventListener(
+        "click",
+        function () {
+
+            scrollToSection(step3);
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   CANCEL APPOINTMENT
+========================================================= */
 
 if (cancelAppointmentBtn) {
 
-    cancelAppointmentBtn.addEventListener("click", function () {
+    cancelAppointmentBtn.addEventListener(
+        "click",
+        function () {
 
-        const appointmentId =
-            this.dataset.appointmentId;
+            const appointmentId =
+                this.dataset.appointmentId;
 
-        if (!appointmentId) {
 
-            alert("No appointment selected.");
+            if (!appointmentId) {
 
-            return;
-        }
+                alert(
+                    "No appointment selected."
+                );
 
-        const confirmed = confirm(
-            "Are you sure you want to cancel this appointment?"
-        );
-
-        if (!confirmed) {
-
-            return;
-        }
-
-        const formData = new FormData();
-
-        formData.append(
-            "appointment_id",
-            appointmentId
-        );
-
-        fetch("backend/appoinment/cancel.php", {
-
-            method: "POST",
-
-            body: formData
-
-        })
-
-        .then(response => response.json())
-
-        .then(data => {
-
-            alert(data.message);
-
-            if (data.status === "success") {
-
-                cancelAppointmentBtn.style.display =
-                    "none";
-
-                delete cancelAppointmentBtn.dataset.appointmentId;
+                return;
 
             }
 
-        })
 
-        .catch(error => {
+            if (
+                !confirm(
+                    "Are you sure you want to cancel this appointment?"
+                )
+            ) {
 
-            console.error(
-                "Cancellation Error:",
-                error
+                return;
+
+            }
+
+
+            const formData =
+                new FormData();
+
+
+            formData.append(
+                "appointment_id",
+                appointmentId
             );
 
-            alert(
-                "Something went wrong while cancelling the appointment."
-            );
 
-        });
+            fetch(
+                "backend/appoinment/cancel.php",
+                {
+                    method: "POST",
+                    body: formData
+                }
+            )
 
-    });
+            .then(response => {
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "HTTP Error: " +
+                        response.status
+                    );
+
+                }
+
+                return response.json();
+
+            })
+
+            .then(data => {
+
+                console.log(
+                    "CANCEL RESPONSE:",
+                    data
+                );
+
+
+                alert(
+                    data.message ||
+                    "Cancellation completed."
+                );
+
+
+                if (data.status === "success") {
+
+                    cancelAppointmentBtn.style.display =
+                        "none";
+
+                    delete cancelAppointmentBtn.dataset
+                        .appointmentId;
+
+                }
+
+            })
+
+            .catch(error => {
+
+                console.error(
+                    "CANCEL ERROR:",
+                    error
+                );
+
+                alert(
+                    "Something went wrong while cancelling the appointment."
+                );
+
+            });
+
+        }
+    );
 
 }
 
-/* ================= OPEN POPUP ================= */
+
+/* =========================================================
+   LOGIN / REGISTER POPUP
+========================================================= */
 
 function openPopup() {
-    document.getElementById("authPopup").style.display = "flex";
+
+    const popup =
+        document.getElementById("authPopup");
+
+    if (!popup) {
+        return;
+    }
+
+    popup.style.display = "flex";
+
     document.body.style.overflow = "hidden";
+
 }
 
-/* ================= CLOSE POPUP ================= */
 
 function closePopup() {
-    document.getElementById("authPopup").style.display = "none";
+
+    const popup =
+        document.getElementById("authPopup");
+
+    if (!popup) {
+        return;
+    }
+
+    popup.style.display = "none";
+
     document.body.style.overflow = "auto";
+
 }
 
-/* ================= CLOSE OUTSIDE POPUP ================= */
 
-window.addEventListener("click", function(e) {
-    const popup = document.getElementById("authPopup");
-    if (e.target === popup) {
-        closePopup();
+window.addEventListener(
+    "click",
+    function (event) {
+
+        const popup =
+            document.getElementById("authPopup");
+
+        if (
+            popup &&
+            event.target === popup
+        ) {
+
+            closePopup();
+
+        }
+
     }
-});
+);
 
-/* ================= LOGIN TAB ================= */
+
+/* =========================================================
+   LOGIN TAB
+========================================================= */
 
 function showLogin() {
-    document.getElementById("loginForm").style.display = "block";
-    document.getElementById("registerForm").style.display = "none";
-    document.querySelectorAll(".tab")[0].classList.add("active");
-    document.querySelectorAll(".tab")[1].classList.remove("active");
+
+    const loginForm =
+        document.getElementById("loginForm");
+
+    const registerForm =
+        document.getElementById("registerForm");
+
+    const tabs =
+        document.querySelectorAll(".tab");
+
+
+    loginForm.style.display = "block";
+
+    registerForm.style.display = "none";
+
+
+    tabs[0].classList.add("active");
+
+    tabs[1].classList.remove("active");
+
 }
 
-/* ================= REGISTER TAB ================= */
+
+/* =========================================================
+   REGISTER TAB
+========================================================= */
 
 function showRegister() {
-    document.getElementById("loginForm").style.display = "none";
-    document.getElementById("registerForm").style.display = "block";
-    document.querySelectorAll(".tab")[1].classList.add("active");
-    document.querySelectorAll(".tab")[0].classList.remove("active");
+
+    const loginForm =
+        document.getElementById("loginForm");
+
+    const registerForm =
+        document.getElementById("registerForm");
+
+    const tabs =
+        document.querySelectorAll(".tab");
+
+
+    loginForm.style.display = "none";
+
+    registerForm.style.display = "block";
+
+
+    tabs[1].classList.add("active");
+
+    tabs[0].classList.remove("active");
+
 }
 
-function togglePassword(inputId, checkbox) {
-    document.getElementById(inputId).type = checkbox.checked ? "text" : "password";
+
+/* =========================================================
+   PASSWORD TOGGLE
+========================================================= */
+
+function togglePassword(
+    inputId,
+    checkbox
+) {
+
+    const passwordInput =
+        document.getElementById(inputId);
+
+    if (!passwordInput) {
+        return;
+    }
+
+
+    passwordInput.type =
+        checkbox.checked
+            ? "text"
+            : "password";
+
 }
 
-/* ================= GOOGLE LOGIN ================= */
+
+/* =========================================================
+   GOOGLE LOGIN
+========================================================= */
 
 function googleLogin() {
-    alert("Google Login will be connected here.");
+
+    alert(
+        "Google Login will be connected here."
+    );
+
 }
 
-/* ================= ESC KEY ================= */
 
-document.addEventListener("keydown", function(e) {
-    if (e.key === "Escape") {
-        closePopup();
+/* =========================================================
+   ESC KEY
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    function (event) {
+
+        if (event.key === "Escape") {
+
+            closePopup();
+
+        }
+
     }
-});
+);
 
-/* ================================================= */
-/* ================= REGISTER ======================= */
-/* ================================================= */
 
-const registerForm = document.getElementById("registerForm");
+/* =========================================================
+   REGISTER
+========================================================= */
+
+const registerForm =
+    document.getElementById("registerForm");
+
 
 if (registerForm) {
-    registerForm.addEventListener("submit", function(e) {
-        e.preventDefault();
 
-        const messageBox = document.getElementById("register-message");
-        const formData = new FormData(registerForm);
+    registerForm.addEventListener(
+        "submit",
+        function (event) {
 
-        fetch("backend/auth/register.php", {
-            method: "POST",
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            messageBox.textContent = data.message || (data.status === "success" ? "Registration successful!" : "Registration failed. Please try again.");
-            messageBox.classList.remove("success", "error");
-            messageBox.style.display = "block";
+            event.preventDefault();
 
-            if (data.status === "success") {
-                messageBox.classList.add("success");
-            } else {
-                messageBox.classList.add("error");
-            }
-        })
-        .catch(error => {
-            console.error(error);
-            messageBox.textContent = "Something went wrong. Please try again.";
-            messageBox.classList.remove("success");
-            messageBox.classList.add("error");
-            messageBox.style.display = "block";
-        });
-    });
+
+            const messageBox =
+                document.getElementById(
+                    "register-message"
+                );
+
+
+            const formData =
+                new FormData(registerForm);
+
+
+            messageBox.className =
+                "auth-message";
+
+
+            messageBox.style.display =
+                "none";
+
+
+            fetch(
+                "backend/auth/register.php",
+                {
+                    method: "POST",
+                    body: formData
+                }
+            )
+
+            .then(response => {
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "HTTP Error: " +
+                        response.status
+                    );
+
+                }
+
+                return response.json();
+
+            })
+
+            .then(data => {
+
+                console.log(
+                    "REGISTER RESPONSE:",
+                    data
+                );
+
+
+                messageBox.textContent =
+                    data.message ||
+                    "Registration completed.";
+
+
+                messageBox.style.display =
+                    "block";
+
+
+                if (data.status === "success") {
+
+                    messageBox.classList.add(
+                        "success"
+                    );
+
+                    registerForm.reset();
+
+                } else {
+
+                    messageBox.classList.add(
+                        "error"
+                    );
+
+                }
+
+            })
+
+            .catch(error => {
+
+                console.error(
+                    "REGISTER ERROR:",
+                    error
+                );
+
+
+                messageBox.textContent =
+                    "Something went wrong. Please try again.";
+
+
+                messageBox.className =
+                    "auth-message error";
+
+
+                messageBox.style.display =
+                    "block";
+
+            });
+
+        }
+    );
+
 }
 
-/* ================================================= */
-/* ================= LOGIN ========================== */
-/* ================================================= */
 
-const loginForm = document.getElementById("loginForm");
+/* =========================================================
+   LOGIN
+========================================================= */
+
+const loginForm =
+    document.getElementById("loginForm");
+
 
 if (loginForm) {
-    loginForm.addEventListener("submit", function(e) {
-        e.preventDefault();
 
-        const messageBox = document.getElementById("login-message");
-        const formData = new FormData(loginForm);
+    loginForm.addEventListener(
+        "submit",
+        function (event) {
 
-        fetch("backend/auth/login.php", {
-            method: "POST",
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            messageBox.textContent = data.message || (data.status === "success" ? "Login successful!" : "Invalid email or password.");
-            messageBox.classList.remove("success", "error");
-            messageBox.style.display = "block";
+            event.preventDefault();
 
-            if (data.status === "success") {
-                messageBox.classList.add("success");
-            } else {
-                messageBox.classList.add("error");
-            }
-        })
-        .catch(error => {
-            console.error(error);
-            messageBox.textContent = "Something went wrong. Please try again.";
-            messageBox.classList.remove("success");
-            messageBox.classList.add("error");
-            messageBox.style.display = "block";
-        });
-    });
+
+            const messageBox =
+                document.getElementById(
+                    "login-message"
+                );
+
+
+            const formData =
+                new FormData(loginForm);
+
+
+            messageBox.className =
+                "auth-message";
+
+
+            messageBox.style.display =
+                "none";
+
+
+            fetch(
+                "backend/auth/login.php",
+                {
+                    method: "POST",
+                    body: formData
+                }
+            )
+
+            .then(response => {
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "HTTP Error: " +
+                        response.status
+                    );
+
+                }
+
+                return response.json();
+
+            })
+
+            .then(data => {
+
+                console.log(
+                    "LOGIN RESPONSE:",
+                    data
+                );
+
+
+                messageBox.textContent =
+                    data.message ||
+                    "Login completed.";
+
+
+                messageBox.style.display =
+                    "block";
+
+
+                if (data.status === "success") {
+
+                    messageBox.classList.add(
+                        "success"
+                    );
+
+                } else {
+
+                    messageBox.classList.add(
+                        "error"
+                    );
+
+                }
+
+            })
+
+            .catch(error => {
+
+                console.error(
+                    "LOGIN ERROR:",
+                    error
+                );
+
+
+                messageBox.textContent =
+                    "Something went wrong. Please try again.";
+
+
+                messageBox.className =
+                    "auth-message error";
+
+
+                messageBox.style.display =
+                    "block";
+
+            });
+
+        }
+    );
+
 }
-</script>
 
+</script>
 </body>
 </html>

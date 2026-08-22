@@ -5,43 +5,77 @@ header("Content-Type: application/json");
 require_once "../config/database.php";
 
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
-	echo json_encode([
-		"status" => "error",
-		"message" => "Invalid request method."
-	]);
-	exit;
+    echo json_encode([
+        "status" => "error",
+        "message" => "Invalid request method."
+    ]);
+    exit;
 }
 
 $name = trim($_POST["name"] ?? "");
+$phone = trim($_POST["phone"] ?? "");
 $email = trim($_POST["email"] ?? "");
 $subject = trim($_POST["subject"] ?? "");
 $message = trim($_POST["message"] ?? "");
 
-if ($name === "" || $message === "" || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-	echo json_encode([
-		"status" => "error",
-		"message" => "Please provide a valid name, email, and message."
-	]);
-	exit;
+/* Validate required fields */
+
+if ($name === "" || $email === "" || $message === "") {
+    echo json_encode([
+        "status" => "error",
+        "message" => "Please fill in all required fields."
+    ]);
+    exit;
 }
 
-$stmt = $conn->prepare(
-	"INSERT INTO contact_messages (name, email, subject, message)
-	 VALUES (?, ?, ?, ?)"
+/* Validate email */
+
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    echo json_encode([
+        "status" => "error",
+        "message" => "Please enter a valid email address."
+    ]);
+    exit;
+}
+
+/* Insert message into database */
+
+$sql = "INSERT INTO contact_messages 
+        (name, phone, email, subject, message)
+        VALUES (?, ?, ?, ?, ?)";
+
+$stmt = $conn->prepare($sql);
+
+if (!$stmt) {
+    echo json_encode([
+        "status" => "error",
+        "message" => "Database error: " . $conn->error
+    ]);
+    exit;
+}
+
+$stmt->bind_param(
+    "sssss",
+    $name,
+    $phone,
+    $email,
+    $subject,
+    $message
 );
 
-$stmt->bind_param("ssss", $name, $email, $subject, $message);
-
 if ($stmt->execute()) {
-	echo json_encode([
-		"status" => "success",
-		"message" => "Thanks for reaching out! Our team will get back to you shortly."
-	]);
+
+    echo json_encode([
+        "status" => "success",
+        "message" => "Your message has been sent successfully!"
+    ]);
+
 } else {
-	echo json_encode([
-		"status" => "error",
-		"message" => "Unable to send your message. Please try again."
-	]);
+
+    echo json_encode([
+        "status" => "error",
+        "message" => "Failed to save your message."
+    ]);
 }
 
 $stmt->close();
