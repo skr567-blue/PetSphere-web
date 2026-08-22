@@ -2005,9 +2005,11 @@ justify-content:center;
 
 </section>
 
+<!--================ STEP 3 SERVICE SECTION ================-->
+
 <section class="service-section">
 
-    <div class="service-card">
+    <form class="service-card" id="appointmentForm">
 
         <div class="section-heading">
 
@@ -2027,14 +2029,9 @@ justify-content:center;
 
                 <label>Select Service</label>
 
-                <select required>
+                <select id="service_id" name="service_id" required>
 
                     <option value="">Choose Service</option>
-
-                    <option>Veterinary Care</option>
-                    <option>Pet Grooming</option>
-                    <option>Pet Boarding</option>
-                    <option>Pet Training</option>
 
                 </select>
 
@@ -2087,7 +2084,9 @@ justify-content:center;
 
         </div>
 
-    </div>
+        <input type="hidden" id="pet_id" name="pet_id">
+
+    </form>
 
 </section>
 
@@ -2199,7 +2198,7 @@ justify-content:center;
                 Previous Step
             </button>
 
-            <button type="submit" class="submit-btn">
+            <button type="submit" form="appointmentForm" class="submit-btn">
                 Book Appointment
             </button>
 
@@ -2450,18 +2449,22 @@ justify-content:center;
 const savePetBtn = document.getElementById("savePetBtn");
 const petForm = document.getElementById("petForm");
 
-if (savePetBtn) {
+if (savePetBtn && petForm) {
 
     savePetBtn.addEventListener("click", function () {
 
+        // Check the form before sending
+        if (!petForm.checkValidity()) {
+            petForm.reportValidity();
+            return;
+        }
+
+        // Collect all pet form data
         const petData = new FormData(petForm);
 
         fetch("backend/pets/addPet.php", {
-
             method: "POST",
-
             body: petData
-
         })
 
         .then(response => response.json())
@@ -2472,6 +2475,9 @@ if (savePetBtn) {
 
                 alert(data.message);
 
+                    document.getElementById("pet_id").value = data.pet_id;
+
+                // Clear the form after successful save
                 petForm.reset();
 
             } else {
@@ -2484,9 +2490,9 @@ if (savePetBtn) {
 
         .catch(error => {
 
-            console.error(error);
+            console.error("Save Pet Error:", error);
 
-            alert("Something went wrong.");
+            alert("Something went wrong while saving the pet.");
 
         });
 
@@ -2498,14 +2504,17 @@ if (savePetBtn) {
 
 function loadServices() {
 
-    fetch("backend/appointments/getServices.php")
+    const serviceSelect = document.getElementById("service_id");
+
+    if (!serviceSelect) {
+        return;
+    }
+
+    fetch("backend/appoinment/getServices.php")
 
         .then(response => response.json())
 
         .then(data => {
-
-            const serviceSelect =
-                document.getElementById("service_id");
 
             if (data.status !== "success") {
 
@@ -2515,9 +2524,11 @@ function loadServices() {
                 return;
             }
 
+            // Clear existing options
             serviceSelect.innerHTML =
                 '<option value="">Choose Service</option>';
 
+            // Add services from database
             data.services.forEach(service => {
 
                 const option = document.createElement("option");
@@ -2537,9 +2548,9 @@ function loadServices() {
 
         .catch(error => {
 
-            console.error(error);
+            console.error("Service Loading Error:", error);
 
-            document.getElementById("service_id").innerHTML =
+            serviceSelect.innerHTML =
                 '<option value="">Unable to load services</option>';
 
         });
@@ -2547,9 +2558,13 @@ function loadServices() {
 
 /* ================= LOAD STAFF ================= */
 
-const staffSelect = document.getElementById("staffSelect");
+function loadStaff() {
 
-if (staffSelect) {
+    const staffSelect = document.getElementById("staffSelect");
+
+    if (!staffSelect) {
+        return;
+    }
 
     fetch("backend/appoinment/getStaff.php")
 
@@ -2557,38 +2572,85 @@ if (staffSelect) {
 
         .then(data => {
 
-            if (data.status === "success") {
+            if (data.status !== "success") {
 
-                data.data.forEach(staff => {
+                console.error("Unable to load staff.");
 
-                    const option = document.createElement("option");
-
-                    option.value = staff.id;
-
-                    option.textContent =
-                        staff.fullname + " - " + staff.staff_type;
-
-                    staffSelect.appendChild(option);
-
-                });
-
+                return;
             }
+
+            // Keep "No Preference"
+            staffSelect.innerHTML =
+                '<option value="">No Preference</option>';
+
+            // Add staff from database
+            data.data.forEach(staff => {
+
+                const option = document.createElement("option");
+
+                option.value = staff.id;
+
+                option.textContent =
+                    staff.fullname +
+                    " - " +
+                    staff.staff_type;
+
+                staffSelect.appendChild(option);
+
+            });
 
         })
 
         .catch(error => {
 
-            console.error("Error loading staff:", error);
+            console.error("Staff Loading Error:", error);
 
         });
-
 }
 
-/* ================= LOAD APPOINTMENT DATA ================= */
+/* ================= LOAD SERVICES AND STAFF ================= */
 
 loadServices();
-
 loadStaff();
+
+/* ================= BOOK APPOINTMENT ================= */
+
+const appointmentForm = document.getElementById("appointmentForm");
+const petIdInput = document.getElementById("pet_id");
+
+if (appointmentForm) {
+    appointmentForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        if (!petIdInput.value) {
+            alert("Please save your pet before booking the appointment.");
+            return;
+        }
+
+        if (!appointmentForm.checkValidity()) {
+            appointmentForm.reportValidity();
+            return;
+        }
+
+        fetch("backend/appoinment/book.php", {
+            method: "POST",
+            body: new FormData(appointmentForm)
+        })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+
+                if (data.status === "success") {
+                    appointmentForm.reset();
+                    petIdInput.value = "";
+                }
+            })
+            .catch(error => {
+                console.error("Appointment Booking Error:", error);
+                alert("Something went wrong while booking the appointment.");
+            });
+    });
+}
 
 /* ================= OPEN POPUP ================= */
 

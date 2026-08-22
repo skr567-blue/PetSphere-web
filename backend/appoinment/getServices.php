@@ -5,7 +5,7 @@ header("Content-Type: application/json");
 
 $sql = "SELECT id, service_name, price FROM services ORDER BY service_name";
 
-$result = myaql_query($conn, $sql);
+$result = mysqli_query($conn, $sql);
 
 if(!$result){
     echo json_encode([
